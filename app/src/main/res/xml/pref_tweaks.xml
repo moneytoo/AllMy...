@@ -1,0 +1,93 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_disablesuindicator"
+        android:title="Disable Su Indicator"
+        android:summary="For CM12/CM12.1/CM13" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_alwayssoftwaremenu"
+        android:title="Always Software Menu"
+        android:summary="For CM12/CM12.1 (CM13?)" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_notoasticons"
+        android:title="No Toast Icons"
+        android:summary="For CM12.1 (CM13?)" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_pocketfirst"
+        android:title="Pocket First (Option When Sharing)"
+        android:summary="For Android 5.0 and newer" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_deskclockalarm"
+        android:title="Desk Clock Alarm"
+        android:summary="Make Alarm the default tab in stock/Google Desk Clock" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_onewaybrightness"
+        android:title="One Way Brightness"
+        android:summary="For CM12.1 (CM13?)" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_k920keyshapticfix"
+        android:title="K920 Keys Haptic Fix"
+        android:summary="For CM12.1" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_batterylightdisabler"
+        android:title="Battery Light Disabler"
+        android:summary="For CM12.1 (CM13?)" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_onehandzoom_ff"
+        android:title="One Hand Zoom Enabler"
+        android:summary="For Mozilla Firefox" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_onehandzoom_ar"
+        android:title="One Hand Zoom Enabler"
+        android:summary="For Adobe Reader" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_batteryhistoryxxl"
+        android:title="Battery History XXL"
+        android:summary="For CM12/CM12.1" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_nativefreezer"
+        android:title="Native Freezer"
+        android:summary="For CM12/CM12.1" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_minimumbrightness_mx"
+        android:title="Minimum Brightness"
+        android:summary="For MX Player" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_minimumbrightness"
+        android:title="Minimum Brightness"
+        android:summary="Lowest brightness system wide" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_gentlehapticfeedback"
+        android:title="Gentle Haptic Feedback"
+        android:summary="Make haptic feedback more subtle" />
+
+</PreferenceScreen>
