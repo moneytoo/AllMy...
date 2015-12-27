@@ -8,6 +8,7 @@ import com.smartmadsoft.xposed.aio.tweaks.BatteryLightDisabler;
 import com.smartmadsoft.xposed.aio.tweaks.DeskClockAlarm;
 import com.smartmadsoft.xposed.aio.tweaks.DisableSuIndicator;
 import com.smartmadsoft.xposed.aio.tweaks.GentleHapticFeedback;
+import com.smartmadsoft.xposed.aio.tweaks.HideNetworkIndicators;
 import com.smartmadsoft.xposed.aio.tweaks.K920KeysHapticFix;
 import com.smartmadsoft.xposed.aio.tweaks.MinimumBrightnessMX;
 import com.smartmadsoft.xposed.aio.tweaks.NativeFreezer;
@@ -17,12 +18,14 @@ import com.smartmadsoft.xposed.aio.tweaks.PocketFirst;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
 
+import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XSharedPreferences;
+import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage {
+public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXposedHookInitPackageResources {
     public static final String PACKAGE_NAME = Loader.class.getPackage().getName();
     private static XSharedPreferences prefs;
 
@@ -83,5 +86,11 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage {
             MinimumBrightnessMX.hook(lpparam);
         }
 
+    }
+
+    @Override
+    public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam iprparam) throws Throwable {
+        if (iprparam.packageName.equals("com.android.systemui") && prefs.getBoolean("tweak_hidenetworkindicators", false))
+            HideNetworkIndicators.hook(iprparam);
     }
 }

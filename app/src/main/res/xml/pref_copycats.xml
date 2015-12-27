@@ -1,0 +1,21 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_minimumbrightness"
+        android:title="Minimum Brightness"
+        android:summary="Lowest brightness system wide" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_gentlehapticfeedback"
+        android:title="Gentle Haptic Feedback"
+        android:summary="Make haptic feedback more subtle" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_hidenetworkindicators"
+        android:title="Hide Network Indicators"
+        android:summary="The non-interactive AOSP look in status bar" />
+
+</PreferenceScreen>

@@ -1,0 +1,9 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_k920keyshapticfix"
+        android:title="K920 Keys Haptic Fix"
+        android:summary="For CM12.1" />
+
+</PreferenceScreen>

@@ -138,7 +138,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      */
     protected boolean isValidFragment(String fragmentName) {
         return PreferenceFragment.class.getName().equals(fragmentName)
-                || TweaksPreferenceFragment.class.getName().equals(fragmentName);
+                || TweaksPreferenceFragment.class.getName().equals(fragmentName)
+                || ExperimentalPreferenceFragment.class.getName().equals(fragmentName)
+                || CopycatsPreferenceFragment.class.getName().equals(fragmentName);
     }
 
 
@@ -179,4 +181,59 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             return super.onOptionsItemSelected(item);
         }
     }
+
+    /**
+     * This fragment shows data and sync preferences only. It is used when the
+     * activity is showing a two-pane settings UI.
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class ExperimentalPreferenceFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
+
+            addPreferencesFromResource(R.xml.pref_experimental);
+            setHasOptionsMenu(true);
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            int id = item.getItemId();
+            if (id == android.R.id.home) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /**
+     * This fragment shows data and sync preferences only. It is used when the
+     * activity is showing a two-pane settings UI.
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class CopycatsPreferenceFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
+
+            addPreferencesFromResource(R.xml.pref_copycats);
+            setHasOptionsMenu(true);
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            int id = item.getItemId();
+            if (id == android.R.id.home) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
 }
