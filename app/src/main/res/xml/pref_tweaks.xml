@@ -50,6 +50,12 @@
             android:title="Battery Light Disabler"
             android:summary="For CM12.1 (CM13?)" />
 
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="tweak_compactvolumepanel"
+            android:title="Compact Volume Panel"
+            android:summary="For CM12/CM12.1 (CM13?)" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

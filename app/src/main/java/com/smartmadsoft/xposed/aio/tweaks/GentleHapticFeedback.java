@@ -1,3 +1,7 @@
+/*
+    from https://github.com/GravityBox/GravityBox
+ */
+
 package com.smartmadsoft.xposed.aio.tweaks;
 
 import android.content.Context;
@@ -13,7 +17,7 @@ public class GentleHapticFeedback {
 
     private static Object mPhoneWindowManager;
 
-    public static void load() {
+    public static void hook() {
         final Class<?> classPhoneWindowManager = XposedHelpers.findClass(CLASS_PHONE_WINDOW_MANAGER, null);
 
         XposedHelpers.findAndHookMethod(classPhoneWindowManager, "init", Context.class, CLASS_IWINDOW_MANAGER, CLASS_WINDOW_MANAGER_FUNCS, phoneWindowManagerInitHook);

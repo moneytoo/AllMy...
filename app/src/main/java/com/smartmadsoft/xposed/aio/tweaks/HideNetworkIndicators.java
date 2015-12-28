@@ -1,3 +1,7 @@
+/*
+    from https://github.com/nadeemsultan/HideNetworkIndicators
+ */
+
 package com.smartmadsoft.xposed.aio.tweaks;
 
 import android.view.View;
