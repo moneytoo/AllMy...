@@ -4,24 +4,24 @@
         android:defaultValue="false"
         android:key="tweak_minimumbrightness"
         android:title="Minimum Brightness"
-        android:summary="Lowest brightness system wide" />
+        android:summary="Lowest brightness system wide\nhttps://github.com/GravityBox/GravityBox" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_gentlehapticfeedback"
         android:title="Gentle Haptic Feedback"
-        android:summary="Make haptic feedback more subtle" />
+        android:summary="Make haptic feedback more subtle\nhttps://github.com/GravityBox/GravityBox" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_hidenetworkindicators"
         android:title="Hide Network Indicators"
-        android:summary="The non-interactive AOSP look in status bar" />
+        android:summary="The non-interactive AOSP look in status bar\nhttps://github.com/nadeemsultan/HideNetworkIndicators" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_nosafevolumewarning"
         android:title="No Safe Volume Warning"
-        android:summary="Disable safe volume warning dialog" />
+        android:summary="Disable safe volume warning dialog\nhttps://github.com/pylerSM/NoSafeVolumeWarning" />
 
 </PreferenceScreen>
