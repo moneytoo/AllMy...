@@ -91,6 +91,12 @@
             android:title="Minimum Brightness"
             android:summary="For MX Player (v1.7.40)" />
 
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="tweak_chrometabstoolbaronphone"
+            android:title="Chrome Tabs Toolbar On Phone"
+            android:summary="For Chrome (v47/48/49)" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

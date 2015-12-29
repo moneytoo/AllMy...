@@ -17,6 +17,7 @@ import com.smartmadsoft.xposed.aio.tweaks.NoSafeVolumeWarning;
 import com.smartmadsoft.xposed.aio.tweaks.NoToastIcons;
 import com.smartmadsoft.xposed.aio.tweaks.OneWayBrightness;
 import com.smartmadsoft.xposed.aio.tweaks.PocketFirst;
+import com.smartmadsoft.xposed.aio.tweaks.ChromeTabsToolbarOnPhone;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
 
@@ -41,13 +42,12 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             XResources.setSystemWideReplacement("android", "integer", "config_screenBrightnessSettingMinimum", 1);
             XResources.setSystemWideReplacement("android", "integer", "config_screenBrightnessDim", 1);
         }
-        if (prefs.getBoolean("tweak_gentlehapticfeedback", false)) {
+        if (prefs.getBoolean("tweak_gentlehapticfeedback", false))
             GentleHapticFeedback.hook();
-        }
-        if (prefs.getBoolean("tweak_nosafevolumewarning", false)) {
+        if (prefs.getBoolean("tweak_nosafevolumewarning", false))
             NoSafeVolumeWarning.hook();
-        }
-
+        if (prefs.getBoolean("tweak_chrometabstoolbaronphone", false))
+            ChromeTabsToolbarOnPhone.init();
     }
 
     @Override
@@ -79,6 +79,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             NativeFreezer.hook(lpparam);
         if ((lpparam.packageName.equals("com.mxtech.videoplayer.pro") ||  lpparam.packageName.equals("com.mxtech.videoplayer.ad")) && prefs.getBoolean("tweak_minimumbrightness_mx", false))
             MinimumBrightnessMX.hook(lpparam);
+        if (ChromeTabsToolbarOnPhone.isChrome(lpparam.packageName) && prefs.getBoolean("tweak_chrometabstoolbaronphone", false))
+            ChromeTabsToolbarOnPhone.hook(lpparam);
     }
 
     @Override
