@@ -11,34 +11,27 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 public class GentleHapticFeedback {
-    private static final String CLASS_PHONE_WINDOW_MANAGER = "com.android.internal.policy.impl.PhoneWindowManager";
-    private static final String CLASS_IWINDOW_MANAGER = "android.view.IWindowManager";
-    private static final String CLASS_WINDOW_MANAGER_FUNCS = "android.view.WindowManagerPolicy.WindowManagerFuncs";
-
     private static Object mPhoneWindowManager;
 
-    public static void hook() {
-        final Class<?> classPhoneWindowManager = XposedHelpers.findClass(CLASS_PHONE_WINDOW_MANAGER, null);
+    static long vibePattern;
 
-        XposedHelpers.findAndHookMethod(classPhoneWindowManager, "init", Context.class, CLASS_IWINDOW_MANAGER, CLASS_WINDOW_MANAGER_FUNCS, phoneWindowManagerInitHook);
-    }
+    public static void hook(int value) {
+        vibePattern = value;
 
-    private static XC_MethodHook phoneWindowManagerInitHook = new XC_MethodHook() {
-        @Override
-        protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-            mPhoneWindowManager = param.thisObject;
+        XposedHelpers.findAndHookMethod(XposedHelpers.findClass("com.android.internal.policy.impl.PhoneWindowManager", null), "init", Context.class, "android.view.IWindowManager", "android.view.WindowManagerPolicy.WindowManagerFuncs", new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                mPhoneWindowManager = param.thisObject;
 
-            setVirtualKeyVibePattern();
-        }
-    };
+                if (mPhoneWindowManager == null)
+                    return;
 
-    private static void setVirtualKeyVibePattern() {
-        if (mPhoneWindowManager == null) return;
-
-        try {
-            XposedHelpers.setObjectField(mPhoneWindowManager, "mVirtualKeyVibePattern", new long[] { 10 });
-        } catch (Throwable t) {
-            XposedBridge.log(t);
-        }
+                try {
+                    XposedHelpers.setObjectField(mPhoneWindowManager, "mVirtualKeyVibePattern", new long[] { vibePattern });
+                } catch (Throwable t) {
+                    XposedBridge.log(t);
+                }
+            }
+        });
     }
 }

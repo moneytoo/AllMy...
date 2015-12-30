@@ -9,7 +9,7 @@ public class OneWayBrightness {
     public static float lastLux = 0.0f;
 
     public static void hook(XC_LoadPackage.LoadPackageParam lpparam) {
-        XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.server.display.AutomaticBrightnessController", lpparam.classLoader), "handleLightSensorEvent", new XC_MethodHook() {
+        XposedHelpers.findAndHookMethod("com.android.server.display.AutomaticBrightnessController", lpparam.classLoader, "handleLightSensorEvent", long.class, float.class, new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                 float lux = (float) param.args[1];
@@ -21,7 +21,7 @@ public class OneWayBrightness {
             }
         });
 
-        XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.server.display.AutomaticBrightnessController", lpparam.classLoader), "setLightSensorEnabled", new XC_MethodHook() {
+        XposedHelpers.findAndHookMethod("com.android.server.display.AutomaticBrightnessController", lpparam.classLoader, "setLightSensorEnabled", boolean.class, new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                 boolean enable = (boolean) param.args[0];

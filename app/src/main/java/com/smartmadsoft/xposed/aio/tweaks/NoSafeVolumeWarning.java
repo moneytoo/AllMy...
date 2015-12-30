@@ -9,7 +9,7 @@ import de.robv.android.xposed.XposedHelpers;
 
 public class NoSafeVolumeWarning {
     public static void hook() {
-        Class<?> AudioService = XposedHelpers.findClass("android.media.AudioService", null);
+        final Class<?> AudioService = XposedHelpers.findClass("android.media.AudioService", null);
 
         XposedHelpers.findAndHookMethod(AudioService, "enforceSafeMediaVolume", new XC_MethodHook() {
             @Override

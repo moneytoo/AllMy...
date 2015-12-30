@@ -223,6 +223,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             addPreferencesFromResource(R.xml.pref_copycats);
             setHasOptionsMenu(true);
+
+            bindPreferenceSummaryToValue(findPreference("tweak_minimumbrightness_list"));
+            bindPreferenceSummaryToValue(findPreference("tweak_gentlehapticfeedback_list"));
         }
 
         @Override

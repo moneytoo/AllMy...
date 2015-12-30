@@ -1,3 +1,46 @@
 <resources>
     <string name="app_name">All My...</string>
+
+    <string-array name="tweak_gentlehapticfeedback_list_titles">
+        <item>Off</item>
+        <item>10 ms</item>
+        <item>15 ms</item>
+        <item>20 ms</item>
+        <item>25 ms</item>
+        <item>30 ms</item>
+    </string-array>
+    <string-array name="tweak_gentlehapticfeedback_list_values">
+        <item>-1</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+    </string-array>
+
+    <string-array name="tweak_minimumbrightness_list_titles">
+        <item>Off</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+    <string-array name="tweak_minimumbrightness_list_values">
+        <item>-1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+
 </resources>
