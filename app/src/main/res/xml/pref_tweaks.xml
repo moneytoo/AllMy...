@@ -87,6 +87,12 @@
 
         <SwitchPreference
             android:defaultValue="false"
+            android:key="tweak_disablehorizontalscroll_ar"
+            android:title="Disable Horizontal Scroll"
+            android:summary="For Adobe Reader (v15.2.2/15.3)" />
+
+        <SwitchPreference
+            android:defaultValue="false"
             android:key="tweak_minimumbrightness_mx"
             android:title="Minimum Brightness"
             android:summary="For MX Player (v1.7.40)" />

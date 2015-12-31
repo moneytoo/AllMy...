@@ -7,6 +7,7 @@ import com.smartmadsoft.xposed.aio.tweaks.BatteryHistoryXXL;
 import com.smartmadsoft.xposed.aio.tweaks.BatteryLightDisabler;
 import com.smartmadsoft.xposed.aio.tweaks.CompactVolumePanel;
 import com.smartmadsoft.xposed.aio.tweaks.DeskClockAlarm;
+import com.smartmadsoft.xposed.aio.tweaks.DisableHorizontalScrollAR;
 import com.smartmadsoft.xposed.aio.tweaks.DisableSuIndicator;
 import com.smartmadsoft.xposed.aio.tweaks.GentleHapticFeedback;
 import com.smartmadsoft.xposed.aio.tweaks.HideNetworkIndicators;
@@ -68,6 +69,12 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             if (prefs.getBoolean("tweak_nativefreezer", false))
                 NativeFreezer.hook(lpparam);
         }
+        if (lpparam.packageName.equals("com.adobe.reader")) {
+            if (prefs.getBoolean("tweak_onehandzoom_ar", false))
+                AR.hook(lpparam);
+            if (prefs.getBoolean("tweak_disablehorizontalscroll_ar", false))
+                DisableHorizontalScrollAR.hook(lpparam);
+        }
         if (lpparam.packageName.equals("com.android.systemui") && prefs.getBoolean("tweak_disablesuindicator", false))
             DisableSuIndicator.hook(lpparam);
         if (prefs.getBoolean("tweak_notoasticons", false))
@@ -78,8 +85,6 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             DeskClockAlarm.hook(lpparam);
         if ((lpparam.packageName.equals("org.mozilla.firefox") || lpparam.packageName.equals("org.mozilla.firefox_beta") || lpparam.packageName.equals("org.mozilla.fennec") ) && prefs.getBoolean("tweak_onehandzoom_ff", false))
             FF.hook(lpparam);
-        if (lpparam.packageName.equals("com.adobe.reader") && prefs.getBoolean("tweak_onehandzoom_ar", false))
-            AR.hook(lpparam);
         if ((lpparam.packageName.equals("com.mxtech.videoplayer.pro") ||  lpparam.packageName.equals("com.mxtech.videoplayer.ad")) && prefs.getBoolean("tweak_minimumbrightness_mx", false))
             MinimumBrightnessMX.hook(lpparam);
         if (ChromeTabsToolbarOnPhone.isChrome(lpparam.packageName) && prefs.getBoolean("tweak_chrometabstoolbaronphone", false))
