@@ -7,13 +7,19 @@
             android:defaultValue="false"
             android:key="tweak_batteryhistoryxxl"
             android:title="Battery History XXL"
-            android:summary="For Android 4.4/5.0/5.1" />
+            android:summary="For Android 4.4/5.x" />
 
         <SwitchPreference
             android:defaultValue="false"
             android:key="tweak_nativefreezer"
             android:title="Native Freezer"
-            android:summary="For Android 4.4/5.0/5.1" />
+            android:summary="For Android 4.4/5.x" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="tweak_pocketfirst"
+            android:title="Pocket First (Option When Sharing)"
+            android:summary="For Pocket on Android 5.x/6.0" />
 
     </PreferenceCategory>
 
@@ -66,12 +72,6 @@
             android:key="tweak_deskclockalarm"
             android:title="Desk Clock Alarm"
             android:summary="Make Alarm the default tab in stock/Google Desk Clock (v4.2.1)" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_pocketfirst"
-            android:title="Pocket First (Option When Sharing)"
-            android:summary="For Pocket on Android 5.x" />
 
         <SwitchPreference
             android:defaultValue="false"
