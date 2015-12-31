@@ -36,7 +36,6 @@ public class BatteryLightDisabler {
                 }
             });
 
-
             XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.server.BatteryService.Led", lpparam.classLoader), "updateLightsLocked", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
