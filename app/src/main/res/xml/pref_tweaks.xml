@@ -30,31 +30,31 @@
             android:defaultValue="false"
             android:key="tweak_alwayssoftwaremenu"
             android:title="Always Software Menu"
-            android:summary="For CM12/CM12.1 (CM13?)" />
+            android:summary="For CM12/CM12.1/CM13" />
 
         <SwitchPreference
             android:defaultValue="false"
             android:key="tweak_notoasticons"
             android:title="No Toast Icons"
-            android:summary="For CM12.1 (CM13?)" />
+            android:summary="For CM12.1/CM13" />
 
         <SwitchPreference
             android:defaultValue="false"
             android:key="tweak_onewaybrightness"
             android:title="One Way Brightness"
-            android:summary="For CM12.1 (CM13?)" />
+            android:summary="For CM12.1/CM13" />
 
         <SwitchPreference
             android:defaultValue="false"
             android:key="tweak_batterylightdisabler"
             android:title="Battery Light Disabler"
-            android:summary="For CM12.1 (CM13?)" />
+            android:summary="For CM12.1" />
 
         <SwitchPreference
             android:defaultValue="false"
             android:key="tweak_compactvolumepanel"
             android:title="Compact Volume Panel"
-            android:summary="For CM12/CM12.1 (CM13?)" />
+            android:summary="For CM12/CM12.1" />
 
     </PreferenceCategory>
 
@@ -71,7 +71,7 @@
             android:defaultValue="false"
             android:key="tweak_pocketfirst"
             android:title="Pocket First (Option When Sharing)"
-            android:summary="For Pocket on Android 5.0 and newer" />
+            android:summary="For Pocket on Android 5.x" />
 
         <SwitchPreference
             android:defaultValue="false"

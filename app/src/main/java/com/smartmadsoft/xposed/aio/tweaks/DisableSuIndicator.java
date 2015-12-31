@@ -7,11 +7,15 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class DisableSuIndicator {
     public static void hook(XC_LoadPackage.LoadPackageParam lpparam) {
-        XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.systemui.statusbar.phone.PhoneStatusBarPolicy", lpparam.classLoader), "updateSu", new XC_MethodHook() {
-            @Override
-            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                param.setResult(null);
-            }
-        });
+        try {
+            XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.systemui.statusbar.phone.PhoneStatusBarPolicy", lpparam.classLoader), "updateSu", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    param.setResult(null);
+                }
+            });
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
     }
 }

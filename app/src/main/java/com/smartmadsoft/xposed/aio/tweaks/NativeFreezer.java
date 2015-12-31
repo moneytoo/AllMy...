@@ -25,71 +25,75 @@ public class NativeFreezer {
     private static String textDisable = "Disable";
 
     public static void hook(final XC_LoadPackage.LoadPackageParam lpparam) {
-        findAndHookMethod("com.android.settings.applications.InstalledAppDetails", lpparam.classLoader, "initUninstallButtons", new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) {
-                getAppInfo(param.thisObject);
-
-                if (!isSystem) {
-                    Button mSpecialDisableButton = (Button) XposedHelpers.getObjectField(param.thisObject, "mSpecialDisableButton");
-                    XposedHelpers.callMethod(mSpecialDisableButton, "setOnClickListener", param.thisObject);
-
-                    getResourceStrings(param.thisObject);
-
-                    if (mAppEntry_info_enabled)
-                        mSpecialDisableButton.setText(textDisable);
-                    else
-                        mSpecialDisableButton.setText(textEnable);
-
-                    try {
-                        View mMoreControlButtons = (View) XposedHelpers.getObjectField(param.thisObject, "mMoreControlButtons");
-                        mMoreControlButtons.setVisibility(View.VISIBLE);
-                    } catch (NoSuchFieldError e) {
-                        // AOSPA
-                        mSpecialDisableButton.setVisibility(View.VISIBLE);
-                    }
-                }
-            }
-        });
-
-        final Class<?> ClassDisableChanger = XposedHelpers.findClass("com.android.settings.applications.InstalledAppDetails.DisableChanger", lpparam.classLoader);
-
-        findAndHookMethod("com.android.settings.applications.InstalledAppDetails", lpparam.classLoader, "onClick", View.class, new XC_MethodReplacement() {
-            @Override
-            protected Object replaceHookedMethod(MethodHookParam param) {
-                Object v = param.args[0];
-                Object mSpecialDisableButton = XposedHelpers.getObjectField(param.thisObject, "mSpecialDisableButton");
-
-                if (v == mSpecialDisableButton) {
+        try {
+            findAndHookMethod("com.android.settings.applications.InstalledAppDetails", lpparam.classLoader, "initUninstallButtons", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) {
                     getAppInfo(param.thisObject);
 
-                    if (!mAppEntry_info_enabled) {
-                        Object DisableChanger = XposedHelpers.newInstance(ClassDisableChanger, param.thisObject, mAppEntry_info, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT);
-                        XposedHelpers.callMethod(DisableChanger, "execute", (Object) null);
-                        return null;
+                    if (!isSystem) {
+                        Button mSpecialDisableButton = (Button) XposedHelpers.getObjectField(param.thisObject, "mSpecialDisableButton");
+                        XposedHelpers.callMethod(mSpecialDisableButton, "setOnClickListener", param.thisObject);
+
+                        getResourceStrings(param.thisObject);
+
+                        if (mAppEntry_info_enabled)
+                            mSpecialDisableButton.setText(textDisable);
+                        else
+                            mSpecialDisableButton.setText(textEnable);
+
+                        try {
+                            View mMoreControlButtons = (View) XposedHelpers.getObjectField(param.thisObject, "mMoreControlButtons");
+                            mMoreControlButtons.setVisibility(View.VISIBLE);
+                        } catch (NoSuchFieldError e) {
+                            // AOSPA
+                            mSpecialDisableButton.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
-                try {
-                    return XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-        });
+            });
 
-        try {
-            //findAndHookMethod("com.android.settings.applications.InstalledAppDetails", lpparam.classLoader, "showDialogInner", int.class, int.class, new XC_MethodHook() {
-            findAndHookMethod("com.android.settings.applications.AppInfoBase", lpparam.classLoader, "showDialogInner", int.class, int.class, new XC_MethodHook() {
+            final Class<?> ClassDisableChanger = XposedHelpers.findClass("com.android.settings.applications.InstalledAppDetails.DisableChanger", lpparam.classLoader);
+
+            findAndHookMethod("com.android.settings.applications.InstalledAppDetails", lpparam.classLoader, "onClick", View.class, new XC_MethodReplacement() {
                 @Override
-                protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) {
-                    // DLG_SPECIAL_DISABLE -> DLG_DISABLE
-                    if ((Integer) param.args[0] == 9)
-                        param.args[0] = 7;
+                protected Object replaceHookedMethod(MethodHookParam param) {
+                    Object v = param.args[0];
+                    Object mSpecialDisableButton = XposedHelpers.getObjectField(param.thisObject, "mSpecialDisableButton");
+
+                    if (v == mSpecialDisableButton) {
+                        getAppInfo(param.thisObject);
+
+                        if (!mAppEntry_info_enabled) {
+                            Object DisableChanger = XposedHelpers.newInstance(ClassDisableChanger, param.thisObject, mAppEntry_info, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT);
+                            XposedHelpers.callMethod(DisableChanger, "execute", (Object) null);
+                            return null;
+                        }
+                    }
+                    try {
+                        return XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    return null;
                 }
             });
+
+            try {
+                //findAndHookMethod("com.android.settings.applications.InstalledAppDetails", lpparam.classLoader, "showDialogInner", int.class, int.class, new XC_MethodHook() {
+                findAndHookMethod("com.android.settings.applications.AppInfoBase", lpparam.classLoader, "showDialogInner", int.class, int.class, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) {
+                        // DLG_SPECIAL_DISABLE -> DLG_DISABLE
+                        if ((Integer) param.args[0] == 9)
+                            param.args[0] = 7;
+                    }
+                });
+            } catch (Throwable t) {
+                // no such class in CM, it's not necessary anyway
+            }
         } catch (Throwable t) {
-            // no such class in CM, it's not necessary anyway
+            XposedBridge.log(t);
         }
     }
 

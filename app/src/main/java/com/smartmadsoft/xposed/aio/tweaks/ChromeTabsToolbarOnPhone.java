@@ -14,13 +14,17 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class ChromeTabsToolbarOnPhone {
     public static void hook(final XC_LoadPackage.LoadPackageParam lpparam) {
-        XposedHelpers.findAndHookMethod("org.chromium.content.browser.DeviceUtils", lpparam.classLoader, "addDeviceSpecificUserAgentSwitch", Context.class, new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                Object commandLineInstance = XposedHelpers.callStaticMethod(XposedHelpers.findClass("org.chromium.base.CommandLine", lpparam.classLoader), "getInstance");
-                XposedHelpers.callMethod(commandLineInstance, "appendSwitch", "use-mobile-user-agent");
-            }
-        });
+        try {
+            XposedHelpers.findAndHookMethod("org.chromium.content.browser.DeviceUtils", lpparam.classLoader, "addDeviceSpecificUserAgentSwitch", Context.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    Object commandLineInstance = XposedHelpers.callStaticMethod(XposedHelpers.findClass("org.chromium.base.CommandLine", lpparam.classLoader), "getInstance");
+                    XposedHelpers.callMethod(commandLineInstance, "appendSwitch", "use-mobile-user-agent");
+                }
+            });
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
     }
 
     public static void init() {

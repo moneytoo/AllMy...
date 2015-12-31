@@ -12,20 +12,24 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class NoToastIcons {
     public static void hook(XC_LoadPackage.LoadPackageParam lpparam) {
-        XposedBridge.hookAllMethods(XposedHelpers.findClass("android.widget.Toast.TN", lpparam.classLoader), "trySendAccessibilityEvent", new XC_MethodHook() {
-            @Override
-            protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                View mView = (View) XposedHelpers.getObjectField(param.thisObject, "mView");
-                RelativeLayout relativeLayout = (RelativeLayout) mView;
-                ImageView icon = (ImageView) relativeLayout.getChildAt(1);
+        try {
+            XposedBridge.hookAllMethods(XposedHelpers.findClass("android.widget.Toast.TN", lpparam.classLoader), "trySendAccessibilityEvent", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+                    View mView = (View) XposedHelpers.getObjectField(param.thisObject, "mView");
+                    RelativeLayout relativeLayout = (RelativeLayout) mView;
+                    ImageView icon = (ImageView) relativeLayout.getChildAt(1);
 
-                WindowManager mWM = (WindowManager) XposedHelpers.getObjectField(param.thisObject, "mWM");
-                WindowManager.LayoutParams mParams = (WindowManager.LayoutParams) XposedHelpers.getObjectField(param.thisObject, "mParams");
+                    WindowManager mWM = (WindowManager) XposedHelpers.getObjectField(param.thisObject, "mWM");
+                    WindowManager.LayoutParams mParams = (WindowManager.LayoutParams) XposedHelpers.getObjectField(param.thisObject, "mParams");
 
-                mWM.removeView(mView);
-                icon.setImageDrawable(null);
-                mWM.addView(mView, mParams);
-            }
-        });
+                    mWM.removeView(mView);
+                    icon.setImageDrawable(null);
+                    mWM.addView(mView, mParams);
+                }
+            });
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
     }
 }

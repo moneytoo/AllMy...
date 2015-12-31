@@ -16,22 +16,26 @@ public class GentleHapticFeedback {
     static long vibePattern;
 
     public static void hook(int value) {
-        vibePattern = value;
+        try {
+            vibePattern = value;
 
-        XposedHelpers.findAndHookMethod(XposedHelpers.findClass("com.android.internal.policy.impl.PhoneWindowManager", null), "init", Context.class, "android.view.IWindowManager", "android.view.WindowManagerPolicy.WindowManagerFuncs", new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                mPhoneWindowManager = param.thisObject;
+            XposedHelpers.findAndHookMethod(XposedHelpers.findClass("com.android.internal.policy.impl.PhoneWindowManager", null), "init", Context.class, "android.view.IWindowManager", "android.view.WindowManagerPolicy.WindowManagerFuncs", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    mPhoneWindowManager = param.thisObject;
 
-                if (mPhoneWindowManager == null)
-                    return;
+                    if (mPhoneWindowManager == null)
+                        return;
 
-                try {
-                    XposedHelpers.setObjectField(mPhoneWindowManager, "mVirtualKeyVibePattern", new long[] { vibePattern });
-                } catch (Throwable t) {
-                    XposedBridge.log(t);
+                    try {
+                        XposedHelpers.setObjectField(mPhoneWindowManager, "mVirtualKeyVibePattern", new long[]{vibePattern});
+                    } catch (Throwable t) {
+                        XposedBridge.log(t);
+                    }
                 }
-            }
-        });
+            });
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
     }
 }
