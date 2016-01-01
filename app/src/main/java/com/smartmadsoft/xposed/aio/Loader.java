@@ -43,9 +43,6 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             XResources.setSystemWideReplacement("android", "integer", "config_screenBrightnessSettingMinimum", brightnessValue);
             XResources.setSystemWideReplacement("android", "integer", "config_screenBrightnessDim", brightnessValue);
         }
-        int hapticValue = Integer.parseInt(prefs.getString("tweak_gentlehapticfeedback_list", "-1"));
-        if (hapticValue > 0)
-            GentleHapticFeedback.hook(hapticValue);
         if (prefs.getBoolean("tweak_nosafevolumewarning", false))
             NoSafeVolumeWarning.hook();
         if (prefs.getBoolean("tweak_chrometabstoolbaronphone", false))
@@ -62,6 +59,9 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 BatteryLightDisabler.hook(lpparam);
             if (prefs.getBoolean("tweak_alwayssoftwaremenu", false))
                 AlwaysSoftwareMenu.hook(lpparam);
+            int hapticValue = Integer.parseInt(prefs.getString("tweak_gentlehapticfeedback_list", "-1"));
+            if (hapticValue > 0)
+                GentleHapticFeedback.hook(lpparam, hapticValue);
         }
         if (lpparam.packageName.equals("com.android.settings")) {
             if (prefs.getBoolean("tweak_batteryhistoryxxl", false))
