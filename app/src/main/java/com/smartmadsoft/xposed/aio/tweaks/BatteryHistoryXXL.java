@@ -35,6 +35,13 @@ public class BatteryHistoryXXL {
                 protected Object replaceHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
 
                     if (Build.VERSION.SDK_INT >= 21) {
+                        String sipperField = "value";
+                        if (Build.VERSION.SDK_INT >= 23) {
+                            sipperField = "totalPowerMah";
+                            Object mHistPref = XposedHelpers.getObjectField(param.thisObject, "mHistPref");
+                            XposedHelpers.callMethod(param.thisObject, "updatePreference", mHistPref);
+                        }
+
                         Class<?> UserHandleClass = XposedHelpers.findClass("android.os.UserHandle", lpparam.classLoader);
                         Class<?> BatteryEntryClass = XposedHelpers.findClass("com.android.settings.fuelgauge.BatteryEntry", lpparam.classLoader);
 
@@ -55,13 +62,16 @@ public class BatteryHistoryXXL {
                         mAppListGroup.removeAll();
                         mAppListGroup.setOrderingAsAdded(false);
 
-                        Object mHistPref;
-                        if (isCM121new)
-                            mHistPref = XposedHelpers.newInstance(batteryHistoryPreference, XposedHelpers.callMethod(param.thisObject, "getActivity"), stats, dockStats, XposedHelpers.callMethod(mStatsHelper, "getBatteryBroadcast"));
-                        else
-                            mHistPref = XposedHelpers.newInstance(batteryHistoryPreference, XposedHelpers.callMethod(param.thisObject, "getActivity"), stats, XposedHelpers.callMethod(mStatsHelper, "getBatteryBroadcast"));
-                        XposedHelpers.callMethod(mHistPref, "setOrder", -1);
-                        mAppListGroup.addPreference((Preference) mHistPref);
+                        if (Build.VERSION.SDK_INT < 23) {
+                            Object mHistPref;
+                            if (isCM121new)
+                                mHistPref = XposedHelpers.newInstance(batteryHistoryPreference, XposedHelpers.callMethod(param.thisObject, "getActivity"), stats, dockStats, XposedHelpers.callMethod(mStatsHelper, "getBatteryBroadcast"));
+                            else
+                                mHistPref = XposedHelpers.newInstance(batteryHistoryPreference, XposedHelpers.callMethod(param.thisObject, "getActivity"), stats, XposedHelpers.callMethod(mStatsHelper, "getBatteryBroadcast"));
+                            XposedHelpers.callMethod(mHistPref, "setOrder", -1);
+                            mAppListGroup.addPreference((Preference) mHistPref);
+                        }
+
                         boolean addedSome = false;
 
                         //final Object powerProfile = XposedHelpers.callMethod(mStatsHelper, "getPowerProfile");
@@ -74,7 +84,9 @@ public class BatteryHistoryXXL {
                             final List<?> profiles = (List<?>) XposedHelpers.callMethod(mUm, "getUserProfiles");
 
                             XposedHelpers.callMethod(mStatsHelper, "refreshStats", 0, profiles);
-                            final List<?> usageList = (List<?>) XposedHelpers.callMethod(mStatsHelper, "getUsageList");
+                            List<?> usageList = (List<?>) XposedHelpers.callMethod(mStatsHelper, "getUsageList");
+                            if (Build.VERSION.SDK_INT >= 23)
+                                usageList = (List<?>) XposedHelpers.callMethod(param.thisObject, "getCoalescedUsageList", usageList);
 
                             int mStatsType = 0;
                             final int dischargeAmount = (Integer) (stats != null ? XposedHelpers.callMethod(stats, "getDischargeAmount", mStatsType) : 0);
@@ -86,7 +98,7 @@ public class BatteryHistoryXXL {
 			                    continue;
 			                }
 			                */
-                                final double percentOfTotal = (((Double) XposedHelpers.getObjectField(sipper, "value") / (Double) XposedHelpers.callMethod(mStatsHelper, "getTotalPower")) * dischargeAmount);
+                                final double percentOfTotal = (((Double) XposedHelpers.getObjectField(sipper, sipperField) / (Double) XposedHelpers.callMethod(mStatsHelper, "getTotalPower")) * dischargeAmount);
 			                /*
 			                if (((int) (percentOfTotal + .5)) < 1) {
 			                    continue;
@@ -127,7 +139,7 @@ public class BatteryHistoryXXL {
                                 final CharSequence contentDescription = (CharSequence) XposedHelpers.callMethod(mUm, "getBadgedLabelForUser", XposedHelpers.callMethod(entry, "getLabel"), userHandle);
                                 final Object pref = XposedHelpers.newInstance(powerGaugePreference, XposedHelpers.callMethod(param.thisObject, "getActivity"), badgedIcon, contentDescription, entry);
 
-                                final double percentOfMax = ((Double) XposedHelpers.getObjectField(sipper, "value") * 100) / (Double) XposedHelpers.callMethod(mStatsHelper, "getMaxPower");
+                                final double percentOfMax = ((Double) XposedHelpers.getObjectField(sipper, sipperField) * 100) / (Double) XposedHelpers.callMethod(mStatsHelper, "getMaxPower");
                                 XposedHelpers.setObjectField(sipper, "percent", percentOfTotal);
                                 XposedHelpers.callMethod(pref, "setTitle", XposedHelpers.callMethod(entry, "getLabel"));
                                 XposedHelpers.callMethod(pref, "setOrder", i + 1);
