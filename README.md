@@ -16,5 +16,8 @@ List of tweaks:
 *   Gentle Haptic Feedback
 *   Compact Volume Panel
 *   Chrome Tabs Toolbar On Phone - Enable tablet layout while keep mobile User Agent
+*   Disable Horizontal Scroll (Adobe Reader)
+*   Remap PREV button to PLAY/PAUSE - Allow use volume keys to change volume, advance to next song and play/pause
+*   Remap NEXT button to Torch - Allow use volume up key (long press) to start flashlight (when music is off)
 
 Thread at xda: http://forum.xda-developers.com/xposed/modules/mod-xposed-tweaks-cm-t3279109
