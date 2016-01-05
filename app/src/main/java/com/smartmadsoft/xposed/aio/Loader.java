@@ -18,7 +18,7 @@ import com.smartmadsoft.xposed.aio.tweaks.NoToastIcons;
 import com.smartmadsoft.xposed.aio.tweaks.OneWayBrightness;
 import com.smartmadsoft.xposed.aio.tweaks.PocketFirst;
 import com.smartmadsoft.xposed.aio.tweaks.ChromeTabsToolbarOnPhone;
-import com.smartmadsoft.xposed.aio.tweaks.RemapPrevToPlayPause;
+import com.smartmadsoft.xposed.aio.tweaks.RemapVolume;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
 
@@ -63,8 +63,10 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             int hapticValue = Integer.parseInt(prefs.getString("tweak_gentlehapticfeedback_list", "-1"));
             if (hapticValue > 0)
                 GentleHapticFeedback.hook(lpparam, hapticValue);
-            if (prefs.getBoolean("tweak_remapprevtoplaypause", false))
-                RemapPrevToPlayPause.hook(lpparam);
+            boolean tweakPlayPause = prefs.getBoolean("tweak_remapprevtoplaypause", false);
+            boolean tweakTorch = prefs.getBoolean("tweak_remapnexttotorch", false);
+            if (tweakPlayPause || tweakTorch)
+                RemapVolume.hook(lpparam, tweakPlayPause, tweakTorch);
         }
         if (lpparam.packageName.equals("com.android.settings")) {
             if (prefs.getBoolean("tweak_batteryhistoryxxl", false))

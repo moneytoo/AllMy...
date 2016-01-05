@@ -68,6 +68,12 @@
             android:title="Remap PREV button to PLAY/PAUSE"
             android:summary="For CM12.1/CM13" />
 
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="tweak_remapnexttotorch"
+            android:title="Remap NEXT button to Torch (when not playing)"
+            android:summary="For CM12.1/CM13" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
