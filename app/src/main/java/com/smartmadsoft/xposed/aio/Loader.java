@@ -19,6 +19,7 @@ import com.smartmadsoft.xposed.aio.tweaks.OneWayBrightness;
 import com.smartmadsoft.xposed.aio.tweaks.PocketFirst;
 import com.smartmadsoft.xposed.aio.tweaks.ChromeTabsToolbarOnPhone;
 import com.smartmadsoft.xposed.aio.tweaks.RemapVolume;
+import com.smartmadsoft.xposed.aio.tweaks.K920Cardboard;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
 
@@ -94,6 +95,9 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             MinimumBrightnessMX.hook(lpparam);
         if (ChromeTabsToolbarOnPhone.isChrome(lpparam.packageName) && prefs.getBoolean("tweak_chrometabstoolbaronphone", false))
             ChromeTabsToolbarOnPhone.hook(lpparam);
+
+        if (prefs.getBoolean("tweak_k920cardboard", false))
+            K920Cardboard.hook(lpparam);
     }
 
     @Override

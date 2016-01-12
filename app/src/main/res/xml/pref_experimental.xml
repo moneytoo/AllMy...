@@ -2,8 +2,8 @@
 
     <SwitchPreference
         android:defaultValue="false"
-        android:key="tweak_k920keyshapticfix"
-        android:title="K920 Keys Haptic Fix"
-        android:summary="For CM12.1" />
+        android:key="tweak_k920cardboard"
+        android:title="K920 Cardboard Resolution Fix"
+        android:summary="For K920 running Android 4.4/5.0" />
 
 </PreferenceScreen>

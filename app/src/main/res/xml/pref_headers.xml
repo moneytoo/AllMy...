@@ -10,11 +10,9 @@
         android:icon="@drawable/ic_content_copy_black_24dp"
         android:title="Copycats" />
 
-    <!--
     <header
         android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$ExperimentalPreferenceFragment"
         android:icon="@drawable/ic_colorize_black_24dp"
         android:title="Experiments" />
-        -->
 
 </preference-headers>
