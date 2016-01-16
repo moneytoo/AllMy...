@@ -6,4 +6,16 @@
         android:title="K920 Cardboard Resolution Fix"
         android:summary="For K920 running Android 4.4/5.0" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_nowakeoncharge"
+        android:title="No Wake On Charge"
+        android:summary="For S5 running Android 5.0" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_s5twjunk"
+        android:title="Get Rid of TouchWiz Junk (Popups)"
+        android:summary="For S5 running Android 5.0" />
+
 </PreferenceScreen>

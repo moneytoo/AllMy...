@@ -20,6 +20,8 @@ import com.smartmadsoft.xposed.aio.tweaks.PocketFirst;
 import com.smartmadsoft.xposed.aio.tweaks.ChromeTabsToolbarOnPhone;
 import com.smartmadsoft.xposed.aio.tweaks.RemapVolume;
 import com.smartmadsoft.xposed.aio.tweaks.K920Cardboard;
+import com.smartmadsoft.xposed.aio.tweaks.NoWakeOnCharge;
+import com.smartmadsoft.xposed.aio.tweaks.S5TouchWizJunk;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
 
@@ -68,6 +70,16 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             boolean tweakTorch = prefs.getBoolean("tweak_remapnexttotorch", false);
             if (tweakPlayPause || tweakTorch)
                 RemapVolume.hook(lpparam, tweakPlayPause, tweakTorch);
+            if (prefs.getBoolean("tweak_nowakeoncharge", false))
+                NoWakeOnCharge.hook(lpparam);
+        }
+        if (lpparam.packageName.equals("com.android.systemui")) {
+            if (prefs.getBoolean("tweak_disablesuindicator", false))
+                DisableSuIndicator.hook(lpparam);
+            if (prefs.getBoolean("tweak_nowakeoncharge", false))
+                NoWakeOnCharge.hookUI(lpparam);
+            if (prefs.getBoolean("tweak_s5twjunk", false))
+                S5TouchWizJunk.hookUI(lpparam);
         }
         if (lpparam.packageName.equals("com.android.settings")) {
             if (prefs.getBoolean("tweak_batteryhistoryxxl", false))
@@ -81,8 +93,6 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             if (prefs.getBoolean("tweak_disablehorizontalscroll_ar", false))
                 DisableHorizontalScrollAR.hook(lpparam);
         }
-        if (lpparam.packageName.equals("com.android.systemui") && prefs.getBoolean("tweak_disablesuindicator", false))
-            DisableSuIndicator.hook(lpparam);
         if (prefs.getBoolean("tweak_notoasticons", false))
             NoToastIcons.hook(lpparam);
         if (prefs.getBoolean("tweak_pocketfirst", false))
@@ -98,6 +108,9 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
 
         if (prefs.getBoolean("tweak_k920cardboard", false))
             K920Cardboard.hook(lpparam);
+        if (lpparam.packageName.equals("com.sec.android.app.popupuireceiver") && prefs.getBoolean("tweak_s5twjunk", false)) {
+            S5TouchWizJunk.hook(lpparam);
+        }
     }
 
     @Override
