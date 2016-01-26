@@ -1,120 +1,21 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory
-        android:title="Universal Tweaks" >
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_batteryhistoryxxl"
+        android:title="Battery History XXL"
+        android:summary="For Android 4.4/5.x/6.0" />
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_batteryhistoryxxl"
-            android:title="Battery History XXL"
-            android:summary="For Android 4.4/5.x/6.0" />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_nativefreezer"
+        android:title="Native Freezer"
+        android:summary="For Android 4.4/5.x/6.0" />
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_nativefreezer"
-            android:title="Native Freezer"
-            android:summary="For Android 4.4/5.x/6.0" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_pocketfirst"
-            android:title="Pocket First (Option When Sharing)"
-            android:summary="For Pocket on Android 5.x/6.0" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="CyanogenMod Tweaks" >
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_disablesuindicator"
-            android:title="Disable Su Indicator"
-            android:summary="For CM12/CM12.1/CM13" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_alwayssoftwaremenu"
-            android:title="Always Software Menu"
-            android:summary="For CM12/CM12.1/CM13" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_notoasticons"
-            android:title="No Toast Icons"
-            android:summary="For CM12.1/CM13" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_onewaybrightness"
-            android:title="One Way Brightness"
-            android:summary="For CM12.1/CM13" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_batterylightdisabler"
-            android:title="Battery Light Disabler"
-            android:summary="For CM12.1/CM13" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_compactvolumepanel"
-            android:title="Compact Volume Panel"
-            android:summary="For CM12/CM12.1/CM13" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_remapprevtoplaypause"
-            android:title="Remap PREV button to PLAY/PAUSE"
-            android:summary="For CM12.1/CM13" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_remapnexttotorch"
-            android:title="Remap NEXT button to Torch (when not playing)"
-            android:summary="For CM12.1/CM13" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="3rd Party Apps Tweaks" >
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_deskclockalarm"
-            android:title="Desk Clock Alarm"
-            android:summary="Make Alarm the default tab in stock/Google Desk Clock (v4.2.1)" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_onehandzoom_ff"
-            android:title="One Hand Zoom Enabler"
-            android:summary="For Mozilla Firefox (v43/44)" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_onehandzoom_ar"
-            android:title="One Hand Zoom Enabler"
-            android:summary="For Adobe Reader (v15.2.2/15.3)" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_disablehorizontalscroll_ar"
-            android:title="Disable Horizontal Scroll"
-            android:summary="For Adobe Reader (v15.2.2/15.3)" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_minimumbrightness_mx"
-            android:title="Minimum Brightness"
-            android:summary="For MX Player (v1.7.40)" />
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="tweak_chrometabstoolbaronphone"
-            android:title="Chrome Tabs Toolbar On Phone"
-            android:summary="For Chrome (v47/48/49)" />
-
-    </PreferenceCategory>
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_pocketfirst"
+        android:title="Pocket First (Option When Sharing)"
+        android:summary="For Pocket on Android 5.x/6.0" />
 
 </PreferenceScreen>

@@ -1,0 +1,39 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_deskclockalarm"
+        android:title="Desk Clock Alarm"
+        android:summary="Make Alarm the default tab in stock/Google Desk Clock (v4.2.1)" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_onehandzoom_ff"
+        android:title="One Hand Zoom Enabler"
+        android:summary="For Mozilla Firefox (v43/44)" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_onehandzoom_ar"
+        android:title="One Hand Zoom Enabler"
+        android:summary="For Adobe Reader (v15.2.2/15.3)" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_disablehorizontalscroll_ar"
+        android:title="Disable Horizontal Scroll"
+        android:summary="For Adobe Reader (v15.2.2/15.3)" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_minimumbrightness_mx"
+        android:title="Minimum Brightness"
+        android:summary="For MX Player (v1.7.40)" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_chrometabstoolbaronphone"
+        android:title="Chrome Tabs Toolbar On Phone"
+        android:summary="For Chrome (v47/48/49)" />
+
+</PreferenceScreen>

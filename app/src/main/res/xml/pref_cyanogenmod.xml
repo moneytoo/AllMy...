@@ -1,0 +1,51 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_disablesuindicator"
+        android:title="Disable Su Indicator"
+        android:summary="For CM12/CM12.1/CM13" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_alwayssoftwaremenu"
+        android:title="Always Software Menu"
+        android:summary="For CM12/CM12.1/CM13" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_notoasticons"
+        android:title="No Toast Icons"
+        android:summary="For CM12.1/CM13" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_onewaybrightness"
+        android:title="One Way Brightness"
+        android:summary="For CM12.1/CM13" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_batterylightdisabler"
+        android:title="Battery Light Disabler"
+        android:summary="For CM12.1/CM13" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_compactvolumepanel"
+        android:title="Compact Volume Panel"
+        android:summary="For CM12/CM12.1/CM13" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_remapprevtoplaypause"
+        android:title="Remap PREV button to PLAY/PAUSE"
+        android:summary="For CM12.1/CM13" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_remapnexttotorch"
+        android:title="Remap NEXT button to Torch (when not playing)"
+        android:summary="For CM12.1/CM13" />
+
+</PreferenceScreen>

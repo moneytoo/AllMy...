@@ -37,11 +37,11 @@ public class S5TouchWizJunk {
                 }
             });
 
+            // disable priority mode notification
             XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.phone.PhoneStatusBarPolicy", lpparam.classLoader, "updateVolumeZen", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     param.setResult(null);
-                    //XposedBridge.log("updateVolumeZen");
                 }
             });
         } catch (Throwable t) {

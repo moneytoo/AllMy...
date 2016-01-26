@@ -3,7 +3,22 @@
     <header
         android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$TweaksPreferenceFragment"
         android:icon="@drawable/ic_extension_black_24dp"
-        android:title="Original Xposed Tweaks" />
+        android:title="Universal Tweaks" />
+
+    <header
+        android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$CyanogenModPreferenceFragment"
+        android:icon="@drawable/ic_extension_black_24dp"
+        android:title="Tweaks for CyanogenMod" />
+
+    <header
+        android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$ThirdPartyPreferenceFragment"
+        android:icon="@drawable/ic_extension_black_24dp"
+        android:title="Tweaks for User Apps" />
+
+    <header
+        android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$S5PreferenceFragment"
+        android:icon="@drawable/ic_extension_black_24dp"
+        android:title="For Samsung Galaxy S5 (Android 5.0)" />
 
     <header
         android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$CopycatsPreferenceFragment"

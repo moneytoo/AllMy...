@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "com.smartmadsoft.xposed.aio"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 11
-        versionName "0.2.4"
+        versionCode 12
+        versionName "0.2.5"
     }
     buildTypes {
         release {

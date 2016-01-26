@@ -136,7 +136,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || TweaksPreferenceFragment.class.getName().equals(fragmentName)
                 || ExperimentalPreferenceFragment.class.getName().equals(fragmentName)
-                || CopycatsPreferenceFragment.class.getName().equals(fragmentName);
+                || CopycatsPreferenceFragment.class.getName().equals(fragmentName)
+                || S5PreferenceFragment.class.getName().equals(fragmentName)
+                || ThirdPartyPreferenceFragment.class.getName().equals(fragmentName)
+                || CyanogenModPreferenceFragment.class.getName().equals(fragmentName);
     }
 
 
@@ -225,6 +228,87 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             bindPreferenceSummaryToValue(findPreference("tweak_minimumbrightness_list"));
             bindPreferenceSummaryToValue(findPreference("tweak_gentlehapticfeedback_list"));
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            int id = item.getItemId();
+            if (id == android.R.id.home) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /**
+     * This fragment shows data and sync preferences only. It is used when the
+     * activity is showing a two-pane settings UI.
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class S5PreferenceFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
+
+            addPreferencesFromResource(R.xml.pref_s5);
+            setHasOptionsMenu(true);
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            int id = item.getItemId();
+            if (id == android.R.id.home) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /**
+     * This fragment shows data and sync preferences only. It is used when the
+     * activity is showing a two-pane settings UI.
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class ThirdPartyPreferenceFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
+
+            addPreferencesFromResource(R.xml.pref_thirdparty);
+            setHasOptionsMenu(true);
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            int id = item.getItemId();
+            if (id == android.R.id.home) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /**
+     * This fragment shows data and sync preferences only. It is used when the
+     * activity is showing a two-pane settings UI.
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class CyanogenModPreferenceFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
+
+            addPreferencesFromResource(R.xml.pref_cyanogenmod);
+            setHasOptionsMenu(true);
         }
 
         @Override

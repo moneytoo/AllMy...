@@ -22,6 +22,7 @@ import com.smartmadsoft.xposed.aio.tweaks.RemapVolume;
 import com.smartmadsoft.xposed.aio.tweaks.K920Cardboard;
 import com.smartmadsoft.xposed.aio.tweaks.NoWakeOnCharge;
 import com.smartmadsoft.xposed.aio.tweaks.S5TouchWizJunk;
+import com.smartmadsoft.xposed.aio.tweaks.S5ReaderMode;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
 
@@ -56,6 +57,9 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
 
+        //XposedBridge.log("xposed pkg: " + lpparam.packageName);
+        //Sandbox2.hook(lpparam);
+
         if (lpparam.packageName.equals("android")) {
             if (prefs.getBoolean("tweak_onewaybrightness", false))
                 OneWayBrightness.hook(lpparam);
@@ -72,6 +76,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 RemapVolume.hook(lpparam, tweakPlayPause, tweakTorch);
             if (prefs.getBoolean("tweak_nowakeoncharge", false))
                 NoWakeOnCharge.hook(lpparam);
+            if (prefs.getBoolean("tweak_s5readermode", false))
+                S5ReaderMode.hook(lpparam);
         }
         if (lpparam.packageName.equals("com.android.systemui")) {
             if (prefs.getBoolean("tweak_disablesuindicator", false))
@@ -105,7 +111,6 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             MinimumBrightnessMX.hook(lpparam);
         if (ChromeTabsToolbarOnPhone.isChrome(lpparam.packageName) && prefs.getBoolean("tweak_chrometabstoolbaronphone", false))
             ChromeTabsToolbarOnPhone.hook(lpparam);
-
         if (prefs.getBoolean("tweak_k920cardboard", false))
             K920Cardboard.hook(lpparam);
         if (lpparam.packageName.equals("com.sec.android.app.popupuireceiver") && prefs.getBoolean("tweak_s5twjunk", false)) {

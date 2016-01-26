@@ -1,0 +1,21 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_nowakeoncharge"
+        android:title="No Wake On Charge"
+        android:summary="Disable wake up when (dis)connecting USB cable" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_s5twjunk"
+        android:title="Get Rid of TouchWiz Junk (Popups)"
+        android:summary="Disable 'Check cover' popups and DND notification" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_s5readermode"
+        android:title="Enable Reader Mode (Adapt Display)"
+        android:summary="For Adobe Reader and Moon+ Reader" />
+
+</PreferenceScreen>
