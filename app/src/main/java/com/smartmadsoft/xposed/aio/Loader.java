@@ -23,6 +23,7 @@ import com.smartmadsoft.xposed.aio.tweaks.K920Cardboard;
 import com.smartmadsoft.xposed.aio.tweaks.NoWakeOnCharge;
 import com.smartmadsoft.xposed.aio.tweaks.S5TouchWizJunk;
 import com.smartmadsoft.xposed.aio.tweaks.S5ReaderMode;
+import com.smartmadsoft.xposed.aio.tweaks.GMSWearNotificationDisable;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
 
@@ -56,10 +57,6 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-
-        //XposedBridge.log("xposed pkg: " + lpparam.packageName);
-        //Sandbox2.hook(lpparam);
-
         if (lpparam.packageName.equals("android")) {
             if (prefs.getBoolean("tweak_onewaybrightness", false))
                 OneWayBrightness.hook(lpparam);
@@ -113,9 +110,10 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             ChromeTabsToolbarOnPhone.hook(lpparam);
         if (prefs.getBoolean("tweak_k920cardboard", false))
             K920Cardboard.hook(lpparam);
-        if (lpparam.packageName.equals("com.sec.android.app.popupuireceiver") && prefs.getBoolean("tweak_s5twjunk", false)) {
+        if (lpparam.packageName.equals("com.sec.android.app.popupuireceiver") && prefs.getBoolean("tweak_s5twjunk", false))
             S5TouchWizJunk.hook(lpparam);
-        }
+        if (lpparam.packageName.equals("com.google.android.gms") && prefs.getBoolean("tweak_gmswearnotificationdisable", false))
+            GMSWearNotificationDisable.hook(lpparam);
     }
 
     @Override
