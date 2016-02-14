@@ -4,7 +4,7 @@
         android:defaultValue="false"
         android:key="tweak_deskclockalarm"
         android:title="Desk Clock Alarm"
-        android:summary="Make Alarm the default tab in stock/Google Desk Clock (v4.2.1)" />
+        android:summary="Make Alarm the default tab in stock/Google Desk Clock (v4.2.1/4.3)" />
 
     <SwitchPreference
         android:defaultValue="false"
