@@ -82,8 +82,7 @@ public class NativeFreezer {
                 });
 
                 try {
-                    //findAndHookMethod("com.android.settings.applications.InstalledAppDetails", lpparam.classLoader, "showDialogInner", int.class, int.class, new XC_MethodHook() {
-                    findAndHookMethod("com.android.settings.applications.AppInfoBase", lpparam.classLoader, "showDialogInner", int.class, int.class, new XC_MethodHook() {
+                    findAndHookMethod("com.android.settings.applications.InstalledAppDetails", lpparam.classLoader, "showDialogInner", int.class, int.class, new XC_MethodHook() {
                         @Override
                         protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) {
                             // DLG_SPECIAL_DISABLE -> DLG_DISABLE
@@ -92,7 +91,14 @@ public class NativeFreezer {
                         }
                     });
                 } catch (Throwable t) {
-                    // no such class in CM, it's not necessary anyway
+                    findAndHookMethod("com.android.settings.applications.AppInfoBase", lpparam.classLoader, "showDialogInner", int.class, int.class, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) {
+                            // DLG_SPECIAL_DISABLE -> DLG_DISABLE
+                            if ((Integer) param.args[0] == 9)
+                                param.args[0] = 7;
+                        }
+                    });
                 }
             } else {
                 findAndHookMethod("com.android.settings.applications.InstalledAppDetails", lpparam.classLoader, "handleHeader", new XC_MethodHook() {
