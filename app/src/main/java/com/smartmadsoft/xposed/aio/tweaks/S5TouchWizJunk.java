@@ -1,6 +1,8 @@
 package com.smartmadsoft.xposed.aio.tweaks;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
@@ -42,6 +44,27 @@ public class S5TouchWizJunk {
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     param.setResult(null);
+                }
+            });
+
+            XposedHelpers.findAndHookMethod("com.android.systemui.qs.tiles.AirplaneModeTile", lpparam.classLoader, "showConfirmPopup", boolean.class, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+                    XposedHelpers.callMethod(param.thisObject, "setEnabled", param.args[0]);
+                    param.setResult(null);
+                }
+            });
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
+    }
+
+    public static void hookSettings(final XC_LoadPackage.LoadPackageParam lpparam) {
+        try {
+            XposedHelpers.findAndHookMethod("com.android.settings.bluetooth.BluetoothScanDialog", lpparam.classLoader, "onCreate", Bundle.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+                    ((Activity)param.thisObject).finish();
                 }
             });
         } catch (Throwable t) {

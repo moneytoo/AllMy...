@@ -53,6 +53,10 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             NoSafeVolumeWarning.hook();
         if (prefs.getBoolean("tweak_chrometabstoolbaronphone", false))
             ChromeTabsToolbarOnPhone.init();
+        if (prefs.getBoolean("tweak_s5twjunk", false)) {
+            XResources.setSystemWideReplacement("android", "bool", "show_ongoing_ime_switcher", false);
+            //XResources.setSystemWideReplacement("android", "bool", "config_intrusiveNotificationLed", true);
+        }
     }
 
     @Override
@@ -89,6 +93,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 BatteryHistoryXXL.hook(lpparam);
             if (prefs.getBoolean("tweak_nativefreezer", false))
                 NativeFreezer.hook(lpparam);
+            if (prefs.getBoolean("tweak_s5twjunk", false))
+                S5TouchWizJunk.hookSettings(lpparam);
         }
         if (lpparam.packageName.equals("com.adobe.reader")) {
             if (prefs.getBoolean("tweak_onehandzoom_ar", false))
