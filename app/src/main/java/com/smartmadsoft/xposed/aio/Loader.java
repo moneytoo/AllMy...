@@ -27,6 +27,8 @@ import com.smartmadsoft.xposed.aio.tweaks.GMSWearNotificationDisable;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
 
+import java.io.File;
+
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
@@ -40,6 +42,11 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
 
     @Override
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) throws Throwable {
+        // workaround for 660 instead of 664 - lost probably somewhere between fragments
+        File prefsFile = new File("/data/data/"+PACKAGE_NAME+"/shared_prefs", PACKAGE_NAME+"_preferences.xml");
+        if (prefsFile.exists())
+            prefsFile.setReadable(true, false);
+
         prefs = new XSharedPreferences(PACKAGE_NAME);
         prefs.makeWorldReadable();
 
