@@ -19,5 +19,10 @@ List of tweaks:
 *   Disable Horizontal Scroll (Adobe Reader)
 *   Remap PREV button to PLAY/PAUSE - Allow use volume keys to change volume, advance to next song and play/pause
 *   Remap NEXT button to Torch - Allow use volume up key (long press) to start flashlight (when music is off)
+*   K920 Cardboard Fix - Fix screen resolution in Google Cardboard on Lenovo Vibe Z2 Pro (K920)
+*   No Wake On Charge - Disable screen wake when cable is plugged in/unplugged on Samsung Galaxy S5 (stock Android 5.0)
+*   Reader Mode (Adapt Display) - Enable Samsung screen ebook reading mode for Adobe Reader/Moon+ Reader on Samsung Galaxy S5 (stock Android 5.0)
+*   Disable Android Wear Disconnected Notification
+*   Media Stream Default - Prefer media instead of ringer during volume control
 
 Thread at xda: http://forum.xda-developers.com/xposed/modules/mod-xposed-tweaks-cm-t3279109
