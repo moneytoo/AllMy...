@@ -11,6 +11,7 @@ import com.smartmadsoft.xposed.aio.tweaks.DisableHorizontalScrollAR;
 import com.smartmadsoft.xposed.aio.tweaks.DisableSuIndicator;
 import com.smartmadsoft.xposed.aio.tweaks.GentleHapticFeedback;
 import com.smartmadsoft.xposed.aio.tweaks.HideNetworkIndicators;
+import com.smartmadsoft.xposed.aio.tweaks.MediaStreamDefault;
 import com.smartmadsoft.xposed.aio.tweaks.MinimumBrightnessMX;
 import com.smartmadsoft.xposed.aio.tweaks.NativeFreezer;
 import com.smartmadsoft.xposed.aio.tweaks.NoSafeVolumeWarning;
@@ -86,6 +87,10 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 NoWakeOnCharge.hook(lpparam);
             if (prefs.getBoolean("tweak_s5readermode", false))
                 S5ReaderMode.hook(lpparam);
+            if (prefs.getBoolean("tweak_mediastreamdefault", false))
+                MediaStreamDefault.hook(lpparam);
+
+            //Sandbox.hook(lpparam);
         }
         if (lpparam.packageName.equals("com.android.systemui")) {
             if (prefs.getBoolean("tweak_disablesuindicator", false))

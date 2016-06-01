@@ -11,4 +11,10 @@
         android:title="Disable Wear Disconnected Notification"
         android:summary="For Google Play services 8.4.89" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_chrometabstoolbaronphone"
+        android:title="Chrome Tabs Toolbar On Phone"
+        android:summary="For Chrome (v47-49 only)" />
+
 </PreferenceScreen>

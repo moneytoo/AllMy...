@@ -22,6 +22,21 @@ public class ChromeTabsToolbarOnPhone {
                     XposedHelpers.callMethod(commandLineInstance, "appendSwitch", "use-mobile-user-agent");
                 }
             });
+
+            /*
+            // https://codereview.chromium.org/1948143003
+            // not enough, toolbar is all white now...
+            final Class ClassToolbarLayout = XposedHelpers.findClass("org.chromium.chrome.browser.toolbar.ToolbarLayout", lpparam.classLoader);
+            XposedBridge.hookAllMethods(XposedHelpers.findClass("org.chromium.chrome.browser.toolbar.ToolbarControlContainer", lpparam.classLoader), "getProgressBarDrawingInfo", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    Object mToolbar = XposedHelpers.getObjectField(param.thisObject, "mToolbar");
+                    Object progressBar = XposedHelpers.callMethod(ClassToolbarLayout.cast(mToolbar), "getProgressBar");
+                    if (progressBar == null)
+                        param.setResult(null);
+                }
+            });
+            */
         } catch (Throwable t) {
             XposedBridge.log(t);
         }

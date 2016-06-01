@@ -18,4 +18,10 @@
         android:title="Pocket First (Option When Sharing)"
         android:summary="For Pocket on Android 5.x/6.0" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_mediastreamdefault"
+        android:title="Media Stream Default"
+        android:summary="For Android 5.x/6.0" />
+
 </PreferenceScreen>
