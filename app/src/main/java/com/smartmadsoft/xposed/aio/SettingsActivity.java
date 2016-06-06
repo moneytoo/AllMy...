@@ -16,6 +16,7 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -94,8 +95,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // because of Xposed
-        //getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
+        migratePrefs();
 
         setupActionBar();
     }
@@ -168,6 +168,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onCreate(savedInstanceState);
 
             getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
+            getPreferenceManager().setSharedPreferencesName("tweaks");
 
             addPreferencesFromResource(R.xml.pref_tweaks);
             setHasOptionsMenu(true);
@@ -195,6 +196,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onCreate(savedInstanceState);
 
             getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
+            getPreferenceManager().setSharedPreferencesName("tweaks");
 
             addPreferencesFromResource(R.xml.pref_experimental);
             setHasOptionsMenu(true);
@@ -222,6 +224,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onCreate(savedInstanceState);
 
             getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
+            getPreferenceManager().setSharedPreferencesName("tweaks");
 
             addPreferencesFromResource(R.xml.pref_copycats);
             setHasOptionsMenu(true);
@@ -252,6 +255,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onCreate(savedInstanceState);
 
             getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
+            getPreferenceManager().setSharedPreferencesName("tweaks");
 
             addPreferencesFromResource(R.xml.pref_s5);
             setHasOptionsMenu(true);
@@ -279,6 +283,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onCreate(savedInstanceState);
 
             getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
+            getPreferenceManager().setSharedPreferencesName("tweaks");
 
             addPreferencesFromResource(R.xml.pref_thirdparty);
             setHasOptionsMenu(true);
@@ -306,6 +311,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onCreate(savedInstanceState);
 
             getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
+            getPreferenceManager().setSharedPreferencesName("tweaks");
 
             addPreferencesFromResource(R.xml.pref_cyanogenmod);
             setHasOptionsMenu(true);
@@ -328,6 +334,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         if (Deluxe.showMenu(getApplicationContext()))
             getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    void migratePrefs() {
+        final String PACKAGE_NAME = SettingsActivity.class.getPackage().getName();
+        // use system paths instead of /data/data...
+        File prefsFileOld = new File("/data/data/"+PACKAGE_NAME+"/shared_prefs", PACKAGE_NAME+"_preferences.xml");
+        File prefsFileNew = new File("/data/data/"+PACKAGE_NAME+"/shared_prefs", "tweaks.xml");
+        if (!prefsFileNew.exists() && prefsFileOld.exists()) {
+            prefsFileOld.renameTo(prefsFileNew);
+            prefsFileNew.setReadable(true, false);
+        }
     }
 
 }

@@ -43,12 +43,16 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
 
     @Override
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) throws Throwable {
-        // workaround for 660 instead of 664 - lost probably somewhere between fragments
-        File prefsFile = new File("/data/data/"+PACKAGE_NAME+"/shared_prefs", PACKAGE_NAME+"_preferences.xml");
-        if (prefsFile.exists())
-            prefsFile.setReadable(true, false);
+        File prefsFile = new File("/data/data/"+PACKAGE_NAME+"/shared_prefs", "tweaks.xml");
+        if (!prefsFile.exists()) {
+            // try migrating, but may fail
+            migratePrefs();
+        }
 
-        prefs = new XSharedPreferences(PACKAGE_NAME);
+        if (prefsFile.exists())
+            prefs = new XSharedPreferences(PACKAGE_NAME, "tweaks");
+        else
+            prefs = new XSharedPreferences(PACKAGE_NAME);
         prefs.makeWorldReadable();
 
         int brightnessValue = Integer.parseInt(prefs.getString("tweak_minimumbrightness_list", "-1"));
@@ -141,6 +145,16 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 HideNetworkIndicators.hook(iprparam);
             if (prefs.getBoolean("tweak_compactvolumepanel", false))
                 CompactVolumePanel.hook(iprparam);
+        }
+    }
+
+    void migratePrefs() {
+        final String PACKAGE_NAME = SettingsActivity.class.getPackage().getName();
+        File prefsFileOld = new File("/data/data/"+PACKAGE_NAME+"/shared_prefs", PACKAGE_NAME+"_preferences.xml");
+        File prefsFileNew = new File("/data/data/"+PACKAGE_NAME+"/shared_prefs", "tweaks.xml");
+        if (!prefsFileNew.exists() && prefsFileOld.exists()) {
+            prefsFileOld.renameTo(prefsFileNew);
+            prefsFileNew.setReadable(true, false);
         }
     }
 }
