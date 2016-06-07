@@ -25,6 +25,7 @@ import com.smartmadsoft.xposed.aio.tweaks.NoWakeOnCharge;
 import com.smartmadsoft.xposed.aio.tweaks.S5TouchWizJunk;
 import com.smartmadsoft.xposed.aio.tweaks.S5ReaderMode;
 import com.smartmadsoft.xposed.aio.tweaks.GMSWearNotificationDisable;
+import com.smartmadsoft.xposed.aio.tweaks.Sandbox;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
 
@@ -43,16 +44,14 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
 
     @Override
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) throws Throwable {
-        File prefsFile = new File("/data/data/"+PACKAGE_NAME+"/shared_prefs", "tweaks.xml");
-        if (!prefsFile.exists()) {
+        File prefsFileNew = new File("/data/data/"+PACKAGE_NAME+"/shared_prefs", "tweaks.xml");
+        File prefsFileOld = new File("/data/data/"+PACKAGE_NAME+"/shared_prefs", PACKAGE_NAME+"_preferences.xml");
+        if (!prefsFileNew.exists() && prefsFileOld.exists()) {
             // try migrating, but may fail
             migratePrefs();
         }
 
-        if (prefsFile.exists())
-            prefs = new XSharedPreferences(PACKAGE_NAME, "tweaks");
-        else
-            prefs = new XSharedPreferences(PACKAGE_NAME);
+        prefs = new XSharedPreferences(PACKAGE_NAME, "tweaks");
         prefs.makeWorldReadable();
 
         int brightnessValue = Integer.parseInt(prefs.getString("tweak_minimumbrightness_list", "-1"));
