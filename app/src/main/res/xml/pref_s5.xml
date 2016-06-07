@@ -18,4 +18,10 @@
         android:title="Enable Reader Mode (Adapt Display)"
         android:summary="For Adobe Reader and Moon+ Reader" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_t700gentlehapticfeedback"
+        android:title="Gentle Haptic Feedback"
+        android:summary="10 ms instead of 50 ms for touch keys" />
+
 </PreferenceScreen>

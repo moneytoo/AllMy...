@@ -10,6 +10,7 @@ import com.smartmadsoft.xposed.aio.tweaks.DeskClockAlarm;
 import com.smartmadsoft.xposed.aio.tweaks.DisableHorizontalScrollAR;
 import com.smartmadsoft.xposed.aio.tweaks.DisableSuIndicator;
 import com.smartmadsoft.xposed.aio.tweaks.GentleHapticFeedback;
+import com.smartmadsoft.xposed.aio.tweaks.GentleHapticFeedbackTouchWiz;
 import com.smartmadsoft.xposed.aio.tweaks.HideNetworkIndicators;
 import com.smartmadsoft.xposed.aio.tweaks.MediaStreamDefault;
 import com.smartmadsoft.xposed.aio.tweaks.MinimumBrightnessMX;
@@ -92,6 +93,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 S5ReaderMode.hook(lpparam);
             if (prefs.getBoolean("tweak_mediastreamdefault", false))
                 MediaStreamDefault.hook(lpparam);
+            if (prefs.getBoolean("tweak_t700gentlehapticfeedback", false))
+                GentleHapticFeedbackTouchWiz.hook(lpparam);
 
             //Sandbox.hook(lpparam);
         }

@@ -18,7 +18,7 @@
     <header
         android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$S5PreferenceFragment"
         android:icon="@drawable/ic_extension_black_24dp"
-        android:title="For Samsung Galaxy S5 (Android 5.0)" />
+        android:title="For TouchWiz (Android 5.0)" />
 
     <header
         android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$CopycatsPreferenceFragment"
