@@ -40,19 +40,11 @@ import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXposedHookInitPackageResources {
-    public static final String PACKAGE_NAME = Loader.class.getPackage().getName();
     private static XSharedPreferences prefs;
 
     @Override
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) throws Throwable {
-        File prefsFileNew = new File("/data/data/"+PACKAGE_NAME+"/shared_prefs", "tweaks.xml");
-        File prefsFileOld = new File("/data/data/"+PACKAGE_NAME+"/shared_prefs", PACKAGE_NAME+"_preferences.xml");
-        if (!prefsFileNew.exists() && prefsFileOld.exists()) {
-            // try migrating, but may fail
-            migratePrefs();
-        }
-
-        prefs = new XSharedPreferences(PACKAGE_NAME, "tweaks");
+        prefs = new XSharedPreferences("com.smartmadsoft.xposed.aio", "tweaks");
         prefs.makeWorldReadable();
 
         int brightnessValue = Integer.parseInt(prefs.getString("tweak_minimumbrightness_list", "-1"));
