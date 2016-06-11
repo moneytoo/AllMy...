@@ -8,8 +8,8 @@ android {
         applicationId "com.smartmadsoft.xposed.aio"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 21
-        versionName "0.3.2"
+        versionCode 22
+        versionName "0.3.3"
     }
     buildTypes {
         release {

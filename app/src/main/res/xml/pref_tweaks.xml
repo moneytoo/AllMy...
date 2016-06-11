@@ -24,4 +24,10 @@
         android:title="Media Stream Default"
         android:summary="For Android 5.x/6.0" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_mediakeys"
+        android:title="Advanced Volume Keys"
+        android:summary="Long press VOLUME -/+ for PLAY_PAUSE/NEXT when screen is off or showing lock screen. For Android 5.x/6.0" />
+
 </PreferenceScreen>

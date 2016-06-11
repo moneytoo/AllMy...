@@ -12,6 +12,7 @@ import com.smartmadsoft.xposed.aio.tweaks.DisableSuIndicator;
 import com.smartmadsoft.xposed.aio.tweaks.GentleHapticFeedback;
 import com.smartmadsoft.xposed.aio.tweaks.GentleHapticFeedbackTouchWiz;
 import com.smartmadsoft.xposed.aio.tweaks.HideNetworkIndicators;
+import com.smartmadsoft.xposed.aio.tweaks.MediaKeys;
 import com.smartmadsoft.xposed.aio.tweaks.MediaStreamDefault;
 import com.smartmadsoft.xposed.aio.tweaks.MinimumBrightnessMX;
 import com.smartmadsoft.xposed.aio.tweaks.NativeFreezer;
@@ -87,6 +88,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 MediaStreamDefault.hook(lpparam);
             if (prefs.getBoolean("tweak_t700gentlehapticfeedback", false))
                 GentleHapticFeedbackTouchWiz.hook(lpparam);
+            if (prefs.getBoolean("tweak_mediakeys", false))
+                MediaKeys.hook(lpparam);
 
             //Sandbox.hook(lpparam);
         }
