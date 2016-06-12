@@ -10,13 +10,13 @@
         android:defaultValue="false"
         android:key="tweak_s5twjunk"
         android:title="Get Rid of TouchWiz Junk (Popups)"
-        android:summary="Disable 'Check cover' popups and DND notification" />
+        android:summary="Disable 'Check cover' popups, DND notification etc" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s5readermode"
         android:title="Enable Reader Mode (Adapt Display)"
-        android:summary="For Adobe Reader and Moon+ Reader" />
+        android:summary="Enable Samsung screen ebook reading mode for Adobe Reader and Moon+ Reader" />
 
     <SwitchPreference
         android:defaultValue="false"

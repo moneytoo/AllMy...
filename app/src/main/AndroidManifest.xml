@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.smartmadsoft.xposed.aio">
 
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,6 +30,14 @@
                 <category android:name="de.robv.android.xposed.category.MODULE_SETTINGS"/>
             </intent-filter>
         </activity>
+
+        <service android:name=".FlashlightService"/>
+
+        <receiver android:name=".IntentReceiver">
+            <intent-filter>
+                <action android:name="com.smartmadsoft.xposed.aio.FLASHLIGHT_TOGGLE"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

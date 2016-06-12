@@ -45,10 +45,9 @@ public class MediaKeys {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     KeyEvent event = (KeyEvent) param.args[0];
-                    //int policyFlags = (int) param.args[1];
-
-                    //final boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
                     int keycode = event.getKeyCode();
+                    //int policyFlags = (int) param.args[1];
+                    //final boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
                     //XposedBridge.log("AIO: interceptKeyBeforeQueueing:" + keycode + ", down=" + down + ", policyFlags=" + policyFlags + ", event.getFlags=" + event.getFlags());
 
                     if (keycode == KeyEvent.KEYCODE_VOLUME_DOWN || keycode == KeyEvent.KEYCODE_VOLUME_UP) {
@@ -116,7 +115,10 @@ public class MediaKeys {
                         @Override
                         public void run() {
                             mIsLongPress = true;
-                            sendMediaButtonEvent(param.thisObject, KeyEvent.KEYCODE_MEDIA_NEXT);
+                            if (mAudioManager != null && mAudioManager.isMusicActive())
+                                sendMediaButtonEvent(param.thisObject, KeyEvent.KEYCODE_MEDIA_NEXT);
+                            else
+                                toggleFlashlight(param.thisObject);
                         };
                     };
 
@@ -197,4 +199,10 @@ public class MediaKeys {
         XposedHelpers.callMethod(phoneWindowManager, "dispatchMediaKeyWithWakeLockToAudioService", KeyEvent.changeAction(event, KeyEvent.ACTION_UP));
     }
     */
+
+    private static void toggleFlashlight(Object phoneWindowManager) {
+        Context mContext = (Context) XposedHelpers.getObjectField(phoneWindowManager, "mContext");
+        Intent intent = new Intent("com.smartmadsoft.xposed.aio.FLASHLIGHT_TOGGLE");
+        mContext.sendBroadcast(intent);
+    }
 }
