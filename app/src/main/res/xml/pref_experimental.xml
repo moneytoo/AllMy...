@@ -9,7 +9,7 @@
         android:defaultValue="false"
         android:key="tweak_gmswearnotificationdisable"
         android:title="Disable Wear Disconnected Notification"
-        android:summary="For Google Play services 8.4.89" />
+        android:summary="For Google Play services 9.0.38 (230/238/438)" />
 
     <SwitchPreference
         android:defaultValue="false"
