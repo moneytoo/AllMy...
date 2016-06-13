@@ -24,4 +24,10 @@
         android:title="Gentle Haptic Feedback"
         android:summary="10 ms instead of 50 ms for touch keys" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_disableusbnotification"
+        android:title="Disable USB Notification"
+        android:summary="Get rid of a notification showed when phone is plugged to a computer" />
+
 </PreferenceScreen>

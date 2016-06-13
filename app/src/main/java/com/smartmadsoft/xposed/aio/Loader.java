@@ -9,6 +9,7 @@ import com.smartmadsoft.xposed.aio.tweaks.CompactVolumePanel;
 import com.smartmadsoft.xposed.aio.tweaks.DeskClockAlarm;
 import com.smartmadsoft.xposed.aio.tweaks.DisableHorizontalScrollAR;
 import com.smartmadsoft.xposed.aio.tweaks.DisableSuIndicator;
+import com.smartmadsoft.xposed.aio.tweaks.DisableUsbNotification;
 import com.smartmadsoft.xposed.aio.tweaks.GentleHapticFeedback;
 import com.smartmadsoft.xposed.aio.tweaks.GentleHapticFeedbackTouchWiz;
 import com.smartmadsoft.xposed.aio.tweaks.HideNetworkIndicators;
@@ -90,6 +91,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 GentleHapticFeedbackTouchWiz.hook(lpparam);
             if (prefs.getBoolean("tweak_mediakeys", false))
                 MediaKeys.hook(lpparam);
+            if (prefs.getBoolean("tweak_disableusbnotification", false))
+                DisableUsbNotification.hook(lpparam);
 
             //Sandbox.hook(lpparam);
         }
