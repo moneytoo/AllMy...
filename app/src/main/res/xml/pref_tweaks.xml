@@ -30,4 +30,10 @@
         android:title="Advanced Volume Keys"
         android:summary="Long press VOLUME -/+ for PLAY_PAUSE/NEXT when screen is off or showing lock screen. Long press Volume + toggles flashlight when music is not playing. For Android 5.x/6.0" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_disableusbnotification"
+        android:title="Disable USB/ADB Notifications"
+        android:summary="Get rid of a notifications shown when phone is plugged to a computer" />
+
 </PreferenceScreen>

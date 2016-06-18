@@ -8,7 +8,14 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class DisableUsbNotification {
     public static void hook(final XC_LoadPackage.LoadPackageParam lpparam) {
         try {
-            XposedHelpers.findAndHookMethod("com.android.server.usb.UsbDeviceManager$UsbHandler", lpparam.classLoader, "updateUsbNotification", boolean.class, new XC_MethodHook() {
+            XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.server.usb.UsbDeviceManager$UsbHandler", lpparam.classLoader), "updateUsbNotification", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    param.setResult(null);
+                }
+            });
+
+            XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.server.usb.UsbDeviceManager$UsbHandler", lpparam.classLoader), "updateAdbNotification", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     param.setResult(null);
