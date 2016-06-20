@@ -3,13 +3,13 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_k920cardboard"
-        android:title="K920 Cardboard Resolution Fix"
-        android:summary="Fix screen resolution in Google Cardboard on Lenovo Vibe Z2 Pro (K920). For K920 running Android 4.4/5.0" />
+        android:title="K920 Tweaks"
+        android:summary="Fix screen resolution in Google Cardboard, disable notification panel expansion, disable haptic feedback for virtual key UP. For Lenovo Vibe Z2 Pro (K920) running Android 5.0" />
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_gmswearnotificationdisable"
         android:title="Disable Wear Disconnected Notification"
-        android:summary="For Google Play services 9.0.38 (230/238/438)" />
+        android:summary="For Google Play services 9.2.56/9.0.38 (230/238/438)" />
 
     <SwitchPreference
         android:defaultValue="false"
@@ -22,5 +22,10 @@
         android:key="tweak_deskclockalarm"
         android:title="Desk Clock Alarm [Obsolete]"
         android:summary="Make Alarm the default tab in stock/Google Desk Clock (v4.2.1/4.3)" />
+
+    <Preference
+        android:key="open_callfeaturessetting"
+        android:title="Open CallFeaturesSetting"
+        />
 
 </PreferenceScreen>

@@ -1,5 +1,7 @@
 package com.smartmadsoft.xposed.aio.tweaks;
 
+import android.os.Build;
+
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -22,6 +24,9 @@ public class NoWakeOnCharge {
 
     public static void hookUI(final XC_LoadPackage.LoadPackageParam lpparam) {
         try {
+            if (!Build.MANUFACTURER.toLowerCase().contains("samsung"))
+                return;
+
             XposedHelpers.findAndHookMethod("com.android.systemui.power.PowerNotificationWarnings", lpparam.classLoader, "playSound", int.class, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {

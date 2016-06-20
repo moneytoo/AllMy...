@@ -2,6 +2,7 @@ package com.smartmadsoft.xposed.aio;
 
 
 import android.annotation.TargetApi;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -191,6 +192,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class ExperimentalPreferenceFragment extends PreferenceFragment {
+        Preference openCallFeaturesSetting;
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -200,6 +203,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             addPreferencesFromResource(R.xml.pref_experimental);
             setHasOptionsMenu(true);
+
+            openCallFeaturesSetting = findPreference("open_callfeaturessetting");
+            openCallFeaturesSetting.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent intent = new Intent("android.intent.action.MAIN");
+                    intent.setComponent(new ComponentName("com.android.phone","com.android.phone.CallFeaturesSetting"));
+                    startActivity(intent);
+                    return true;
+                }
+            });
         }
 
         @Override

@@ -2,6 +2,12 @@
 
     <SwitchPreference
         android:defaultValue="false"
+        android:key="tweak_nowakeoncharge"
+        android:title="No Wake On Charge"
+        android:summary="Disable wake up when (dis)connecting USB cable" />
+
+    <SwitchPreference
+        android:defaultValue="false"
         android:key="tweak_batteryhistoryxxl"
         android:title="Battery History XXL"
         android:summary="Enlarge the stock settings battery history - from 10 to 30 records. For Android 4.4/5.x/6.0" />

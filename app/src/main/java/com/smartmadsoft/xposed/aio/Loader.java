@@ -63,6 +63,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             XResources.setSystemWideReplacement("android", "bool", "show_ongoing_ime_switcher", false);
             //XResources.setSystemWideReplacement("android", "bool", "config_intrusiveNotificationLed", true);
         }
+        if (prefs.getBoolean("tweak_nowakeoncharge", false))
+            XResources.setSystemWideReplacement("android", "bool", "config_unplugTurnsOnScreen", false);
     }
 
     @Override
@@ -93,8 +95,14 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 MediaKeys.hook(lpparam);
             if (prefs.getBoolean("tweak_disableusbnotification", false))
                 DisableUsbNotification.hook(lpparam);
+            if (prefs.getBoolean("tweak_k920cardboard", false))
+                K920Cardboard.hookAndroid(lpparam);
 
             //Sandbox.hook(lpparam);
+        }
+        if (lpparam.packageName.equals("com.android.server.telecom")) {
+            if (prefs.getBoolean("tweak_k920cardboard", false))
+                K920Cardboard.hookTelecom(lpparam);
         }
         if (lpparam.packageName.equals("com.android.systemui")) {
             if (prefs.getBoolean("tweak_disablesuindicator", false))
@@ -103,6 +111,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 NoWakeOnCharge.hookUI(lpparam);
             if (prefs.getBoolean("tweak_s5twjunk", false))
                 S5TouchWizJunk.hookUI(lpparam);
+            if (prefs.getBoolean("tweak_k920cardboard", false))
+                K920Cardboard.hookUI(lpparam);
         }
         if (lpparam.packageName.equals("com.android.settings")) {
             if (prefs.getBoolean("tweak_batteryhistoryxxl", false))
@@ -131,7 +141,7 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
         if (ChromeTabsToolbarOnPhone.isChrome(lpparam.packageName) && prefs.getBoolean("tweak_chrometabstoolbaronphone", false))
             ChromeTabsToolbarOnPhone.hook(lpparam);
         if (prefs.getBoolean("tweak_k920cardboard", false))
-            K920Cardboard.hook(lpparam);
+            K920Cardboard.hookAll(lpparam);
         if (lpparam.packageName.equals("com.sec.android.app.popupuireceiver") && prefs.getBoolean("tweak_s5twjunk", false))
             S5TouchWizJunk.hook(lpparam);
         if (lpparam.packageName.equals("com.google.android.gms") && prefs.getBoolean("tweak_gmswearnotificationdisable", false))
