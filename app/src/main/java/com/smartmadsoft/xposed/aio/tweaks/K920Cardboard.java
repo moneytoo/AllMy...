@@ -76,7 +76,7 @@ public class K920Cardboard {
 
     public static void hookTelecom(final XC_LoadPackage.LoadPackageParam lpparam) {
         try {
-            // Fixes SIP calls - requires setting "Make calls with = Ask first" and using Google UI
+            // Fixes SIP calls - requires setting "Make calls with = Ask first" and using Google UI (or Dialer_G instead of LenovoInCallUI)
             XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.server.telecom.CallsManager", lpparam.classLoader), "phoneAccountSelected", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
