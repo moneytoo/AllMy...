@@ -35,6 +35,15 @@ public class K920Cardboard {
                     int effectId = (int) param.args[1];
                     if (effectId == 7) // mVirtualKeyVibePatternUp
                         param.setResult(null);
+
+                    // Disable haptic feedback for events sent from AccessibilityManagerService
+                    StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+                    for (StackTraceElement element : stackTraceElements) {
+                        if (element.toString().contains("sendDownAndUpKeyEvents")) {
+                            param.setResult(false);
+                            return;
+                        }
+                    }
                 }
             });
 
@@ -69,6 +78,13 @@ public class K920Cardboard {
                     param.setResult(null);
                 }
             });
+
+            XposedHelpers.findAndHookMethod("com.android.systemui.power.PowerNotificationWarnings", lpparam.classLoader, "showChargeCompletedNotification", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+                    param.setResult(null);
+                }
+            });
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
@@ -80,8 +96,6 @@ public class K920Cardboard {
             XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.server.telecom.CallsManager", lpparam.classLoader), "phoneAccountSelected", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    XposedBridge.log("AIO: phoneAccountSelected");
-
                     Object call = param.args[0];
                     Object account = param.args[1];
 

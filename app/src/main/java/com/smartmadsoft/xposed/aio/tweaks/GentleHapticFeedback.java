@@ -35,6 +35,11 @@ public class GentleHapticFeedback {
 
                     try {
                         XposedHelpers.setObjectField(mPhoneWindowManager, "mVirtualKeyVibePattern", new long[]{vibePattern});
+                        if (Build.MANUFACTURER.toLowerCase().contains("lenovo")) {
+                            XposedHelpers.setObjectField(mPhoneWindowManager, "mVirtualKeyVibePatternDown", new long[]{vibePattern});
+                            XposedHelpers.setObjectField(mPhoneWindowManager, "mKeyboardTapVibePattern", new long[]{vibePattern});
+                            XposedHelpers.setObjectField(mPhoneWindowManager, "mLongPressVibePattern", new long[]{vibePattern*2});
+                        }
                     } catch (Throwable t) {
                         XposedBridge.log(t);
                     }

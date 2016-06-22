@@ -4,7 +4,7 @@
         android:defaultValue="false"
         android:key="tweak_k920cardboard"
         android:title="K920 Tweaks"
-        android:summary="Fix screen resolution in Google Cardboard, disable notification panel expansion, disable haptic feedback for virtual key UP. For Lenovo Vibe Z2 Pro (K920) running Android 5.0" />
+        android:summary="Fix screen resolution in Google Cardboard, disable notification panel expansion, disable haptic feedback for virtual key UP, fix SIP. For Lenovo Vibe Z2 Pro (K920) running Android 5.0" />
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_gmswearnotificationdisable"
