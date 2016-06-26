@@ -20,7 +20,7 @@ public class MediaStreamDefault {
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     int suggestedStreamType = (int) param.args[0];
                     int result = (int) param.getResult();
-                    if (suggestedStreamType == AudioManager.USE_DEFAULT_STREAM_TYPE && result == AudioManager.STREAM_RING)
+                    if (suggestedStreamType == AudioManager.USE_DEFAULT_STREAM_TYPE && (result == AudioManager.STREAM_RING || result == AudioManager.STREAM_NOTIFICATION))
                         param.setResult(AudioManager.STREAM_MUSIC);
                 }
             });
