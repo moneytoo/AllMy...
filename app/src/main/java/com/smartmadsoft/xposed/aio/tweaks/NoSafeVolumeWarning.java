@@ -4,23 +4,28 @@
 
 package com.smartmadsoft.xposed.aio.tweaks;
 
+import android.os.Build;
+
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class NoSafeVolumeWarning {
-    public static void hook() {
+    public static void hook(final XC_LoadPackage.LoadPackageParam lpparam) {
         try {
-            final Class<?> AudioService = XposedHelpers.findClass("android.media.AudioService", null);
+            String pkg = "com.android.server.audio";
+            if (Build.VERSION.SDK_INT < 23)
+                pkg = "android.media";
 
-            XposedHelpers.findAndHookMethod(AudioService, "enforceSafeMediaVolume", new XC_MethodHook() {
+            XposedBridge.hookAllMethods(XposedHelpers.findClass(pkg + ".AudioService", lpparam.classLoader), "enforceSafeMediaVolume", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     param.setResult(null);
                 }
             });
 
-            XposedHelpers.findAndHookMethod(AudioService, "checkSafeMediaVolume", int.class, int.class, int.class, new XC_MethodHook() {
+            XposedHelpers.findAndHookMethod(pkg + ".AudioService", lpparam.classLoader, "checkSafeMediaVolume", int.class, int.class, int.class, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     param.setResult(true);

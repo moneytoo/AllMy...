@@ -7,6 +7,9 @@ package com.smartmadsoft.xposed.aio.tweaks;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraManager;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Handler;
@@ -32,6 +35,10 @@ public class MediaKeys {
     static String pkg;
     //static Class ClassMediaSessionLegacyHelper;
 
+    static CameraManager mCameraManager;
+    static String mCameraId;
+    static boolean isTorchOn = false;
+
     @TargetApi(20)
     public static void hook(XC_LoadPackage.LoadPackageParam lpparam) {
         try {
@@ -46,9 +53,11 @@ public class MediaKeys {
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     KeyEvent event = (KeyEvent) param.args[0];
                     int keycode = event.getKeyCode();
-                    //int policyFlags = (int) param.args[1];
-                    //final boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
-                    //XposedBridge.log("AIO: interceptKeyBeforeQueueing:" + keycode + ", down=" + down + ", policyFlags=" + policyFlags + ", event.getFlags=" + event.getFlags());
+                    /*
+                    int policyFlags = (int) param.args[1];
+                    final boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
+                    XposedBridge.log("AIO: interceptKeyBeforeQueueing:" + keycode + ", down=" + down + ", policyFlags=" + policyFlags + ", event.getFlags=" + event.getFlags());
+                    */
 
                     if (keycode == KeyEvent.KEYCODE_VOLUME_DOWN || keycode == KeyEvent.KEYCODE_VOLUME_UP) {
                         //if (down)
@@ -202,7 +211,43 @@ public class MediaKeys {
 
     private static void toggleFlashlight(Object phoneWindowManager) {
         Context mContext = (Context) XposedHelpers.getObjectField(phoneWindowManager, "mContext");
-        Intent intent = new Intent("com.smartmadsoft.xposed.aio.FLASHLIGHT_TOGGLE");
-        mContext.sendBroadcast(intent);
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (mCameraManager == null) {
+                mCameraManager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
+                String cameraId = null;
+                try {
+                    cameraId = getCameraId(mCameraManager);
+                } catch (Throwable e) {
+                    return;
+                } finally {
+                    mCameraId = cameraId;
+                }
+            }
+            try {
+                isTorchOn = !isTorchOn;
+                mCameraManager.setTorchMode(mCameraId, isTorchOn);
+            } catch (Throwable e) {
+                return;
+            }
+        } else {
+            Intent intent = new Intent("com.smartmadsoft.xposed.aio.FLASHLIGHT_TOGGLE");
+            mContext.sendBroadcast(intent);
+        }
+    }
+
+    static String getCameraId(CameraManager cameraManager) throws CameraAccessException {
+        if (Build.VERSION.SDK_INT >= 23) {
+            String[] ids = cameraManager.getCameraIdList();
+            for (String id : ids) {
+                CameraCharacteristics c = cameraManager.getCameraCharacteristics(id);
+                Boolean flashAvailable = c.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
+                Integer lensFacing = c.get(CameraCharacteristics.LENS_FACING);
+                if (flashAvailable != null && flashAvailable && lensFacing != null && lensFacing == CameraCharacteristics.LENS_FACING_BACK) {
+                    return id;
+                }
+            }
+        }
+        return null;
     }
 }

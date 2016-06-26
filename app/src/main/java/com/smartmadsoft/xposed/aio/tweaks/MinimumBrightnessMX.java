@@ -1,5 +1,7 @@
 package com.smartmadsoft.xposed.aio.tweaks;
 
+import android.os.Build;
+
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
@@ -9,7 +11,13 @@ import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 public class MinimumBrightnessMX {
     public static void hook(final XC_LoadPackage.LoadPackageParam lpparam) {
         try {
-            findAndHookMethod("com.mxtech.videoplayer.widget.BrightnessBar", lpparam.classLoader, "a", int.class, int.class, new XC_MethodHook() {
+            String b2l = "brightToLevel";
+            String l2b = "levelToBright";
+            if (Build.VERSION.SDK_INT < 23) {
+                b2l = l2b = "a";
+            }
+
+            findAndHookMethod("com.mxtech.videoplayer.widget.BrightnessBar", lpparam.classLoader, l2b, int.class, int.class, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     int n = (Integer) param.args[0];
@@ -20,7 +28,7 @@ public class MinimumBrightnessMX {
                 }
             });
 
-            findAndHookMethod("com.mxtech.videoplayer.widget.BrightnessBar", lpparam.classLoader, "a", int.class, double.class, new XC_MethodHook() {
+            findAndHookMethod("com.mxtech.videoplayer.widget.BrightnessBar", lpparam.classLoader, b2l, int.class, double.class, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     int n = (Integer) param.args[0];

@@ -55,8 +55,6 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             XResources.setSystemWideReplacement("android", "integer", "config_screenBrightnessSettingMinimum", brightnessValue);
             XResources.setSystemWideReplacement("android", "integer", "config_screenBrightnessDim", brightnessValue);
         }
-        if (prefs.getBoolean("tweak_nosafevolumewarning", false))
-            NoSafeVolumeWarning.hook();
         if (prefs.getBoolean("tweak_chrometabstoolbaronphone", false))
             ChromeTabsToolbarOnPhone.init();
         if (prefs.getBoolean("tweak_s5twjunk", false)) {
@@ -70,6 +68,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         if (lpparam.packageName.equals("android")) {
+            if (prefs.getBoolean("tweak_nosafevolumewarning", false))
+                NoSafeVolumeWarning.hook(lpparam);
             if (prefs.getBoolean("tweak_onewaybrightness", false))
                 OneWayBrightness.hook(lpparam);
             if (prefs.getBoolean("tweak_batterylightdisabler", false))
