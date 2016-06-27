@@ -209,8 +209,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     Intent intent = new Intent("android.intent.action.MAIN");
-                    intent.setComponent(new ComponentName("com.android.phone","com.android.phone.CallFeaturesSetting"));
-                    startActivity(intent);
+                    intent.setComponent(new ComponentName("com.android.phone","com.android.phone.settings.PhoneAccountSettingsActivity"));
+                    try {
+                        startActivity(intent);
+                    } catch (Exception x) {
+                        intent.setComponent(new ComponentName("com.android.phone","com.android.phone.CallFeaturesSetting"));
+                        startActivity(intent);
+                    }
                     return true;
                 }
             });
