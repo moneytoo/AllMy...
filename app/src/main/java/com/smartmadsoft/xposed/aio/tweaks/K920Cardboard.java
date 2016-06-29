@@ -1,5 +1,7 @@
 package com.smartmadsoft.xposed.aio.tweaks;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.DisplayMetrics;
 
 import de.robv.android.xposed.XC_MethodHook;
@@ -64,6 +66,15 @@ public class K920Cardboard {
                     }
                 }
             });
+
+            // Disables red charging LED
+            // TODO: Only block during downtime
+            XposedHelpers.findAndHookMethod("com.android.server.BatteryService$Led", lpparam.classLoader, "updateLightsLocked", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    param.setResult(null);
+                }
+            });
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
@@ -82,6 +93,13 @@ public class K920Cardboard {
             XposedHelpers.findAndHookMethod("com.android.systemui.power.PowerNotificationWarnings", lpparam.classLoader, "showChargeCompletedNotification", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+                    param.setResult(null);
+                }
+            });
+
+            XposedHelpers.findAndHookMethod("com.android.systemui.lenovo.usb.LenovoUsbChargeFeedback", lpparam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     param.setResult(null);
                 }
             });
