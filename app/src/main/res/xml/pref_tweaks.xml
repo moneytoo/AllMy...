@@ -39,7 +39,13 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_disableusbnotification"
-        android:title="Disable USB/ADB Notifications"
+        android:title="Disable USB Notifications"
         android:summary="Get rid of a notifications shown when phone is plugged to a computer" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_disableadbnotification"
+        android:title="Disable ADB Notifications"
+        android:summary="Get rid of the USB debugging notification" />
 
 </PreferenceScreen>

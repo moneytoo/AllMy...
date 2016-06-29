@@ -7,6 +7,7 @@ import com.smartmadsoft.xposed.aio.tweaks.BatteryHistoryXXL;
 import com.smartmadsoft.xposed.aio.tweaks.BatteryLightDisabler;
 import com.smartmadsoft.xposed.aio.tweaks.CompactVolumePanel;
 import com.smartmadsoft.xposed.aio.tweaks.DeskClockAlarm;
+import com.smartmadsoft.xposed.aio.tweaks.DisableAdbNotification;
 import com.smartmadsoft.xposed.aio.tweaks.DisableHorizontalScrollAR;
 import com.smartmadsoft.xposed.aio.tweaks.DisableSuIndicator;
 import com.smartmadsoft.xposed.aio.tweaks.DisableUsbNotification;
@@ -95,6 +96,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 MediaKeys.hook(lpparam);
             if (prefs.getBoolean("tweak_disableusbnotification", false))
                 DisableUsbNotification.hook(lpparam);
+            if (prefs.getBoolean("tweak_disableadbnotification", false))
+                DisableAdbNotification.hook(lpparam);
             if (prefs.getBoolean("tweak_k920cardboard", false))
                 K920Cardboard.hookAndroid(lpparam);
 
