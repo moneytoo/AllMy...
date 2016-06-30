@@ -13,6 +13,7 @@ public class Common {
     public static boolean isInScale = false;
     public static boolean executeDoubleTap = false;
     public static double doubleTapParam1, doubleTapParam2;
+    public static boolean ignoreFirstScaleWorkaround = false;
 
     public static MotionEvent doubleTapMotionEvent;
 
@@ -24,7 +25,7 @@ public class Common {
 
     public static class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
-        public boolean onScaleBegin(ScaleGestureDetector detector) {
+            public boolean onScaleBegin(ScaleGestureDetector detector) {
             isInScale = true;
             executeDoubleTap = false;
             mScaleFactor = 1.f;
@@ -34,11 +35,15 @@ public class Common {
         @Override
         public void onScaleEnd(ScaleGestureDetector detector) {
             isInScale = false;
+            ignoreFirstScaleWorkaround = false;
             super.onScaleEnd(detector);
         }
 
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
+            if (ignoreFirstScaleWorkaround)
+                return true;
+
             mScaleFactor *= detector.getScaleFactor();
             mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
 

@@ -10,18 +10,18 @@
         android:defaultValue="false"
         android:key="tweak_onehandzoom_ar"
         android:title="One Hand Zoom Enabler"
-        android:summary="Double-touch drag support for Adobe Reader (v15.2.2-16.1.1)" />
+        android:summary="Double-touch drag support for Adobe Reader (v15.2.2-16.2)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_disablehorizontalscroll_ar"
         android:title="Disable Horizontal Scroll"
-        android:summary="For Adobe Reader (v15.2.2-16.1.1)" />
+        android:summary="For Adobe Reader (v15.2.2-16.2)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_minimumbrightness_mx"
         android:title="Minimum Brightness"
-        android:summary="For MX Player (v1.7.40)" />
+        android:summary="For MX Player (v1.7.40/1.8.3)" />
 
 </PreferenceScreen>

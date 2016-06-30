@@ -1,6 +1,7 @@
 package com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -15,6 +16,9 @@ public class AR {
         XposedHelpers.findAndHookConstructor("com.adobe.reader.viewer.ARPageView", lpparam.classLoader, Context.class, AttributeSet.class, int.class, new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                // I have no idea why it's needed as it's fine on other devices
+                if (Build.MANUFACTURER.toLowerCase().contains("lenovo") && Build.VERSION.SDK_INT == 21)
+                    Common.ignoreFirstScaleWorkaround = true;
                 Common.mContext = (Context) param.args[0];
                 Common.thisObject = param.thisObject;
                 Common.mCurrTouchXform = XposedHelpers.getObjectField(param.thisObject, "mCurrTouchXform");
