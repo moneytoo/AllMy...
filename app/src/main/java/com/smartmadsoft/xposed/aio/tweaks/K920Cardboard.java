@@ -2,6 +2,7 @@ package com.smartmadsoft.xposed.aio.tweaks;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Message;
 import android.util.DisplayMetrics;
 
 import de.robv.android.xposed.XC_MethodHook;
@@ -130,6 +131,21 @@ public class K920Cardboard {
                             XposedHelpers.callMethod(call, "disconnect");
                         }
                     }
+                    param.setResult(null);
+                }
+            });
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
+    }
+
+    public static void hookSettings(final XC_LoadPackage.LoadPackageParam lpparam) {
+        try {
+            // Disables popup when switching WiFi on
+            XposedHelpers.findAndHookMethod("com.android.settings.wifi.WifiStatuListener$1", lpparam.classLoader, "handleMessage", Message.class, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+                    XposedBridge.log("AIO: handleMessage");
                     param.setResult(null);
                 }
             });

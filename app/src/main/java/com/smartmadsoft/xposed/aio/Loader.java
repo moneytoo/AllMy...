@@ -29,7 +29,7 @@ import com.smartmadsoft.xposed.aio.tweaks.NoWakeOnCharge;
 import com.smartmadsoft.xposed.aio.tweaks.S5TouchWizJunk;
 import com.smartmadsoft.xposed.aio.tweaks.S5ReaderMode;
 import com.smartmadsoft.xposed.aio.tweaks.GMSWearNotificationDisable;
-//import com.smartmadsoft.xposed.aio.tweaks.Sandbox;
+import com.smartmadsoft.xposed.aio.tweaks.Sandbox;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
 
@@ -124,6 +124,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 NativeFreezer.hook(lpparam);
             if (prefs.getBoolean("tweak_s5twjunk", false))
                 S5TouchWizJunk.hookSettings(lpparam);
+            if (prefs.getBoolean("tweak_k920cardboard", false))
+                K920Cardboard.hookSettings(lpparam);
         }
         if (lpparam.packageName.equals("com.adobe.reader")) {
             if (prefs.getBoolean("tweak_onehandzoom_ar", false))
