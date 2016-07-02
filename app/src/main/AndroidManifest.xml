@@ -33,6 +33,15 @@
             </intent-filter>
         </activity>
 
+        <activity-alias
+            android:name=".Launch"
+            android:targetActivity=".SettingsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
         <service android:name=".FlashlightService"/>
 
         <receiver android:name=".IntentReceiver">

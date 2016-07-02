@@ -31,14 +31,14 @@ public class Deluxe {
         context.startActivity(intent);
     }
 
-    public static boolean showMenu(Context context) {
+    public static boolean showUpgradeMenu(Context context) {
         if (hasUnlockKey(context))
             return false;
         return true;
     }
 
     public static boolean showBottomAd(Context context, Activity activity) {
-        if (showMenu(context) && isOnline(activity))
+        if (showUpgradeMenu(context) && isOnline(activity))
             return true;
         return false;
     }

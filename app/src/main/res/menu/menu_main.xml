@@ -8,4 +8,8 @@
         android:title="Remove Ads"
         android:icon="@drawable/ic_attach_money_24dp"
         app:showAsAction="withText" />
+    <item
+        android:id="@+id/toggle_icon"
+        android:orderInCategory="200"
+        android:title="Hide/Unhide Launcher Icon" />
 </menu>
