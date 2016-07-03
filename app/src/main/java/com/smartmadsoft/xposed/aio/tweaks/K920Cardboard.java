@@ -104,6 +104,13 @@ public class K920Cardboard {
                     param.setResult(null);
                 }
             });
+
+            XposedHelpers.findAndHookMethod("com.android.systemui.lenovo.flashlight.SoundPlayer", lpparam.classLoader, "play", boolean.class, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+                    param.setResult(null);
+                }
+            });
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
