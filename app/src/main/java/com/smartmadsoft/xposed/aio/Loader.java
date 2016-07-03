@@ -18,6 +18,7 @@ import com.smartmadsoft.xposed.aio.tweaks.MediaKeys;
 import com.smartmadsoft.xposed.aio.tweaks.MediaStreamDefault;
 import com.smartmadsoft.xposed.aio.tweaks.MinimumBrightnessMX;
 import com.smartmadsoft.xposed.aio.tweaks.NativeFreezer;
+import com.smartmadsoft.xposed.aio.tweaks.NoPasswordAfterBootTW;
 import com.smartmadsoft.xposed.aio.tweaks.NoSafeVolumeWarning;
 import com.smartmadsoft.xposed.aio.tweaks.NoToastIcons;
 import com.smartmadsoft.xposed.aio.tweaks.OneWayBrightness;
@@ -116,6 +117,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 S5TouchWizJunk.hookUI(lpparam);
             if (prefs.getBoolean("tweak_k920cardboard", false))
                 K920Cardboard.hookUI(lpparam);
+            if (prefs.getBoolean("tweak_twnopasswordafterboot", false))
+                NoPasswordAfterBootTW.hook(lpparam);
         }
         if (lpparam.packageName.equals("com.android.settings")) {
             if (prefs.getBoolean("tweak_batteryhistoryxxl", false))
