@@ -207,6 +207,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class ExperimentalPreferenceFragment extends PreferenceFragment {
         Preference openCallFeaturesSetting;
+        Preference openPowerUsageSummary;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -230,6 +231,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         intent.setComponent(new ComponentName("com.android.phone","com.android.phone.CallFeaturesSetting"));
                         startActivity(intent);
                     }
+                    return true;
+                }
+            });
+
+            openPowerUsageSummary = findPreference("open_powerusagesummary");
+            openPowerUsageSummary.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent intent = new Intent("android.intent.action.MAIN");
+                    intent.setComponent(new ComponentName("com.android.settings","com.android.settings.fuelgauge.PowerUsageSummary"));
+                    startActivity(intent);
                     return true;
                 }
             });

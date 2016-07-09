@@ -28,4 +28,9 @@
         android:title="Open Settings Activity for enabling native SIP support in Dialer"
         />
 
+    <Preference
+        android:key="open_powerusagesummary"
+        android:title="Open Settings/Battery (PowerUsageSummary)"
+        />
+
 </PreferenceScreen>
