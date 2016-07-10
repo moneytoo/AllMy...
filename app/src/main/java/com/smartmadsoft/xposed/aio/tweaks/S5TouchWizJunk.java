@@ -42,18 +42,24 @@ public class S5TouchWizJunk {
                 }
             });
 
-            // disable priority mode notification
-            XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.phone.PhoneStatusBarPolicy", lpparam.classLoader, "updateVolumeZen", new XC_MethodHook() {
-                @Override
-                protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    param.setResult(null);
-                }
-            });
-
             XposedHelpers.findAndHookMethod("com.android.systemui.qs.tiles.AirplaneModeTile", lpparam.classLoader, "showConfirmPopup", boolean.class, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     XposedHelpers.callMethod(param.thisObject, "setEnabled", param.args[0]);
+                    param.setResult(null);
+                }
+            });
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
+    }
+
+    public static void hookUIDND(final XC_LoadPackage.LoadPackageParam lpparam) {
+        try {
+            // disable priority mode notification
+            XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.phone.PhoneStatusBarPolicy", lpparam.classLoader, "updateVolumeZen", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     param.setResult(null);
                 }
             });

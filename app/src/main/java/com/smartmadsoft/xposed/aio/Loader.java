@@ -116,6 +116,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 NoWakeOnCharge.hookUI(lpparam);
             if (prefs.getBoolean("tweak_s5twjunk", false))
                 S5TouchWizJunk.hookUI(lpparam);
+            if (prefs.getBoolean("tweak_s5twjunk_dnd", false))
+                S5TouchWizJunk.hookUIDND(lpparam);
             if (prefs.getBoolean("tweak_k920cardboard", false))
                 K920Cardboard.hookUI(lpparam);
             if (prefs.getBoolean("tweak_twnopasswordafterboot", false))

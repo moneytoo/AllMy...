@@ -4,7 +4,13 @@
         android:defaultValue="false"
         android:key="tweak_s5twjunk"
         android:title="Get Rid of TouchWiz Junk (Popups)"
-        android:summary="Disable 'Check cover' popups, DND notification etc" />
+        android:summary="Disable 'Check cover' and other popups" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_s5twjunk_dnd"
+        android:title="Hide DnD notification"
+        android:summary="Hide active ongoing DnD notification" />
 
     <SwitchPreference
         android:defaultValue="false"
