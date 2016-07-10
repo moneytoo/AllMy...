@@ -30,4 +30,10 @@
         android:title="No Safe Volume Warning"
         android:summary="Disable safe volume warning dialog\nhttps://github.com/pylerSM/NoSafeVolumeWarning" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_quickunlock"
+        android:title="Quick Unlock"
+        android:summary="Unlock automatically with correct PIN/password\nhttps://github.com/GravityBox/GravityBox" />
+
 </PreferenceScreen>

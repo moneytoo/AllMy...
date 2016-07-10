@@ -24,6 +24,7 @@ import com.smartmadsoft.xposed.aio.tweaks.NoToastIcons;
 import com.smartmadsoft.xposed.aio.tweaks.OneWayBrightness;
 import com.smartmadsoft.xposed.aio.tweaks.PocketFirst;
 import com.smartmadsoft.xposed.aio.tweaks.ChromeTabsToolbarOnPhone;
+import com.smartmadsoft.xposed.aio.tweaks.QuickUnlock;
 import com.smartmadsoft.xposed.aio.tweaks.RemapVolume;
 import com.smartmadsoft.xposed.aio.tweaks.K920Cardboard;
 import com.smartmadsoft.xposed.aio.tweaks.NoWakeOnCharge;
@@ -119,6 +120,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 K920Cardboard.hookUI(lpparam);
             if (prefs.getBoolean("tweak_twnopasswordafterboot", false))
                 NoPasswordAfterBootTW.hook(lpparam);
+            if (prefs.getBoolean("tweak_quickunlock", false))
+                QuickUnlock.hook(lpparam);
         }
         if (lpparam.packageName.equals("com.android.settings")) {
             if (prefs.getBoolean("tweak_batteryhistoryxxl", false))
