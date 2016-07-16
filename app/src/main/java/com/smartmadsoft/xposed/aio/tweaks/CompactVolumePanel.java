@@ -1,17 +1,20 @@
 package com.smartmadsoft.xposed.aio.tweaks;
 
+import android.annotation.TargetApi;
 import android.os.Build;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LayoutInflated;
 
+@TargetApi(17)
 public class CompactVolumePanel {
     public static final String PKG = "com.android.systemui";
 
@@ -32,9 +35,26 @@ public class CompactVolumePanel {
                         final int volumeSettingsButton = liparam.res.getIdentifier("volume_settings_button", "id", PKG);
                         final ImageView imageVolumeSettingsButton = (ImageView) liparam.view.findViewById(volumeSettingsButton);
                         imageVolumeSettingsButton.getLayoutParams().height = imageVolumeSettingsButton.getLayoutParams().height / 3 * 2;
+
+                        // MM TW
+                        if (Build.MANUFACTURER.toLowerCase().contains("samsung")) {
+                            final int volumeRowHeaderText = liparam.res.getIdentifier("volume_row_header", "id", PKG);
+                            TextView textVolumeRowHeader = (TextView) liparam.view.findViewById(volumeRowHeaderText);
+                            textVolumeRowHeader.getLayoutParams().height = 0;
+
+                            final int volumeRowSliderBar = liparam.res.getIdentifier("volume_row_slider", "id", PKG);
+                            SeekBar barVolumeRowSlider = (SeekBar) liparam.view.findViewById(volumeRowSliderBar);
+                            barVolumeRowSlider.setPadding(barVolumeRowSlider.getPaddingLeft() / 2, 0, barVolumeRowSlider.getPaddingLeft() / 2, 0);
+
+                            final RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) barVolumeRowSlider.getLayoutParams();
+                            params.removeRule(RelativeLayout.END_OF);
+                            params.removeRule(RelativeLayout.START_OF);
+                            params.addRule(RelativeLayout.END_OF, volumeRowIcon);
+                            params.addRule(RelativeLayout.START_OF, volumeSettingsButton);
+                            barVolumeRowSlider.setLayoutParams(params);
+                        }
                     }
                 });
-
                 iprparam.res.hookLayout(PKG, "layout", "volume_dialog", new XC_LayoutInflated() {
                     @Override
                     public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {

@@ -32,12 +32,6 @@
 
     <SwitchPreference
         android:defaultValue="false"
-        android:key="tweak_compactvolumepanel"
-        android:title="Compact Volume Panel"
-        android:summary="For CM12/CM12.1/CM13" />
-
-    <SwitchPreference
-        android:defaultValue="false"
         android:key="tweak_remapprevtoplaypause"
         android:title="Remap PREV button to PLAY/PAUSE"
         android:summary="Allow use volume keys to change volume, advance to next song and play/pause. For CM12.1/CM13" />

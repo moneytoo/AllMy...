@@ -48,4 +48,10 @@
         android:title="Disable ADB Notifications"
         android:summary="Get rid of the USB debugging notification" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_compactvolumepanel"
+        android:title="Compact Volume Panel"
+        android:summary="For CM12/CM12.1/CM13 and TouchWiz (Android 6.0)" />
+
 </PreferenceScreen>
