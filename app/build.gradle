@@ -10,6 +10,7 @@ android {
         targetSdkVersion 23
         versionCode 29
         versionName "0.4.3"
+        project.ext.set("archivesBaseName", "AllMy.v" + defaultConfig.versionName);
     }
     buildTypes {
         release {
