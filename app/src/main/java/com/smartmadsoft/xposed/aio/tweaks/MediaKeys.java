@@ -79,6 +79,10 @@ public class MediaKeys {
                             mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
                         }
 
+                        int mode = mAudioManager.getMode();
+                        if (mode == AudioManager.MODE_IN_CALL || mode == AudioManager.MODE_IN_COMMUNICATION)
+                            return;
+
                         boolean isShowingKeyguard = false;
                         try {
                             Object mKeyguardDelegate = XposedHelpers.getObjectField(param.thisObject, "mKeyguardDelegate");
