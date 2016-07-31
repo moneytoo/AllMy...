@@ -12,7 +12,8 @@ public class Deluxe {
     public static final String UNLOCK_PKG = "com.smartmadsoft.unlock.all";
 
     public static boolean hasUnlockKey(Context context) {
-        return context.getPackageManager().checkSignatures(context.getPackageName(), UNLOCK_PKG) == PackageManager.SIGNATURE_MATCH || BuildConfig.DEBUG;
+        return true;
+        //return context.getPackageManager().checkSignatures(context.getPackageName(), UNLOCK_PKG) == PackageManager.SIGNATURE_MATCH || BuildConfig.DEBUG;
     }
 
     public static boolean isOnline(Activity activity) {

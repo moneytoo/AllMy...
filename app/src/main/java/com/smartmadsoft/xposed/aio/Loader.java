@@ -32,6 +32,7 @@ import com.smartmadsoft.xposed.aio.tweaks.S5TouchWizJunk;
 import com.smartmadsoft.xposed.aio.tweaks.S5ReaderMode;
 import com.smartmadsoft.xposed.aio.tweaks.GMSWearNotificationDisable;
 import com.smartmadsoft.xposed.aio.tweaks.Sandbox;
+import com.smartmadsoft.xposed.aio.tweaks.VolumeKeysCursorControl;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
 
@@ -159,6 +160,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             S5TouchWizJunk.hook(lpparam);
         if (lpparam.packageName.equals("com.google.android.gms") && prefs.getBoolean("tweak_gmswearnotificationdisable", false))
             GMSWearNotificationDisable.hook(lpparam);
+        if (prefs.getBoolean("tweak_volumekeyscursorcontrol", false))
+            VolumeKeysCursorControl.hook(lpparam);
     }
 
     @Override
