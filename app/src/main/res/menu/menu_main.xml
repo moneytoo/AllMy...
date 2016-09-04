@@ -3,12 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.smartmadsoft.xposed.aio.SettingsActivity">
     <item
-        android:id="@+id/action_ads"
-        android:orderInCategory="100"
-        android:title="Remove Ads"
-        android:icon="@drawable/ic_attach_money_24dp"
-        app:showAsAction="withText" />
-    <item
         android:id="@+id/toggle_icon"
         android:orderInCategory="200"
         android:title="Hide/Unhide Launcher Icon" />

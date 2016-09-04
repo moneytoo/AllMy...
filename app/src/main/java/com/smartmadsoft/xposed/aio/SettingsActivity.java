@@ -158,9 +158,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_ads:
-                Deluxe.openPlayStore(getApplicationContext());
-                return true;
             case R.id.toggle_icon:
                 toggleIcon();
                 return true;
@@ -378,8 +375,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
-        if (!Deluxe.showUpgradeMenu(getApplicationContext()))
-            menu.findItem(R.id.action_ads).setVisible(false);
         if (!isXposedPresent())
             menu.findItem(R.id.toggle_icon).setVisible(false);
 
