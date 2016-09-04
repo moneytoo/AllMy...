@@ -31,7 +31,7 @@ import com.smartmadsoft.xposed.aio.tweaks.NoWakeOnCharge;
 import com.smartmadsoft.xposed.aio.tweaks.S5TouchWizJunk;
 import com.smartmadsoft.xposed.aio.tweaks.S5ReaderMode;
 import com.smartmadsoft.xposed.aio.tweaks.GMSWearNotificationDisable;
-import com.smartmadsoft.xposed.aio.tweaks.Sandbox;
+//import com.smartmadsoft.xposed.aio.tweaks.Sandbox;
 import com.smartmadsoft.xposed.aio.tweaks.VolumeKeysCursorControl;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
