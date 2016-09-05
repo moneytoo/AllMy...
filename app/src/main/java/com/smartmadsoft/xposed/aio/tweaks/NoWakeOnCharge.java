@@ -36,13 +36,15 @@ public class NoWakeOnCharge {
                 }
             });
 
-            XposedHelpers.findAndHookMethod("com.android.systemui.power.PowerNotificationWarnings", lpparam.classLoader, "showWirelessChargingNotice", new XC_MethodHook() {
-                @Override
-                protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    param.setResult(null);
-                }
-            });
-
+            // NoSuchMethodError on Galaxy S7, but not actually needed (or is it? showWirelessChargerInfoNotice())
+            try {
+                XposedHelpers.findAndHookMethod("com.android.systemui.power.PowerNotificationWarnings", lpparam.classLoader, "showWirelessChargingNotice", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+                        param.setResult(null);
+                    }
+                });
+            } catch (NoSuchMethodError e) {}
 
             XposedHelpers.findAndHookMethod("com.android.systemui.power.PowerNotificationWarnings", lpparam.classLoader, "showFullBatteryNotice", new XC_MethodHook() {
                 @Override
