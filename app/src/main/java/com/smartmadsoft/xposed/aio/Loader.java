@@ -31,6 +31,7 @@ import com.smartmadsoft.xposed.aio.tweaks.NoWakeOnCharge;
 import com.smartmadsoft.xposed.aio.tweaks.S5TouchWizJunk;
 import com.smartmadsoft.xposed.aio.tweaks.S5ReaderMode;
 import com.smartmadsoft.xposed.aio.tweaks.GMSWearNotificationDisable;
+import com.smartmadsoft.xposed.aio.tweaks.S7TouchKeyLight;
 //import com.smartmadsoft.xposed.aio.tweaks.Sandbox;
 import com.smartmadsoft.xposed.aio.tweaks.VolumeKeysCursorControl;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
@@ -67,6 +68,9 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
         }
         if (prefs.getBoolean("tweak_nowakeoncharge", false))
             XResources.setSystemWideReplacement("android", "bool", "config_unplugTurnsOnScreen", false);
+
+        //XResources.setSystemWideReplacement("android", "bool", "config_showNavigationBar", true);
+        //XResources.setSystemWideReplacement("com.android.settings", "bool", "config_showNavigationBar", true);
     }
 
     @Override
@@ -135,6 +139,10 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 S5TouchWizJunk.hookSettings(lpparam);
             if (prefs.getBoolean("tweak_k920cardboard", false))
                 K920Cardboard.hookSettings(lpparam);
+            if (prefs.getBoolean("tweak_s7touchkeylight", false))
+                S7TouchKeyLight.hook(lpparam);
+
+            //Sandbox.hook(lpparam);
         }
         if (lpparam.packageName.equals("com.adobe.reader")) {
             if (prefs.getBoolean("tweak_onehandzoom_ar", false))

@@ -4,19 +4,19 @@
         android:defaultValue="false"
         android:key="tweak_s5twjunk"
         android:title="Get Rid of TouchWiz Junk (Popups)"
-        android:summary="Disable 'Check cover' and other popups" />
+        android:summary="Disable 'Check cover' and other popups (S5)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s5twjunk_dnd"
         android:title="Hide DnD notification"
-        android:summary="Hide active ongoing DnD notification" />
+        android:summary="Hide active ongoing DnD notification (S5/S7)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s5readermode"
         android:title="Enable Reader Mode (Adapt Display)"
-        android:summary="Enable Samsung screen ebook reading mode for Adobe Reader and Moon+ Reader" />
+        android:summary="Enable Samsung screen ebook reading mode for Adobe Reader and Moon+ Reader (S5)" />
 
     <SwitchPreference
         android:defaultValue="false"
@@ -29,5 +29,11 @@
         android:key="tweak_twnopasswordafterboot"
         android:title="No Password After Boot"
         android:summary="Workaround for the 'Unable to use fingerprints.' message after boot" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_s7touchkeylight"
+        android:title="Native Touch Key Light Settings"
+        android:summary="Re-enable the lost option to set buttons light timeout (S7)" />
 
 </PreferenceScreen>
