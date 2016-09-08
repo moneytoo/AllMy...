@@ -26,19 +26,33 @@ public class S5ReaderMode {
                         }
 
                         // this method calls addPackage("com.google.android.apps.books");
-                        XposedHelpers.findAndHookMethod(cls, (ClassLoader)param.thisObject, fnc, new XC_MethodHook() {
-                            @Override
-                            protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                                XposedHelpers.callMethod(param.thisObject, "addPackage", "com.flyersoft.moonreader");
-                                XposedHelpers.callMethod(param.thisObject, "addPackage", "com.flyersoft.moonreaderp");
-                                XposedHelpers.callMethod(param.thisObject, "addPackage", "com.adobe.reader");
-                            }
-                        });
+                        try {
+                            XposedHelpers.findAndHookMethod(cls, (ClassLoader) param.thisObject, "gb", new XC_MethodHook() {
+                                @Override
+                                protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+                                    addPackages(param.thisObject);
+                                }
+                            });
+                        } catch (Throwable t) {
+                            XposedHelpers.findAndHookMethod(cls, (ClassLoader) param.thisObject, fnc, new XC_MethodHook() {
+                                @Override
+                                protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+                                    addPackages(param.thisObject);
+                                }
+                            });
+                        }
                     }
                 }
             });
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
+    }
+
+    private static void addPackages(Object thisObject) {
+        XposedHelpers.callMethod(thisObject, "addPackage", "com.flyersoft.moonreader");
+        XposedHelpers.callMethod(thisObject, "addPackage", "com.flyersoft.moonreaderp");
+        XposedHelpers.callMethod(thisObject, "addPackage", "com.adobe.reader");
+        XposedBridge.log("AIO: added pkgs");
     }
 }

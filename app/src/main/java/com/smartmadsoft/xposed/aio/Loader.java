@@ -173,6 +173,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             GMSWearNotificationDisable.hook(lpparam);
         if (prefs.getBoolean("tweak_volumekeyscursorcontrol", false))
             VolumeKeysCursorControl.hook(lpparam);
+
+        //Sandbox.hook(lpparam);
     }
 
     @Override
