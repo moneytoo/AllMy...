@@ -9,7 +9,7 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s5twjunk_dnd"
-        android:title="Hide DnD notification"
+        android:title="Hide DnD Notification"
         android:summary="Hide active ongoing DnD notification (S5/S7)" />
 
     <SwitchPreference
@@ -35,5 +35,11 @@
         android:key="tweak_s7touchkeylight"
         android:title="Native Touch Key Light Settings"
         android:summary="Re-enable the lost option to set buttons light timeout (S7)" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_s7srgbvideo"
+        android:title="Basic (Screen Mode) For Video Only"
+        android:summary="Switch to sRGB (Basic screen mode) for video (MX Player/YouTube) while keeping Adaptive for everything else (S7)" />
 
 </PreferenceScreen>

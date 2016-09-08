@@ -33,6 +33,7 @@ import com.smartmadsoft.xposed.aio.tweaks.S5ReaderMode;
 import com.smartmadsoft.xposed.aio.tweaks.GMSWearNotificationDisable;
 import com.smartmadsoft.xposed.aio.tweaks.S7TouchKeyLight;
 //import com.smartmadsoft.xposed.aio.tweaks.Sandbox;
+import com.smartmadsoft.xposed.aio.tweaks.S7sRGBVideo;
 import com.smartmadsoft.xposed.aio.tweaks.VolumeKeysCursorControl;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
@@ -107,6 +108,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 DisableAdbNotification.hook(lpparam);
             if (prefs.getBoolean("tweak_k920cardboard", false))
                 K920Cardboard.hookAndroid(lpparam);
+            if (prefs.getBoolean("tweak_s7srgbvideo", false))
+                S7sRGBVideo.hook(lpparam);
 
             //Sandbox.hook(lpparam);
         }
