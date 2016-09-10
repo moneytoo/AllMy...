@@ -36,4 +36,10 @@
         android:title="Quick Unlock"
         android:summary="Unlock automatically with correct PIN/password\nhttps://github.com/GravityBox/GravityBox" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_nooverlaywarning"
+        android:title="No Overlay Warning"
+        android:summary="Bypasses the screen overlay detected dialog\nhttps://github.com/apsun/NoOverlayWarning" />
+
 </PreferenceScreen>

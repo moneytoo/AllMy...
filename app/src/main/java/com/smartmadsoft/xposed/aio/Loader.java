@@ -18,6 +18,7 @@ import com.smartmadsoft.xposed.aio.tweaks.MediaKeys;
 import com.smartmadsoft.xposed.aio.tweaks.MediaStreamDefault;
 import com.smartmadsoft.xposed.aio.tweaks.MinimumBrightnessMX;
 import com.smartmadsoft.xposed.aio.tweaks.NativeFreezer;
+import com.smartmadsoft.xposed.aio.tweaks.NoOverlayWarning;
 import com.smartmadsoft.xposed.aio.tweaks.NoPasswordAfterBootTW;
 import com.smartmadsoft.xposed.aio.tweaks.NoSafeVolumeWarning;
 import com.smartmadsoft.xposed.aio.tweaks.NoToastIcons;
@@ -173,6 +174,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             GMSWearNotificationDisable.hook(lpparam);
         if (prefs.getBoolean("tweak_volumekeyscursorcontrol", false))
             VolumeKeysCursorControl.hook(lpparam);
+        if (prefs.getBoolean("tweak_nooverlaywarning", false) && lpparam.packageName.endsWith(".packageinstaller"))
+            NoOverlayWarning.hook(lpparam);
 
         //Sandbox.hook(lpparam);
     }
@@ -184,16 +187,6 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 HideNetworkIndicators.hook(iprparam);
             if (prefs.getBoolean("tweak_compactvolumepanel", false))
                 CompactVolumePanel.hook(iprparam);
-        }
-    }
-
-    void migratePrefs() {
-        final String PACKAGE_NAME = SettingsActivity.class.getPackage().getName();
-        File prefsFileOld = new File("/data/data/"+PACKAGE_NAME+"/shared_prefs", PACKAGE_NAME+"_preferences.xml");
-        File prefsFileNew = new File("/data/data/"+PACKAGE_NAME+"/shared_prefs", "tweaks.xml");
-        if (!prefsFileNew.exists() && prefsFileOld.exists()) {
-            prefsFileOld.renameTo(prefsFileNew);
-            prefsFileNew.setReadable(true, false);
         }
     }
 }
