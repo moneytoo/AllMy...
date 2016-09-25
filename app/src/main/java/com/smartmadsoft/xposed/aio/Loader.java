@@ -32,9 +32,11 @@ import com.smartmadsoft.xposed.aio.tweaks.NoWakeOnCharge;
 import com.smartmadsoft.xposed.aio.tweaks.S5TouchWizJunk;
 import com.smartmadsoft.xposed.aio.tweaks.S5ReaderMode;
 import com.smartmadsoft.xposed.aio.tweaks.GMSWearNotificationDisable;
+import com.smartmadsoft.xposed.aio.tweaks.S7AlwaysAllowMTP;
 import com.smartmadsoft.xposed.aio.tweaks.S7TouchKeyLight;
 //import com.smartmadsoft.xposed.aio.tweaks.Sandbox;
 import com.smartmadsoft.xposed.aio.tweaks.S7sRGBVideo;
+//import com.smartmadsoft.xposed.aio.tweaks.Sandbox;
 import com.smartmadsoft.xposed.aio.tweaks.VolumeKeysCursorControl;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
@@ -176,8 +178,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             VolumeKeysCursorControl.hook(lpparam);
         if (prefs.getBoolean("tweak_nooverlaywarning", false) && lpparam.packageName.endsWith(".packageinstaller"))
             NoOverlayWarning.hook(lpparam);
-
-        //Sandbox.hook(lpparam);
+        if (lpparam.packageName.equals("com.samsung.android.MtpApplication") && prefs.getBoolean("tweak_s7alwaysallowmtp", false))
+            S7AlwaysAllowMTP.hook(lpparam);
     }
 
     @Override

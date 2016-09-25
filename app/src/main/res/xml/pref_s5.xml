@@ -42,4 +42,10 @@
         android:title="Basic (Screen Mode) For Video Only"
         android:summary="Switch to sRGB (Basic screen mode) for video (MX Player/YouTube) while keeping Adaptive for everything else (S7)" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_s7alwaysallowmtp"
+        android:title="Always Allow MTP Access"
+        android:summary="Get rid of the 'Allow access to device data' dialog (S7)" />
+
 </PreferenceScreen>
