@@ -1,4 +1,4 @@
-package com.smartmadsoft.xposed.aio.tweaks;
+package com.smartmadsoft.xposed.aio.tweaks.touchwiz;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;

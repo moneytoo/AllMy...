@@ -2,7 +2,7 @@
     from https://github.com/GravityBox/GravityBox
  */
 
-package com.smartmadsoft.xposed.aio.tweaks;
+package com.smartmadsoft.xposed.aio.tweaks.copycat;
 
 import android.os.AsyncTask;
 import android.os.Build;

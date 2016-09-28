@@ -2,7 +2,7 @@
     from https://github.com/apsun/NoOverlayWarning
  */
 
-package com.smartmadsoft.xposed.aio.tweaks;
+package com.smartmadsoft.xposed.aio.tweaks.copycat;
 
 import android.view.MotionEvent;
 

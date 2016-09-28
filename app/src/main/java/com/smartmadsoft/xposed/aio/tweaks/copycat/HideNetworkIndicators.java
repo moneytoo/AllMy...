@@ -2,7 +2,7 @@
     from https://github.com/nadeemsultan/HideNetworkIndicators
  */
 
-package com.smartmadsoft.xposed.aio.tweaks;
+package com.smartmadsoft.xposed.aio.tweaks.copycat;
 
 import android.view.View;
 import android.widget.ImageView;

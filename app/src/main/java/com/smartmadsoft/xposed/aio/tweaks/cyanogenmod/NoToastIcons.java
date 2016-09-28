@@ -1,4 +1,4 @@
-package com.smartmadsoft.xposed.aio.tweaks;
+package com.smartmadsoft.xposed.aio.tweaks.cyanogenmod;
 
 import android.view.View;
 import android.view.WindowManager;

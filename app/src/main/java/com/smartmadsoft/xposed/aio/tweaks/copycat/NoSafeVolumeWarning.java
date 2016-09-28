@@ -2,7 +2,7 @@
     from https://github.com/pylerSM/NoSafeVolumeWarning
  */
 
-package com.smartmadsoft.xposed.aio.tweaks;
+package com.smartmadsoft.xposed.aio.tweaks.copycat;
 
 import android.os.Build;
 

@@ -48,4 +48,10 @@
         android:title="Always Allow MTP Access"
         android:summary="Get rid of the 'Allow access to device data' dialog (S7)" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_s7mtpwithoutunlock"
+        android:title="MTP Without Unlock"
+        android:summary="Start MTP even with screen off or without unlocking unsecure keyguard (S5/S7)" />
+
 </PreferenceScreen>

@@ -1,4 +1,4 @@
-package com.smartmadsoft.xposed.aio.tweaks;
+package com.smartmadsoft.xposed.aio.tweaks.touchwiz;
 
 import android.app.Activity;
 import android.content.Context;

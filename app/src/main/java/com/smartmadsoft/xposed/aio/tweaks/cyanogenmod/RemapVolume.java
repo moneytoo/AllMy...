@@ -1,4 +1,4 @@
-package com.smartmadsoft.xposed.aio.tweaks;
+package com.smartmadsoft.xposed.aio.tweaks.cyanogenmod;
 
 import android.content.Context;
 import android.hardware.camera2.CameraAccessException;

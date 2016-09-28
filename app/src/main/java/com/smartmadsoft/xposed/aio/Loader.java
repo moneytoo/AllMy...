@@ -2,46 +2,44 @@ package com.smartmadsoft.xposed.aio;
 
 import android.content.res.XResources;
 
-import com.smartmadsoft.xposed.aio.tweaks.AlwaysSoftwareMenu;
+import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.AlwaysSoftwareMenu;
 import com.smartmadsoft.xposed.aio.tweaks.BatteryHistoryXXL;
-import com.smartmadsoft.xposed.aio.tweaks.BatteryLightDisabler;
+import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.BatteryLightDisabler;
 import com.smartmadsoft.xposed.aio.tweaks.CompactVolumePanel;
 import com.smartmadsoft.xposed.aio.tweaks.DeskClockAlarm;
 import com.smartmadsoft.xposed.aio.tweaks.DisableAdbNotification;
 import com.smartmadsoft.xposed.aio.tweaks.DisableHorizontalScrollAR;
-import com.smartmadsoft.xposed.aio.tweaks.DisableSuIndicator;
+import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.DisableSuIndicator;
 import com.smartmadsoft.xposed.aio.tweaks.DisableUsbNotification;
-import com.smartmadsoft.xposed.aio.tweaks.GentleHapticFeedback;
-import com.smartmadsoft.xposed.aio.tweaks.GentleHapticFeedbackTouchWiz;
-import com.smartmadsoft.xposed.aio.tweaks.HideNetworkIndicators;
+import com.smartmadsoft.xposed.aio.tweaks.copycat.GentleHapticFeedback;
+import com.smartmadsoft.xposed.aio.tweaks.touchwiz.GentleHapticFeedbackTouchWiz;
+import com.smartmadsoft.xposed.aio.tweaks.copycat.HideNetworkIndicators;
 import com.smartmadsoft.xposed.aio.tweaks.MediaKeys;
 import com.smartmadsoft.xposed.aio.tweaks.MediaStreamDefault;
 import com.smartmadsoft.xposed.aio.tweaks.MinimumBrightnessMX;
 import com.smartmadsoft.xposed.aio.tweaks.NativeFreezer;
-import com.smartmadsoft.xposed.aio.tweaks.NoOverlayWarning;
-import com.smartmadsoft.xposed.aio.tweaks.NoPasswordAfterBootTW;
-import com.smartmadsoft.xposed.aio.tweaks.NoSafeVolumeWarning;
-import com.smartmadsoft.xposed.aio.tweaks.NoToastIcons;
-import com.smartmadsoft.xposed.aio.tweaks.OneWayBrightness;
+import com.smartmadsoft.xposed.aio.tweaks.copycat.NoOverlayWarning;
+import com.smartmadsoft.xposed.aio.tweaks.touchwiz.NoPasswordAfterBootTW;
+import com.smartmadsoft.xposed.aio.tweaks.copycat.NoSafeVolumeWarning;
+import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.NoToastIcons;
+import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.OneWayBrightness;
 import com.smartmadsoft.xposed.aio.tweaks.PocketFirst;
-import com.smartmadsoft.xposed.aio.tweaks.ChromeTabsToolbarOnPhone;
-import com.smartmadsoft.xposed.aio.tweaks.QuickUnlock;
-import com.smartmadsoft.xposed.aio.tweaks.RemapVolume;
-import com.smartmadsoft.xposed.aio.tweaks.K920Cardboard;
+import com.smartmadsoft.xposed.aio.tweaks.obsolete.ChromeTabsToolbarOnPhone;
+import com.smartmadsoft.xposed.aio.tweaks.copycat.QuickUnlock;
+import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.RemapVolume;
+import com.smartmadsoft.xposed.aio.tweaks.obsolete.K920Cardboard;
 import com.smartmadsoft.xposed.aio.tweaks.NoWakeOnCharge;
-import com.smartmadsoft.xposed.aio.tweaks.S5TouchWizJunk;
-import com.smartmadsoft.xposed.aio.tweaks.S5ReaderMode;
+import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S5TouchWizJunk;
+import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S5ReaderMode;
 import com.smartmadsoft.xposed.aio.tweaks.GMSWearNotificationDisable;
-import com.smartmadsoft.xposed.aio.tweaks.S7AlwaysAllowMTP;
-import com.smartmadsoft.xposed.aio.tweaks.S7TouchKeyLight;
-//import com.smartmadsoft.xposed.aio.tweaks.Sandbox;
-import com.smartmadsoft.xposed.aio.tweaks.S7sRGBVideo;
+import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7AlwaysAllowMTP;
+import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7MTPWithoutUnlocking;
+import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7TouchKeyLight;
+import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7sRGBVideo;
 //import com.smartmadsoft.xposed.aio.tweaks.Sandbox;
 import com.smartmadsoft.xposed.aio.tweaks.VolumeKeysCursorControl;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
-
-import java.io.File;
 
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -178,8 +176,14 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             VolumeKeysCursorControl.hook(lpparam);
         if (prefs.getBoolean("tweak_nooverlaywarning", false) && lpparam.packageName.endsWith(".packageinstaller"))
             NoOverlayWarning.hook(lpparam);
-        if (lpparam.packageName.equals("com.samsung.android.MtpApplication") && prefs.getBoolean("tweak_s7alwaysallowmtp", false))
-            S7AlwaysAllowMTP.hook(lpparam);
+        if (lpparam.packageName.equals("com.samsung.android.MtpApplication")) {
+            if (prefs.getBoolean("tweak_s7alwaysallowmtp", false))
+                S7AlwaysAllowMTP.hook(lpparam);
+            if (prefs.getBoolean("tweak_s7mtpwithoutunlock", false))
+                S7MTPWithoutUnlocking.hook(lpparam);
+        }
+
+        //Sandbox.hook(lpparam);
     }
 
     @Override

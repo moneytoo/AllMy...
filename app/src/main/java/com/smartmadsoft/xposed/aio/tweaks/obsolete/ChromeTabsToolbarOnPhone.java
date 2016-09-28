@@ -1,4 +1,4 @@
-package com.smartmadsoft.xposed.aio.tweaks;
+package com.smartmadsoft.xposed.aio.tweaks.obsolete;
 
 import android.app.AndroidAppHelper;
 import android.content.Context;
