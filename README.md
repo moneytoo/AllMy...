@@ -1,5 +1,5 @@
 # AllMy...
-Xposed Tweaks. Mostly for (but not limited to) CM.
+Collection of various tweaks for CyanogenMod/AOSP/TouchWiz and few apps (Firefox, Adobe Reader, MX Player).
 
 List of tweaks:
 *   Disable Su Indicator - Disable # (pound/hash) indicator in status bar
@@ -24,5 +24,11 @@ List of tweaks:
 *   Reader Mode (Adapt Display) - Enable Samsung screen ebook reading mode for Adobe Reader/Moon+ Reader on Samsung Galaxy S5 (stock Android 5.0)
 *   Disable Android Wear Disconnected Notification
 *   Media Stream Default - Prefer media instead of ringer during volume control
+*   Advanced Volume Keys - Long press VOLUME -/+ for PLAY_PAUSE/NEXT when screen is off or showing lock screen
+*   No Password After Boot - Disable the "Unable to use fingerprints. Device restarted. Enter backup password, then fingerprints can be used next time device locked." message
+*   NEW! Touch key light - Re-enable the lost option to set buttons light timeout (Samsung Galaxy S7)
+*   NEW! sRGB for video only - Switch to sRGB (Basic screen mode) for video (MX Player/YouTube) while keeping Adaptive for everything else (Samsung Galaxy S7)
+*   NEW! MTP Without Unlock - Start MTP even with screen off or without unlocking unsecure keyguard (Samsung Galaxy S5/S7)
+*   NEW! Allow MTP Access - Get rid of the "Allow access to device data" dialog (Samsung Galaxy S7)
 
 Thread at xda: http://forum.xda-developers.com/xposed/modules/mod-xposed-tweaks-cm-t3279109
