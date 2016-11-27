@@ -60,4 +60,10 @@
         android:title="Volume Keys Cursor Control"
         android:summary="Use volume keys to control text cursor. For Android 5.x/6.0\nhttp://review.cyanogenmod.org/#/c/22014/" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_disablenetworkmonitorednotification"
+        android:title="Disable Network Monitored Notification"
+        android:summary="Hide the 'Network may be monitored' notification. For Android 5.x/6.0" />
+
 </PreferenceScreen>

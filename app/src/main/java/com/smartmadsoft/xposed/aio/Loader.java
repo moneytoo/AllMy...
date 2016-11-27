@@ -2,6 +2,7 @@ package com.smartmadsoft.xposed.aio;
 
 import android.content.res.XResources;
 
+import com.smartmadsoft.xposed.aio.tweaks.DisableNetworkMonitoredNotification;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.AlwaysSoftwareMenu;
 import com.smartmadsoft.xposed.aio.tweaks.BatteryHistoryXXL;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.BatteryLightDisabler;
@@ -36,7 +37,6 @@ import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7AlwaysAllowMTP;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7MTPWithoutUnlocking;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7TouchKeyLight;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7sRGBVideo;
-//import com.smartmadsoft.xposed.aio.tweaks.Sandbox;
 import com.smartmadsoft.xposed.aio.tweaks.VolumeKeysCursorControl;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
@@ -111,6 +111,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 K920Cardboard.hookAndroid(lpparam);
             if (prefs.getBoolean("tweak_s7srgbvideo", false))
                 S7sRGBVideo.hook(lpparam);
+            if (prefs.getBoolean("tweak_disablenetworkmonitorednotification", false))
+                DisableNetworkMonitoredNotification.hook(lpparam);
 
             //Sandbox.hook(lpparam);
         }
