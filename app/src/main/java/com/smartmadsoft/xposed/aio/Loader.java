@@ -34,6 +34,7 @@ import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S5TouchWizJunk;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S5ReaderMode;
 import com.smartmadsoft.xposed.aio.tweaks.GMSWearNotificationDisable;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7AlwaysAllowMTP;
+import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7DetailedBatteryUsage;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7MTPWithoutUnlocking;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7TouchKeyLight;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7sRGBVideo;
@@ -147,6 +148,10 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 K920Cardboard.hookSettings(lpparam);
             if (prefs.getBoolean("tweak_s7touchkeylight", false))
                 S7TouchKeyLight.hook(lpparam);
+            if (prefs.getBoolean("tweak_s7detailedbatteryusage", false))
+                S7DetailedBatteryUsage.hook(lpparam);
+            if (prefs.getBoolean("tweak_disablebatteryprediction", false))
+                DisableBatteryPrediction.hook(lpparam);
 
             //Sandbox.hook(lpparam);
         }

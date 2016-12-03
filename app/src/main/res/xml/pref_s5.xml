@@ -54,4 +54,10 @@
         android:title="MTP Without Unlock"
         android:summary="Start MTP even with screen off or without unlocking unsecure keyguard (S5/S7)" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_s7detailedbatteryusage"
+        android:title="Detailed Battery Usage"
+        android:summary="Enable detailed 'Wi-Fi/Awake/Screen on' battery usage stats (S7)" />
+
 </PreferenceScreen>

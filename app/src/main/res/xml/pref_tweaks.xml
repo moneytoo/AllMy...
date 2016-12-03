@@ -66,4 +66,10 @@
         android:title="Disable Network Monitored Notification"
         android:summary="Hide the 'Network may be monitored' notification. For Android 5.x/6.0" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_disablebatteryprediction"
+        android:title="Disable Battery Prediction"
+        android:summary="Do not plot estimated battery usage to graph. For Android 5.x/6.0" />
+
 </PreferenceScreen>
