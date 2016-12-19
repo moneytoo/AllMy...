@@ -189,6 +189,9 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             if (prefs.getBoolean("tweak_s7mtpwithoutunlock", false))
                 S7MTPWithoutUnlocking.hook(lpparam);
         }
+        if (lpparam.packageName.equals("com.samsung.android.themecenter")) {
+            S5TouchWizJunk.hookThemes(lpparam);
+        }
 
         //Sandbox.hook(lpparam);
     }
