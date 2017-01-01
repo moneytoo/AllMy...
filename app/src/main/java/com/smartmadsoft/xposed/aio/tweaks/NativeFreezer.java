@@ -161,6 +161,15 @@ public class NativeFreezer {
                         }
                     }
                 });
+
+                findAndHookMethod("com.android.settings.applications.AppInfoBase", lpparam.classLoader, "showDialogInner", int.class, int.class, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) {
+                        // DLG_SPECIAL_DISABLE -> DLG_DISABLE
+                        if ((Integer) param.args[0] == 3)
+                            param.args[0] = 2;
+                    }
+                });
             }
         } catch (Throwable t) {
             XposedBridge.log(t);
@@ -172,6 +181,12 @@ public class NativeFreezer {
         mAppEntry_info = XposedHelpers.getObjectField(mAppEntry, "info");
         mAppEntry_info_enabled = (Boolean) XposedHelpers.getObjectField(mAppEntry_info, "enabled");
         mAppEntry_info_flags = (Integer) XposedHelpers.getObjectField(mAppEntry_info, "flags");
+
+        // TODO: Two [Disable] buttons on page, only one active - cause of reusing the stop button
+        if (((String) XposedHelpers.getObjectField(mAppEntry_info, "packageName")).equals("com.samsung.android.hmt.vrsvc")) {
+            isSystem = false;
+            return;
+        }
 
         if ((mAppEntry_info_flags & ApplicationInfo.FLAG_SYSTEM) == 0)
             isSystem = false;
