@@ -3,6 +3,7 @@ package com.smartmadsoft.xposed.aio;
 import android.content.res.XResources;
 
 import com.smartmadsoft.xposed.aio.tweaks.DisableNetworkMonitoredNotification;
+import com.smartmadsoft.xposed.aio.tweaks.NOgBoARd;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.AlwaysSoftwareMenu;
 import com.smartmadsoft.xposed.aio.tweaks.BatteryHistoryXXL;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.BatteryLightDisabler;
@@ -191,6 +192,9 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
         }
         if (lpparam.packageName.equals("com.samsung.android.themecenter")) {
             S5TouchWizJunk.hookThemes(lpparam);
+        }
+        if (prefs.getBoolean("tweak_nogboardbar", false) && lpparam.packageName.equals("com.google.android.inputmethod.latin")) {
+            NOgBoARd.hook(lpparam);
         }
 
         //Sandbox.hook(lpparam);
