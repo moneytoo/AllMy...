@@ -60,4 +60,10 @@
         android:title="Detailed Battery Usage"
         android:summary="Enable detailed 'Wi-Fi/Awake/Screen on' battery usage stats (S7)" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_s7dndledoff"
+        android:title="Keep LED off during DnD"
+        android:summary="Disable 'LED indicator' (battery/notifications etc.) when Do not disturb mode is active (S7)" />
+
 </PreferenceScreen>

@@ -8,8 +8,8 @@ android {
         applicationId "com.smartmadsoft.xposed.aio"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 39
-        versionName "0.5.3"
+        versionCode 40
+        versionName "0.5.4"
         project.ext.set("archivesBaseName", "AllMy.v" + defaultConfig.versionName);
     }
     buildTypes {
@@ -22,6 +22,6 @@ android {
 
 dependencies {
     provided fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:support-v4:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
 }
