@@ -32,6 +32,7 @@ import com.smartmadsoft.xposed.aio.tweaks.copycat.QuickUnlock;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.RemapVolume;
 import com.smartmadsoft.xposed.aio.tweaks.obsolete.K920Cardboard;
 import com.smartmadsoft.xposed.aio.tweaks.NoWakeOnCharge;
+import com.smartmadsoft.xposed.aio.tweaks.touchwiz.RemapRedialToNextTrack;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S5TouchWizJunk;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S5ReaderMode;
 import com.smartmadsoft.xposed.aio.tweaks.GMSWearNotificationDisable;
@@ -193,14 +194,12 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             if (prefs.getBoolean("tweak_s7mtpwithoutunlock", false))
                 S7MTPWithoutUnlocking.hook(lpparam);
         }
-        if (lpparam.packageName.equals("com.samsung.android.themecenter")) {
+        if (lpparam.packageName.equals("com.samsung.android.themecenter"))
             S5TouchWizJunk.hookThemes(lpparam);
-        }
-        if (prefs.getBoolean("tweak_nogboardbar", false) && lpparam.packageName.equals("com.google.android.inputmethod.latin")) {
+        if (prefs.getBoolean("tweak_nogboardbar", false) && lpparam.packageName.equals("com.google.android.inputmethod.latin"))
             NOgBoARd.hook(lpparam);
-        }
-
-        //Sandbox.hook(lpparam);
+        if (lpparam.packageName.equals("com.android.bluetooth") && prefs.getBoolean("tweak_s7remapredialtonext", false))
+            RemapRedialToNextTrack.hook(lpparam);
     }
 
     @Override
