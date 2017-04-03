@@ -71,4 +71,10 @@
         android:key="tweak_s7remapredialtonext"
         android:title="Remap BT Redial To Next"
         android:summary="Remap 'Redial' action on Bluetooth headset to 'Next track' (S7)" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_s7no2g"
+        android:title="No 2G Mode"
+        android:summary="Enable the 'LTE/3G(auto connect)' option in Network mode (S7)" />
 </PreferenceScreen>

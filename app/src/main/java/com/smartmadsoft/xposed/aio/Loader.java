@@ -22,6 +22,7 @@ import com.smartmadsoft.xposed.aio.tweaks.MinimumBrightnessMX;
 import com.smartmadsoft.xposed.aio.tweaks.NativeFreezer;
 import com.smartmadsoft.xposed.aio.tweaks.copycat.NoOverlayWarning;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.LedOffDuringDnD;
+import com.smartmadsoft.xposed.aio.tweaks.touchwiz.No2G;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.NoPasswordAfterBootTW;
 import com.smartmadsoft.xposed.aio.tweaks.copycat.NoSafeVolumeWarning;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.NoToastIcons;
@@ -119,8 +120,6 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 DisableNetworkMonitoredNotification.hook(lpparam);
             if (prefs.getBoolean("tweak_s7dndledoff", false))
                 LedOffDuringDnD.hook(lpparam);
-
-            //Sandbox.hook(lpparam);
         }
         if (lpparam.packageName.equals("com.android.server.telecom")) {
             if (prefs.getBoolean("tweak_k920cardboard", false))
@@ -157,8 +156,6 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 S7DetailedBatteryUsage.hook(lpparam);
             if (prefs.getBoolean("tweak_disablebatteryprediction", false))
                 DisableBatteryPrediction.hook(lpparam);
-
-            //Sandbox.hook(lpparam);
         }
         if (lpparam.packageName.equals("com.adobe.reader")) {
             if (prefs.getBoolean("tweak_onehandzoom_ar", false))
@@ -200,6 +197,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             NOgBoARd.hook(lpparam);
         if (lpparam.packageName.equals("com.android.bluetooth") && prefs.getBoolean("tweak_s7remapredialtonext", false))
             RemapRedialToNextTrack.hook(lpparam);
+        if (lpparam.packageName.equals("com.android.phone") && prefs.getBoolean("tweak_s7no2g", false))
+            No2G.hook(lpparam);
     }
 
     @Override
