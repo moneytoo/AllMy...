@@ -68,6 +68,12 @@
 
     <SwitchPreference
         android:defaultValue="false"
+        android:key="tweak_s7dndvibratoroff"
+        android:title="No Vibrations During DnD"
+        android:summary="Disable any vibrations/haptic feedback when Do not disturb mode is active (S7)" />
+
+    <SwitchPreference
+        android:defaultValue="false"
         android:key="tweak_s7remapredialtonext"
         android:title="Remap BT Redial To Next"
         android:summary="Remap 'Redial' action on Bluetooth headset to 'Next track' (S7)" />

@@ -10,8 +10,18 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class LedOffDuringDnD {
-    public static void hook(final XC_LoadPackage.LoadPackageParam lpparam) {
+
+    private static boolean isZenModeOn = false;
+
+    private static boolean tweakLED = false;
+    private static boolean tweakVibrator = false;
+
+    public static void hook(final XC_LoadPackage.LoadPackageParam lpparam, boolean handleLED, boolean handleVibrator) {
+        tweakLED = handleLED;
+        tweakVibrator = handleVibrator;
+
         try {
+            // LED
             XposedHelpers.findAndHookMethod("com.android.server.notification.ZenModeHelper", lpparam.classLoader, "dispatchOnZenModeChanged", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
@@ -25,19 +35,47 @@ public class LedOffDuringDnD {
                     handleZenMode(param);
                 }
             });
+
+            // Vibrator
+            XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.server.VibratorService", lpparam.classLoader), "vibrateMagnitude", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    if (tweakVibrator && isZenModeOn)
+                        param.setResult(null);
+                }
+            });
+
+            XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.server.VibratorService", lpparam.classLoader), "vibrateCommonPatternMagnitude", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    if (tweakVibrator && isZenModeOn)
+                        param.setResult(null);
+                }
+            });
+
+            /*
+            XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.server.VibratorService", lpparam.classLoader), "vibratePatternMagnitude", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    // as well?
+                }
+            });
+            */
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
     }
 
     private static void handleZenMode(XC_MethodHook.MethodHookParam param) {
-        int mZenMode = (int) XposedHelpers.getObjectField(param.thisObject, "mZenMode");
         Context mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+        isZenModeOn = ((int) XposedHelpers.getObjectField(param.thisObject, "mZenMode") > 0 ? true : false);
 
-        String prefs[]= { "led_indicator_charing", "led_indicator_low_battery", "led_indicator_missed_event", "led_indicator_voice_recording" };
-        for (String pref : prefs) {
-            int newVal = (mZenMode > 0 ? 0 : 1);
-            XposedHelpers.callStaticMethod(Settings.System.class, "putIntForUser", mContext.getContentResolver(), pref, newVal, XposedHelpers.getStaticIntField(UserHandle.class, "USER_CURRENT"));
+        if (tweakLED) {
+            String prefs[] = {"led_indicator_charing", "led_indicator_low_battery", "led_indicator_missed_event", "led_indicator_voice_recording"};
+            for (String pref : prefs) {
+                int newVal = (isZenModeOn ? 0 : 1);
+                XposedHelpers.callStaticMethod(Settings.System.class, "putIntForUser", mContext.getContentResolver(), pref, newVal, XposedHelpers.getStaticIntField(UserHandle.class, "USER_CURRENT"));
+            }
         }
     }
 }

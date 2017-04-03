@@ -118,8 +118,10 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 S7sRGBVideo.hook(lpparam);
             if (prefs.getBoolean("tweak_disablenetworkmonitorednotification", false))
                 DisableNetworkMonitoredNotification.hook(lpparam);
-            if (prefs.getBoolean("tweak_s7dndledoff", false))
-                LedOffDuringDnD.hook(lpparam);
+            boolean tweakLED = prefs.getBoolean("tweak_s7dndledoff", false);
+            boolean tweakVibrator = prefs.getBoolean("tweak_s7dndvibratoroff", false);
+            if (tweakLED || tweakVibrator)
+                LedOffDuringDnD.hook(lpparam, tweakLED, tweakVibrator);
         }
         if (lpparam.packageName.equals("com.android.server.telecom")) {
             if (prefs.getBoolean("tweak_k920cardboard", false))
