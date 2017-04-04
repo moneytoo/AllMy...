@@ -18,11 +18,14 @@
         android:title="Minimum Brightness"
         android:summary="For MX Player (v1.7.40/1.8.16+)" />
 
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="tweak_nogboardbar"
-        android:title="No Gboard Bar/Header"
-        android:summary="Hide the blank bar above keyboard (suggestion candidates also won't show). For Gboard (v6.0.69-6.1.71+)" />
+    <ListPreference
+        android:defaultValue="-1"
+        android:entries="@array/tweak_nogboardbar_list_titles"
+        android:entryValues="@array/tweak_nogboardbar_list_values"
+        android:key="tweak_nogboardbar_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="Hide Gboard Top Bar (v6.0.69-6.1.71+)" />
 
     <SwitchPreference
         android:defaultValue="false"

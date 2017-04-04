@@ -196,8 +196,11 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
         }
         if (lpparam.packageName.equals("com.samsung.android.themecenter"))
             S5TouchWizJunk.hookThemes(lpparam);
-        if (prefs.getBoolean("tweak_nogboardbar", false) && lpparam.packageName.equals("com.google.android.inputmethod.latin"))
-            NOgBoARd.hook(lpparam);
+        if (lpparam.packageName.equals("com.google.android.inputmethod.latin")) {
+            int nogboardbarValue = Integer.parseInt(prefs.getString("tweak_nogboardbar_list", "-1"));
+            if (nogboardbarValue > 0)
+                NOgBoARd.hook(lpparam, nogboardbarValue);
+        }
         if (lpparam.packageName.equals("com.android.bluetooth") && prefs.getBoolean("tweak_s7remapredialtonext", false))
             RemapRedialToNextTrack.hook(lpparam);
         if (lpparam.packageName.equals("com.android.phone") && prefs.getBoolean("tweak_s7no2g", false))
