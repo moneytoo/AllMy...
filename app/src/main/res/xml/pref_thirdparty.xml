@@ -30,4 +30,10 @@
         android:title="No Gboard Bar/Header"
         android:summary="Hide the blank bar above keyboard (suggestion candidates also won't show). For Gboard (v6.0.69)" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_gmminimizedbar"
+        android:title="Start With Bottom Bar Minimized"
+        android:summary="For Google Maps (v9.49.2)" />
+
 </PreferenceScreen>

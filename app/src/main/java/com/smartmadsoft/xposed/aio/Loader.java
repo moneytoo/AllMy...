@@ -3,6 +3,7 @@ package com.smartmadsoft.xposed.aio;
 import android.content.res.XResources;
 
 import com.smartmadsoft.xposed.aio.tweaks.DisableNetworkMonitoredNotification;
+import com.smartmadsoft.xposed.aio.tweaks.GMapsMinimizedBar;
 import com.smartmadsoft.xposed.aio.tweaks.NOgBoARd;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.AlwaysSoftwareMenu;
 import com.smartmadsoft.xposed.aio.tweaks.BatteryHistoryXXL;
@@ -201,6 +202,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             RemapRedialToNextTrack.hook(lpparam);
         if (lpparam.packageName.equals("com.android.phone") && prefs.getBoolean("tweak_s7no2g", false))
             No2G.hook(lpparam);
+        if (lpparam.packageName.equals("com.google.android.apps.maps") && prefs.getBoolean("tweak_gmminimizedbar", false))
+            GMapsMinimizedBar.hook(lpparam);
     }
 
     @Override
