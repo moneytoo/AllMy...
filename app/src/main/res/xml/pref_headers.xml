@@ -8,7 +8,7 @@
     <header
         android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$CyanogenModPreferenceFragment"
         android:icon="@drawable/ic_extension_black_24dp"
-        android:title="Tweaks for CyanogenMod" />
+        android:title="Tweaks for CyanogenMod/LineageOS" />
 
     <header
         android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$ThirdPartyPreferenceFragment"

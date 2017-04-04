@@ -9,7 +9,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 40
-        versionName "0.5.4"
+        versionName "0.6.0"
         project.ext.set("archivesBaseName", "AllMy.v" + defaultConfig.versionName);
     }
     buildTypes {
