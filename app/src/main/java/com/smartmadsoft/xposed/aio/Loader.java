@@ -182,8 +182,12 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             K920Cardboard.hookAll(lpparam);
         if (lpparam.packageName.equals("com.sec.android.app.popupuireceiver") && prefs.getBoolean("tweak_s5twjunk", false))
             S5TouchWizJunk.hook(lpparam);
-        if (lpparam.packageName.equals("com.google.android.gms") && prefs.getBoolean("tweak_gmswearnotificationdisable", false))
-            GMSWearNotificationDisable.hook(lpparam);
+        if (lpparam.packageName.equals("com.google.android.gms")) {
+            boolean tweakNotification = prefs.getBoolean("tweak_gmswearnotificationdisable", false);
+            boolean tweakLocationDialog = prefs.getBoolean("tweak_gmslocationdialog", false);
+            if (tweakNotification || tweakLocationDialog)
+                GMSWearNotificationDisable.hook(lpparam, tweakNotification, tweakLocationDialog);
+        }
         if (prefs.getBoolean("tweak_volumekeyscursorcontrol", false))
             VolumeKeysCursorControl.hook(lpparam);
         if (prefs.getBoolean("tweak_nooverlaywarning", false) && lpparam.packageName.endsWith(".packageinstaller"))
