@@ -29,12 +29,12 @@
         android:title="One Hand Zoom Enabler [Obsolete]"
         android:summary="Double-touch drag support for Mozilla Firefox (v43-47 only)" />
 
-    <Preference
+    <com.smartmadsoft.xposed.aio.TwoLinePreference
         android:key="open_callfeaturessetting"
         android:title="Open Settings Activity for enabling native SIP support in Dialer"
         />
 
-    <Preference
+    <com.smartmadsoft.xposed.aio.TwoLinePreference
         android:key="open_powerusagesummary"
         android:title="Open Settings/Battery (PowerUsageSummary)"
         />
