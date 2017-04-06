@@ -36,7 +36,7 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_gmslocationdialog"
-        android:title="Disable Location Dialog in Google Maps"
-        android:summary="Hides 'To continue, let your device turn on location using Google's Location Service' dialog. For Google Play services (v10.2.98+)" />
+        android:title="No 'Location accuracy tips'"
+        android:summary="Hides 'To continue, let your device turn on location using Google's Location Service' dialog in Google Maps. For Google Play services (v10.2.98+)" />
 
 </PreferenceScreen>
