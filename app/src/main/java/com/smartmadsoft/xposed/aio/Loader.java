@@ -188,8 +188,9 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             if (tweakNotification || tweakLocationDialog)
                 GMSWearNotificationDisable.hook(lpparam, tweakNotification, tweakLocationDialog);
         }
-        if (prefs.getBoolean("tweak_volumekeyscursorcontrol", false))
-            VolumeKeysCursorControl.hook(lpparam);
+        int volumeValue = Integer.parseInt(prefs.getString("tweak_volumekeyscursorcontrol_list", "-1"));
+        if (volumeValue > 0)
+            VolumeKeysCursorControl.hook(lpparam, volumeValue);
         if (prefs.getBoolean("tweak_nooverlaywarning", false) && lpparam.packageName.endsWith(".packageinstaller"))
             NoOverlayWarning.hook(lpparam);
         if (lpparam.packageName.equals("com.samsung.android.MtpApplication")) {

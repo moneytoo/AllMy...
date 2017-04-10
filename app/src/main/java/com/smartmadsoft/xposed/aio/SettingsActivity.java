@@ -182,6 +182,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             addPreferencesFromResource(R.xml.pref_tweaks);
             setHasOptionsMenu(true);
+
+            bindPreferenceSummaryToValue(findPreference("tweak_volumekeyscursorcontrol_list"));
         }
 
         @Override

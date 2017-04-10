@@ -54,4 +54,19 @@
         <item>10</item>
     </string-array>
 
+    <string-array name="tweak_volumekeyscursorcontrol_list_titles">
+        <item>Off</item>
+        <item>Vol+ = Left</item>
+        <item>Vol+ = Left (Auto Orientation)</item>
+        <item>Vol+ = Right</item>
+        <item>Vol+ = Right (Auto Orientation)</item>
+    </string-array>
+    <string-array name="tweak_volumekeyscursorcontrol_list_values">
+        <item>-1</item>
+        <item>1</item>
+        <item>3</item>
+        <item>2</item>
+        <item>4</item>
+    </string-array>
+
 </resources>
