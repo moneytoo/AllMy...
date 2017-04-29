@@ -39,4 +39,10 @@
         android:title="No 'Location accuracy tips'"
         android:summary="Hides 'To continue, let your device turn on location using Google's Location Service' dialog in Google Maps. For Google Play services (v10.2.98+)" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_appbackuprestorenoexitconfirmation"
+        android:title="No Exit Confirmation"
+        android:summary="For App Backup &amp; Restore by Trustlook/Trust Lab/Apex Apps/infolife.mobi (v6.2.1/v1.1.0)" />
+
 </PreferenceScreen>
