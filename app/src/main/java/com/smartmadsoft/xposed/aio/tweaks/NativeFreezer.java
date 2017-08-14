@@ -153,8 +153,19 @@ public class NativeFreezer {
                                 else
                                     action = PackageManager.COMPONENT_ENABLED_STATE_DEFAULT;
 
-                                Object DisableChanger = XposedHelpers.newInstance(ClassDisableChanger, param.thisObject, mAppEntry_info, action);
-                                XposedHelpers.callMethod(DisableChanger, "execute", (Object) null);
+                                if (Build.VERSION.SDK_INT >= 24) {
+                                    if (mAppEntry_info_enabled)
+                                        XposedHelpers.callMethod(param.thisObject, "showDialogInner", 2, 0);
+                                    else {
+                                        PackageManager mPm = (PackageManager) XposedHelpers.getObjectField(param.thisObject, "mPm");
+                                        String packageName = (String) XposedHelpers.getObjectField(mAppEntry_info, "packageName");
+                                        mPm.setApplicationEnabledSetting(packageName, action, 0);
+                                    }
+                                } else {
+                                    // Doesn't work with unofficial Xposed on Nougat
+                                    Object DisableChanger = XposedHelpers.newInstance(ClassDisableChanger, param.thisObject, mAppEntry_info, action);
+                                    XposedHelpers.callMethod(DisableChanger, "execute", (Object) null);
+                                }
 
                                 param.setResult(null);
                             }
