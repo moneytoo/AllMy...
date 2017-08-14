@@ -45,7 +45,6 @@ import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7TouchKeyLight;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7sRGBVideo;
 import com.smartmadsoft.xposed.aio.tweaks.VolumeKeysCursorControl;
 import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.AR;
-import com.smartmadsoft.xposed.aio.tweaks.onehandzoomenabler.FF;
 
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -172,8 +171,6 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             PocketFirst.hook(lpparam);
         if (prefs.getBoolean("tweak_deskclockalarm", false))
             DeskClockAlarm.hook(lpparam);
-        if ((lpparam.packageName.equals("org.mozilla.firefox") || lpparam.packageName.equals("org.mozilla.firefox_beta") || lpparam.packageName.equals("org.mozilla.fennec") ) && prefs.getBoolean("tweak_onehandzoom_ff", false))
-            FF.hook(lpparam);
         if ((lpparam.packageName.equals("com.mxtech.videoplayer.pro") ||  lpparam.packageName.equals("com.mxtech.videoplayer.ad")) && prefs.getBoolean("tweak_minimumbrightness_mx", false))
             MinimumBrightnessMX.hook(lpparam);
         if (ChromeTabsToolbarOnPhone.isChrome(lpparam.packageName) && prefs.getBoolean("tweak_chrometabstoolbaronphone", false))

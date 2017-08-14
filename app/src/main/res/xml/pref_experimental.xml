@@ -23,12 +23,6 @@
         android:title="Desk Clock Alarm [Obsolete]"
         android:summary="Make Alarm the default tab in stock/Google Desk Clock (v4.2.1/4.3)" />
 
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="tweak_onehandzoom_ff"
-        android:title="One Hand Zoom Enabler [Obsolete]"
-        android:summary="Double-touch drag support for Mozilla Firefox (v43-47 only)" />
-
     <com.smartmadsoft.xposed.aio.TwoLinePreference
         android:key="open_callfeaturessetting"
         android:title="Open Settings Activity for enabling native SIP support in Dialer"
