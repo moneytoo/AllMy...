@@ -20,6 +20,12 @@
 
     <SwitchPreference
         android:defaultValue="false"
+        android:key="tweak_chrometabstoolbaronphone"
+        android:title="Chrome Tabs Toolbar On Phone"
+        android:summary="Enable tablet layout while keep mobile User Agent. For Chrome (v59-62+)" />
+
+    <SwitchPreference
+        android:defaultValue="false"
         android:key="tweak_gmminimizedbar"
         android:title="Start With Bottom Bar Minimized"
         android:summary="For Google Maps (v9.49.2-9.53.1)" />

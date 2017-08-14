@@ -87,7 +87,7 @@ public class ChromeTabsToolbarOnPhone {
     }
 
     public static boolean isChrome(String pkg) {
-        if (pkg.equals("com.android.chrome") || pkg.equals("com.chrome.beta") || pkg.equals("com.chrome.dev"))
+        if (pkg.equals("com.android.chrome") || pkg.equals("com.chrome.beta") || pkg.equals("com.chrome.dev") || pkg.equals("com.chrome.canary"))
             return true;
         return false;
     }
