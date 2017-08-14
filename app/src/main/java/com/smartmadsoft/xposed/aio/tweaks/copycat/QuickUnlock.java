@@ -88,7 +88,13 @@ public class QuickUnlock {
                     final Object lockSettings = XposedHelpers.callMethod(lockPatternUtils, "getLockSettings");
                     //final int userId = mKgMonitor.getCurrentUserId();
                     final int userId = XposedHelpers.getIntField(mMonitor, "mCurrentUser");
-                    final Object response = XposedHelpers.callMethod(lockSettings, "checkPassword", entry, userId);
+
+                    Object response;
+                    if (Build.VERSION.SDK_INT >= 25)
+                        response = XposedHelpers.callMethod(lockSettings, "checkPassword", entry, userId, null);
+                    else
+                        response = XposedHelpers.callMethod(lockSettings, "checkPassword", entry, userId);
+
                     final int code = (int)XposedHelpers.callMethod(response, "getResponseCode");
                     if (code == 0) {
                         final Object callback = XposedHelpers.getObjectField(securityView, "mCallback");
@@ -96,7 +102,10 @@ public class QuickUnlock {
                             @Override
                             public void run() {
                                 try {
-                                    XposedHelpers.callMethod(callback, "reportUnlockAttempt", true, userId);
+                                    if (Build.VERSION.SDK_INT >= 24)
+                                        XposedHelpers.callMethod(callback, "reportUnlockAttempt", userId, true, 0);
+                                    else
+                                        XposedHelpers.callMethod(callback, "reportUnlockAttempt", true, userId);
                                     XposedHelpers.callMethod(callback, "dismiss", true);
                                 } catch (Throwable t) {
                                     //log("Error dimissing keyguard: " + t.getMessage());
