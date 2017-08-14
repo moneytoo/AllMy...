@@ -9,7 +9,6 @@ import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.AlwaysSoftwareMenu;
 import com.smartmadsoft.xposed.aio.tweaks.BatteryHistoryXXL;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.BatteryLightDisabler;
 import com.smartmadsoft.xposed.aio.tweaks.CompactVolumePanel;
-import com.smartmadsoft.xposed.aio.tweaks.DeskClockAlarm;
 import com.smartmadsoft.xposed.aio.tweaks.DisableAdbNotification;
 import com.smartmadsoft.xposed.aio.tweaks.DisableHorizontalScrollAR;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.DisableSuIndicator;
@@ -169,8 +168,6 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             NoToastIcons.hook(lpparam);
         if (prefs.getBoolean("tweak_pocketfirst", false))
             PocketFirst.hook(lpparam);
-        if (prefs.getBoolean("tweak_deskclockalarm", false))
-            DeskClockAlarm.hook(lpparam);
         if ((lpparam.packageName.equals("com.mxtech.videoplayer.pro") ||  lpparam.packageName.equals("com.mxtech.videoplayer.ad")) && prefs.getBoolean("tweak_minimumbrightness_mx", false))
             MinimumBrightnessMX.hook(lpparam);
         if (ChromeTabsToolbarOnPhone.isChrome(lpparam.packageName) && prefs.getBoolean("tweak_chrometabstoolbaronphone", false))
