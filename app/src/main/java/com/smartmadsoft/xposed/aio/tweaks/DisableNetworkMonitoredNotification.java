@@ -10,7 +10,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class DisableNetworkMonitoredNotification {
     public static void hook(final XC_LoadPackage.LoadPackageParam lpparam) {
         try {
-            XposedHelpers.findAndHookMethod("com.android.server.devicepolicy.DevicePolicyManagerService$MonitoringCertNotificationTask", lpparam.classLoader, "doInBackground", Intent[].class, new XC_MethodHook() {
+            XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.server.devicepolicy.DevicePolicyManagerService$MonitoringCertNotificationTask", lpparam.classLoader), "doInBackground", new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     param.setResult(null);
