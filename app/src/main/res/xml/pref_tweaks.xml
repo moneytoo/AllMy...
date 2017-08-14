@@ -16,25 +16,25 @@
         android:defaultValue="false"
         android:key="tweak_nativefreezer"
         android:title="Native Freezer"
-        android:summary="Disable and re-enable any 3rd party app from System Settings. For Android 4.4/5.x/6.0" />
+        android:summary="Disable and re-enable any 3rd party app from System Settings. For Android 4.4/5.x/6.0/7.x" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_pocketfirst"
         android:title="Pocket First (Option When Sharing)"
-        android:summary="Make Pocket the first option when sharing. For Pocket on Android 5.x/6.0" />
+        android:summary="Make Pocket the first option when sharing. For Pocket on Android 5.x/6.0/7.x" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_mediastreamdefault"
         android:title="Media Stream Default"
-        android:summary="Prefer media instead of ringer during volume control. For Android 5.x/6.0" />
+        android:summary="Prefer media instead of ringer during volume control. For Android 5.x/6.0/7.x" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_mediakeys"
         android:title="Advanced Volume Keys"
-        android:summary="Long press VOLUME -/+ for PLAY_PAUSE/NEXT when screen is off or showing lock screen. Long press Volume + toggles flashlight when music is not playing. For Android 5.x/6.0" />
+        android:summary="Long press VOLUME -/+ for PLAY_PAUSE/NEXT when screen is off or showing lock screen. Long press Volume + toggles flashlight when music is not playing. For Android 5.x/6.0/7.x" />
 
     <SwitchPreference
         android:defaultValue="false"
@@ -61,13 +61,13 @@
         android:key="tweak_volumekeyscursorcontrol_list"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
-        android:title="Volume Keys Cursor Control (Android 5.x/6.0)" />
+        android:title="Volume Keys Cursor Control (Android 5.x/6.0/7.x)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_disablenetworkmonitorednotification"
         android:title="Disable Network Monitored Notification"
-        android:summary="Hide the 'Network may be monitored' notification. For Android 5.x/6.0" />
+        android:summary="Hide the 'Network may be monitored' notification. For Android 5.x/6.0/7.x" />
 
     <SwitchPreference
         android:defaultValue="false"
