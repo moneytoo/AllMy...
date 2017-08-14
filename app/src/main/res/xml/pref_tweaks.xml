@@ -67,7 +67,7 @@
         android:defaultValue="false"
         android:key="tweak_disablenetworkmonitorednotification"
         android:title="Disable Network Monitored Notification"
-        android:summary="Hide the 'Network may be monitored' notification. For Android 5.x/6.0/7.x" />
+        android:summary="Hide the 'Network may be monitored' / 'Certificate authority installed' notification. For Android 5.x/6.0/7.x" />
 
     <SwitchPreference
         android:defaultValue="false"
