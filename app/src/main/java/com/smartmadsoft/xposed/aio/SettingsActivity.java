@@ -329,8 +329,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             addPreferencesFromResource(R.xml.pref_thirdparty);
             setHasOptionsMenu(true);
-
-            bindPreferenceSummaryToValue(findPreference("tweak_nogboardbar_list"));
         }
 
         @Override

@@ -43,17 +43,6 @@
         <item>9</item>
     </string-array>
 
-    <string-array name="tweak_nogboardbar_list_titles">
-        <item>Off</item>
-        <item>When Blank (Keep For Suggestions)</item>
-        <item>Always (No Suggestions)</item>
-    </string-array>
-    <string-array name="tweak_nogboardbar_list_values">
-        <item>-1</item>
-        <item>5</item>
-        <item>10</item>
-    </string-array>
-
     <string-array name="tweak_volumekeyscursorcontrol_list_titles">
         <item>Off</item>
         <item>Vol+ = Left</item>

@@ -18,15 +18,6 @@
         android:title="Minimum Brightness"
         android:summary="For MX Player (v1.7.40/1.8.16+)" />
 
-    <ListPreference
-        android:defaultValue="-1"
-        android:entries="@array/tweak_nogboardbar_list_titles"
-        android:entryValues="@array/tweak_nogboardbar_list_values"
-        android:key="tweak_nogboardbar_list"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="Hide Gboard Top Bar (v6.0.69-6.1.71+)" />
-
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_gmminimizedbar"

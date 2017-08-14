@@ -5,7 +5,6 @@ import android.content.res.XResources;
 import com.smartmadsoft.xposed.aio.tweaks.AppBackupRestoreNoExitConfirmation;
 import com.smartmadsoft.xposed.aio.tweaks.DisableNetworkMonitoredNotification;
 import com.smartmadsoft.xposed.aio.tweaks.GMapsMinimizedBar;
-import com.smartmadsoft.xposed.aio.tweaks.NOgBoARd;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.AlwaysSoftwareMenu;
 import com.smartmadsoft.xposed.aio.tweaks.BatteryHistoryXXL;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.BatteryLightDisabler;
@@ -202,11 +201,6 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
         }
         if (lpparam.packageName.equals("com.samsung.android.themecenter"))
             S5TouchWizJunk.hookThemes(lpparam);
-        if (lpparam.packageName.equals("com.google.android.inputmethod.latin")) {
-            int nogboardbarValue = Integer.parseInt(prefs.getString("tweak_nogboardbar_list", "-1"));
-            if (nogboardbarValue > 0)
-                NOgBoARd.hook(lpparam, nogboardbarValue);
-        }
         if (lpparam.packageName.equals("com.android.bluetooth") && prefs.getBoolean("tweak_s7remapredialtonext", false))
             RemapRedialToNextTrack.hook(lpparam);
         if (lpparam.packageName.equals("com.android.phone") && prefs.getBoolean("tweak_s7no2g", false))
