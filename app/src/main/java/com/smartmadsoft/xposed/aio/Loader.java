@@ -29,7 +29,7 @@ import com.smartmadsoft.xposed.aio.tweaks.copycat.NoSafeVolumeWarning;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.NoToastIcons;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.OneWayBrightness;
 import com.smartmadsoft.xposed.aio.tweaks.PocketFirst;
-import com.smartmadsoft.xposed.aio.tweaks.obsolete.ChromeTabsToolbarOnPhone;
+import com.smartmadsoft.xposed.aio.tweaks.ChromeTabsToolbarOnPhone;
 import com.smartmadsoft.xposed.aio.tweaks.copycat.QuickUnlock;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.RemapVolume;
 import com.smartmadsoft.xposed.aio.tweaks.obsolete.K920Cardboard;
