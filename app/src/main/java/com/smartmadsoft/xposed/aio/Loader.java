@@ -36,7 +36,7 @@ import com.smartmadsoft.xposed.aio.tweaks.NoWakeOnCharge;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.RemapRedialToNextTrack;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S5TouchWizJunk;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S5ReaderMode;
-import com.smartmadsoft.xposed.aio.tweaks.GMSWearNotificationDisable;
+import com.smartmadsoft.xposed.aio.tweaks.GMSDisabler;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7AlwaysAllowMTP;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7DetailedBatteryUsage;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S7MTPWithoutUnlocking;
@@ -176,12 +176,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             K920Cardboard.hookAll(lpparam);
         if (lpparam.packageName.equals("com.sec.android.app.popupuireceiver") && prefs.getBoolean("tweak_s5twjunk", false))
             S5TouchWizJunk.hook(lpparam);
-        if (lpparam.packageName.equals("com.google.android.gms")) {
-            boolean tweakNotification = prefs.getBoolean("tweak_gmswearnotificationdisable", false);
-            boolean tweakLocationDialog = prefs.getBoolean("tweak_gmslocationdialog", false);
-            if (tweakNotification || tweakLocationDialog)
-                GMSWearNotificationDisable.hook(lpparam, tweakNotification, tweakLocationDialog);
-        }
+        if (lpparam.packageName.equals("com.google.android.gms") && prefs.getBoolean("tweak_gmslocationdialog", false))
+            GMSDisabler.hook(lpparam);
         int volumeValue = Integer.parseInt(prefs.getString("tweak_volumekeyscursorcontrol_list", "-1"));
         if (volumeValue > 0)
             VolumeKeysCursorControl.hook(lpparam, volumeValue);
