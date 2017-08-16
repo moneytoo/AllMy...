@@ -3,32 +3,32 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_disablesuindicator"
-        android:title="Disable Su Indicator"
+        android:title="Disable su indicator"
         android:summary="Disable # (pound/hash) indicator in status bar. For CM12/CM12.1/CM13" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_alwayssoftwaremenu"
-        android:title="Always Software Menu"
+        android:title="Always software menu"
         android:summary="Allows to have both software menu button and menu mapped to key on CM. For CM12/CM12.1/CM13" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_notoasticons"
-        android:title="No Toast Icons"
+        android:title="No toast icons"
         android:summary="For CM12.1/CM13" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_onewaybrightness"
-        android:title="One Way Brightness"
+        android:title="One way brightness"
         android:summary="Make auto brightness go only up. For CM12.1/CM13" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_batterylightdisabler"
-        android:title="Battery Light Disabler"
-        android:summary="Battery light will not shine when in downtime (Interruptions) or when the screen is on. For CM12.1/CM13" />
+        android:title="Battery light disabler"
+        android:summary="Battery light will not shine when in downtime (interruptions) or when the screen is on. For CM12.1/CM13" />
 
     <SwitchPreference
         android:defaultValue="false"
@@ -39,7 +39,7 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_remapnexttotorch"
-        android:title="Remap NEXT button to Torch (when not playing)"
+        android:title="Remap NEXT button to torch (when not playing)"
         android:summary="Allow use volume up key (long press) to start flashlight (when music is off). For CM12.1/CM13" />
 
 </PreferenceScreen>

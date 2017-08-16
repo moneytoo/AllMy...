@@ -7,7 +7,7 @@
         android:key="tweak_minimumbrightness_list"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
-        android:title="Minimum Brightness" />
+        android:title="Minimum brightness" />
 
     <ListPreference
         android:defaultValue="-1"
@@ -16,30 +16,30 @@
         android:key="tweak_gentlehapticfeedback_list"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
-        android:title="Gentle Haptic Feedback" />
+        android:title="Gentle haptic feedback" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_hidenetworkindicators"
-        android:title="Hide Network Indicators"
+        android:title="Hide network indicators"
         android:summary="The non-interactive AOSP look in status bar\nhttps://github.com/nadeemsultan/HideNetworkIndicators" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_nosafevolumewarning"
-        android:title="No Safe Volume Warning"
+        android:title="No safe volume warning"
         android:summary="Disable safe volume warning dialog\nhttps://github.com/pylerSM/NoSafeVolumeWarning" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_quickunlock"
-        android:title="Quick Unlock"
+        android:title="Quick unlock"
         android:summary="Unlock automatically with correct PIN/password\nhttps://github.com/GravityBox/GravityBox" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_nooverlaywarning"
-        android:title="No Overlay Warning"
+        android:title="No overlay warning"
         android:summary="Bypasses the screen overlay detected dialog\nhttps://github.com/apsun/NoOverlayWarning" />
 
 </PreferenceScreen>

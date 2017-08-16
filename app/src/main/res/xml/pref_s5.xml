@@ -3,84 +3,84 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s5twjunk"
-        android:title="Hide Unwanted Popups and Dialogs"
+        android:title="Hide unwanted popups and dialogs"
         android:summary="Disable 'Check cover' popup (S5) and BT/WiFi dialogs (S5/S7)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s5twjunk_dnd"
-        android:title="Hide DnD Notification"
+        android:title="Hide DnD notification"
         android:summary="Hide active ongoing DnD notification (S5/S7)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s5readermode"
-        android:title="Enable Reader Mode (Adapt Display)"
+        android:title="Enable reader mode (Adapt display)"
         android:summary="Enable Samsung screen ebook reading mode for Adobe Reader and Moon+ Reader (S5)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_t700gentlehapticfeedback"
-        android:title="Gentle Haptic Feedback"
+        android:title="Gentle haptic feedback"
         android:summary="10 ms instead of 50 ms for touch keys" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_twnopasswordafterboot"
-        android:title="No Password After Boot"
+        android:title="No password after boot"
         android:summary="Workaround for the 'Unable to use fingerprints.' message after boot" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s7touchkeylight"
-        android:title="Native Touch Key Light Settings"
+        android:title="Native touch key light settings"
         android:summary="Re-enable the lost option to set buttons light timeout (S7)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s7srgbvideo"
-        android:title="Basic (Screen Mode) For Video Only"
+        android:title="Basic (Screen mode) for video only"
         android:summary="Switch to sRGB (Basic screen mode) for video (MX Player/YouTube) while keeping Adaptive for everything else (S7)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s7alwaysallowmtp"
-        android:title="Always Allow MTP Access"
+        android:title="Always allow MTP access"
         android:summary="Get rid of the 'Allow access to device data' dialog (S7)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s7mtpwithoutunlock"
-        android:title="MTP Without Unlock"
+        android:title="MTP without unlock"
         android:summary="Start MTP even with screen off or without unlocking unsecure keyguard (S5/S7)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s7detailedbatteryusage"
-        android:title="Detailed Battery Usage"
+        android:title="Detailed Battery usage"
         android:summary="Enable detailed 'Wi-Fi/Awake/Screen on' battery usage stats (S7)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s7dndledoff"
-        android:title="Keep LED Off During DnD"
+        android:title="Keep LED off during DnD"
         android:summary="Disable 'LED indicator' (battery/notifications etc.) when Do not disturb mode is active (S7)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s7dndvibratoroff"
-        android:title="No Vibrations During DnD"
+        android:title="No vibrations during DnD"
         android:summary="Disable any vibrations/haptic feedback when Do not disturb mode is active (S7)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s7remapredialtonext"
-        android:title="Remap BT Redial To Next"
-        android:summary="Remap 'Redial' action on Bluetooth headset to 'Next track' (S7)" />
+        android:title="Remap BT redial to NEXT"
+        android:summary="Remap 'redial' action on Bluetooth headset to 'next track' (S7)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_s7no2g"
-        android:title="No 2G Mode"
+        android:title="No 2G mode"
         android:summary="Enable the 'LTE/3G(auto connect)' option in Network mode (S7)" />
 </PreferenceScreen>

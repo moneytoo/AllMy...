@@ -3,55 +3,55 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_nowakeoncharge"
-        android:title="No Wake On Charge"
+        android:title="No wake on charge"
         android:summary="Disable wake up when (dis)connecting USB cable" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_batteryhistoryxxl"
-        android:title="Battery History XXL"
+        android:title="Battery history XXL"
         android:summary="Enlarge the stock settings battery history - from 10 to 30 records. For Android 4.4/5.x/6.0" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_nativefreezer"
-        android:title="Native Freezer"
-        android:summary="Disable and re-enable any 3rd party app from System Settings. For Android 4.4/5.x/6.0/7.x" />
+        android:title="Native freezer"
+        android:summary="Disable and re-enable any 3rd party app from system Settings. For Android 4.4/5.x/6.0/7.x" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_pocketfirst"
-        android:title="Pocket First (Option When Sharing)"
+        android:title="Pocket first (option when sharing)"
         android:summary="Make Pocket the first option when sharing. For Pocket on Android 5.x/6.0/7.x" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_mediastreamdefault"
-        android:title="Media Stream Default"
+        android:title="Media stream default"
         android:summary="Prefer media instead of ringer during volume control. For Android 5.x/6.0/7.x" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_mediakeys"
-        android:title="Advanced Volume Keys"
+        android:title="Advanced volume keys"
         android:summary="Long press VOLUME -/+ for PLAY_PAUSE/NEXT when screen is off or showing lock screen. Long press Volume + toggles flashlight when music is not playing. For Android 5.x/6.0/7.x" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_disableusbnotification"
-        android:title="Disable USB Notifications"
+        android:title="Disable USB notifications"
         android:summary="Get rid of a notifications shown when phone is plugged to a computer" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_disableadbnotification"
-        android:title="Disable ADB Notifications"
+        android:title="Disable ADB notifications"
         android:summary="Get rid of the USB debugging notification" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_compactvolumepanel"
-        android:title="Compact Volume Panel"
+        android:title="Compact volume panel"
         android:summary="For CM12/CM12.1/CM13 and TouchWiz (Android 6.0)" />
 
     <ListPreference
@@ -61,18 +61,18 @@
         android:key="tweak_volumekeyscursorcontrol_list"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
-        android:title="Volume Keys Cursor Control (Android 5.x/6.0/7.x)" />
+        android:title="Volume keys cursor control (Android 5.x/6.0/7.x)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_disablenetworkmonitorednotification"
-        android:title="Disable Network Monitored Notification"
+        android:title="Disable network monitored notification"
         android:summary="Hide the 'Network may be monitored' / 'Certificate authority installed' notification. For Android 5.x/6.0/7.x" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_disablebatteryprediction"
-        android:title="Disable Battery Prediction"
+        android:title="Disable battery prediction"
         android:summary="Do not plot estimated battery usage to graph. For Android 5.x/6.0" />
 
 </PreferenceScreen>

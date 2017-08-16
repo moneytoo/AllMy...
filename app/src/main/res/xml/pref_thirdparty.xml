@@ -9,25 +9,25 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_disablehorizontalscroll_ar"
-        android:title="Disable Horizontal Scroll"
+        android:title="Disable horizontal scroll"
         android:summary="For Adobe Reader (v15.2.2-17.1+)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_minimumbrightness_mx"
-        android:title="Minimum Brightness"
+        android:title="Minimum brightness"
         android:summary="For MX Player (v1.7.40/1.8.16+)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_chrometabstoolbaronphone"
-        android:title="Chrome Tabs Toolbar On Phone"
-        android:summary="Enable tablet layout while keep mobile User Agent. For Chrome (v59-62+)" />
+        android:title="Chrome tabs toolbar on phone"
+        android:summary="Enable tablet layout while keep mobile User agent. For Chrome (v59-62+)" />
 
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_gmminimizedbar"
-        android:title="Start With Bottom Bar Minimized"
+        android:title="Start with bottom bar minimized"
         android:summary="For Google Maps (v9.49.2-9.53.1)" />
 
     <SwitchPreference
@@ -39,7 +39,7 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="tweak_appbackuprestorenoexitconfirmation"
-        android:title="No Exit Confirmation"
+        android:title="No exit confirmation"
         android:summary="For App Backup &amp; Restore by Trustlook/Trust Lab/Apex Apps/infolife.mobi (v6.2.1/v1.1.0)" />
 
 </PreferenceScreen>

@@ -5,5 +5,5 @@
     <item
         android:id="@+id/toggle_icon"
         android:orderInCategory="200"
-        android:title="Hide/Unhide Launcher Icon" />
+        android:title="Hide/unhide launcher icon" />
 </menu>

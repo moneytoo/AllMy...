@@ -3,7 +3,7 @@
     <header
         android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$TweaksPreferenceFragment"
         android:icon="@drawable/ic_extension_black_24dp"
-        android:title="Universal Tweaks" />
+        android:title="Universal tweaks" />
 
     <header
         android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$CyanogenModPreferenceFragment"
@@ -13,7 +13,7 @@
     <header
         android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$ThirdPartyPreferenceFragment"
         android:icon="@drawable/ic_extension_black_24dp"
-        android:title="Tweaks for User Apps" />
+        android:title="Tweaks for user apps" />
 
     <header
         android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$S5PreferenceFragment"
