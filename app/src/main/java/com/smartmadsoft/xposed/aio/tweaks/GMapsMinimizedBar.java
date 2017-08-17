@@ -14,10 +14,10 @@ public class GMapsMinimizedBar {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     try {
-                        XposedHelpers.findAndHookMethod("com.google.android.apps.gmm.home.views.HomeBottomSheetView", lpparam.classLoader, "setInitialSheetExposureFraction", float.class, new XC_MethodHook() {
+                        XposedHelpers.findAndHookMethod("com.google.android.apps.gmm.home.views.HomeBottomSheetView", lpparam.classLoader, "c", new XC_MethodHook() {
                             @Override
                             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                                param.args[0] = 0.0f;
+                                XposedHelpers.setObjectField(param.thisObject, "b", 0.0f);
                             }
                         });
                     } catch (Throwable t) {

@@ -28,7 +28,7 @@
         android:defaultValue="false"
         android:key="tweak_gmminimizedbar"
         android:title="Start with bottom bar minimized"
-        android:summary="For Google Maps (v9.49.2-9.53.1)" />
+        android:summary="For Google Maps (v9.58.2-9.59.1)" />
 
     <SwitchPreference
         android:defaultValue="false"
