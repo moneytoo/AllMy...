@@ -2,7 +2,7 @@ package com.smartmadsoft.xposed.aio;
 
 import android.content.res.XResources;
 
-import com.smartmadsoft.xposed.aio.tweaks.AppBackupRestoreNoExitConfirmation;
+import com.smartmadsoft.xposed.aio.tweaks.NoExitConfirmation;
 import com.smartmadsoft.xposed.aio.tweaks.DisableNetworkMonitoredNotification;
 import com.smartmadsoft.xposed.aio.tweaks.GMapsMinimizedBar;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.AlwaysSoftwareMenu;
@@ -197,8 +197,14 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             No2G.hook(lpparam);
         if (lpparam.packageName.equals("com.google.android.apps.maps") && prefs.getBoolean("tweak_gmminimizedbar", false))
             GMapsMinimizedBar.hook(lpparam);
-        if ((lpparam.packageName.startsWith("mobi.infolife.appbackup") || lpparam.packageName.equals("mobi.trustlab.appbackup")) && prefs.getBoolean("tweak_appbackuprestorenoexitconfirmation", false))
-            AppBackupRestoreNoExitConfirmation.hook(lpparam);
+        if (prefs.getBoolean("tweak_appbackuprestorenoexitconfirmation", false)) {
+            if ((lpparam.packageName.startsWith("mobi.infolife.appbackup") || lpparam.packageName.equals("mobi.trustlab.appbackup")))
+                NoExitConfirmation.hookBackup(lpparam);
+            if (lpparam.packageName.equals("com.circlegate.tt.transit.android"))
+                NoExitConfirmation.hookCG(lpparam);
+            if (lpparam.packageName.equals("pl.solidexplorer2"))
+                NoExitConfirmation.hookSolid(lpparam);
+        }
     }
 
     @Override
