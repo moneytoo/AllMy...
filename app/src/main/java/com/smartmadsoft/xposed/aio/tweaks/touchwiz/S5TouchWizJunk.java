@@ -71,8 +71,12 @@ public class S5TouchWizJunk {
     }
 
     public static void hookSettings(final XC_LoadPackage.LoadPackageParam lpparam) {
+        String secPkg = "";
+        if (Build.VERSION.SDK_INT >= 24)
+            secPkg = ".samsung";
+
         try {
-            XposedHelpers.findAndHookMethod("com.android.settings.bluetooth.BluetoothScanDialog", lpparam.classLoader, "onCreate", Bundle.class, new XC_MethodHook() {
+            XposedHelpers.findAndHookMethod("com" + secPkg + ".android.settings.bluetooth.BluetoothScanDialog", lpparam.classLoader, "onCreate", Bundle.class, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     ((Activity)param.thisObject).finish();
@@ -83,7 +87,7 @@ public class S5TouchWizJunk {
         }
 
         try {
-            XposedHelpers.findAndHookMethod("com.android.settings.wifi.WifiPickerDialog", lpparam.classLoader, "onCreate", Bundle.class, new XC_MethodHook() {
+            XposedHelpers.findAndHookMethod("com" + secPkg + ".android.settings.wifi.WifiPickerDialog", lpparam.classLoader, "onCreate", Bundle.class, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
                     ((Activity)param.thisObject).finish();
