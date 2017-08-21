@@ -8,8 +8,8 @@ android {
         applicationId "com.smartmadsoft.xposed.aio"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 44
-        versionName "0.7.2"
+        versionCode 45
+        versionName "0.7.3"
         project.ext.set("archivesBaseName", "AllMy.v" + defaultConfig.versionName);
     }
     buildTypes {

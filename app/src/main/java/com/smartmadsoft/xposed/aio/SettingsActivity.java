@@ -225,11 +225,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     try {
                         startActivity(intent);
                     } catch (Exception x) {
-                        intent.setComponent(new ComponentName("com.android.phone","com.android.phone.CallFeaturesSetting"));
-                        if (intent.resolveActivity(getActivity().getPackageManager()) != null)
+                        try {
+                            intent.setComponent(new ComponentName("com.android.phone","com.android.phone.CallFeaturesSetting"));
                             startActivity(intent);
-                        else
+                        } catch (Exception xx) {
                             Toast.makeText(getActivity(), "No activity found", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     return true;
                 }
@@ -241,10 +242,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 public boolean onPreferenceClick(Preference preference) {
                     Intent intent = new Intent("android.intent.action.MAIN");
                     intent.setComponent(new ComponentName("com.android.settings","com.android.settings.fuelgauge.PowerUsageSummary"));
-                    if (intent.resolveActivity(getActivity().getPackageManager()) != null)
+                    try {
                         startActivity(intent);
-                    else
+                    } catch (Exception x) {
                         Toast.makeText(getActivity(), "No activity found", Toast.LENGTH_SHORT).show();
+                    }
                     return true;
                 }
             });
