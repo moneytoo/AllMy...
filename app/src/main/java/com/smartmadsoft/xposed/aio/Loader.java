@@ -28,7 +28,7 @@ import com.smartmadsoft.xposed.aio.tweaks.copycat.NoSafeVolumeWarning;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.NoToastIcons;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.OneWayBrightness;
 import com.smartmadsoft.xposed.aio.tweaks.PocketFirst;
-import com.smartmadsoft.xposed.aio.tweaks.ChromeTabsToolbarOnPhone;
+import com.smartmadsoft.xposed.aio.tweaks.Chrome;
 import com.smartmadsoft.xposed.aio.tweaks.copycat.QuickUnlock;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.RemapVolume;
 import com.smartmadsoft.xposed.aio.tweaks.obsolete.K920Cardboard;
@@ -67,7 +67,7 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             XResources.setSystemWideReplacement("android", "integer", "config_screenBrightnessDim", brightnessValue);
         }
         if (prefs.getBoolean("tweak_chrometabstoolbaronphone", false))
-            ChromeTabsToolbarOnPhone.init();
+            Chrome.init();
         if (prefs.getBoolean("tweak_s5twjunk", false)) {
             XResources.setSystemWideReplacement("android", "bool", "show_ongoing_ime_switcher", false);
             //XResources.setSystemWideReplacement("android", "bool", "config_intrusiveNotificationLed", true);
@@ -170,8 +170,12 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             PocketFirst.hook(lpparam);
         if ((lpparam.packageName.equals("com.mxtech.videoplayer.pro") ||  lpparam.packageName.equals("com.mxtech.videoplayer.ad")) && prefs.getBoolean("tweak_minimumbrightness_mx", false))
             MinimumBrightnessMX.hook(lpparam);
-        if (ChromeTabsToolbarOnPhone.isChrome(lpparam.packageName) && prefs.getBoolean("tweak_chrometabstoolbaronphone", false))
-            ChromeTabsToolbarOnPhone.hook(lpparam);
+        if (Chrome.isChrome(lpparam.packageName)) {
+            if (prefs.getBoolean("tweak_chrometabstoolbaronphone", false))
+                Chrome.hookTabsToolbar(lpparam);
+            if (prefs.getBoolean("tweak_chromenotopsites", false))
+                Chrome.hookTopSites(lpparam);
+        }
         if (prefs.getBoolean("tweak_k920cardboard", false))
             K920Cardboard.hookAll(lpparam);
         if (lpparam.packageName.equals("com.sec.android.app.popupuireceiver") && prefs.getBoolean("tweak_s5twjunk", false))

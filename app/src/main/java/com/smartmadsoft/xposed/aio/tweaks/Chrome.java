@@ -12,8 +12,8 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-public class ChromeTabsToolbarOnPhone {
-    public static void hook(final XC_LoadPackage.LoadPackageParam lpparam) {
+public class Chrome {
+    public static void hookTabsToolbar(final XC_LoadPackage.LoadPackageParam lpparam) {
         try {
             XposedHelpers.findAndHookMethod("org.chromium.content.browser.DeviceUtils", lpparam.classLoader, "addDeviceSpecificUserAgentSwitch", Context.class, new XC_MethodHook() {
                 @Override
@@ -90,5 +90,40 @@ public class ChromeTabsToolbarOnPhone {
         if (pkg.equals("com.android.chrome") || pkg.equals("com.chrome.beta") || pkg.equals("com.chrome.dev") || pkg.equals("com.chrome.canary"))
             return true;
         return false;
+    }
+
+    public static void hookTopSites(final XC_LoadPackage.LoadPackageParam lpparam) {
+        try {
+            // Chrome 62-63 (beta/dev/canary)
+            XposedHelpers.findAndHookMethod("org.chromium.chrome.browser.suggestions.MostVisitedSitesBridge", lpparam.classLoader, "onURLsAvailable",
+                    String[].class, String[].class, int[].class, String[].class, int[].class,
+                    new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    param.args[0] = new String[0];
+                    param.args[1] = new String[0];
+                    param.args[2] = new int[0];
+                    param.args[3] = new String[0];
+                    param.args[4] = new int[0];
+                }
+            });
+        } catch (Throwable t) {
+            try {
+                // Chrome 61 (stable)
+                XposedHelpers.findAndHookMethod("org.chromium.chrome.browser.suggestions.MostVisitedSitesBridge$2", lpparam.classLoader, "onMostVisitedURLsAvailable",
+                        String[].class, String[].class, String[].class, int[].class,
+                        new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        param.args[0] = new String[0];
+                        param.args[1] = new String[0];
+                        param.args[2] = new String[0];
+                        param.args[3] = new int[0];
+                    }
+                });
+            } catch (Throwable th) {
+                XposedBridge.log(th);
+            }
+        }
     }
 }

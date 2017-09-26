@@ -26,6 +26,12 @@
 
     <SwitchPreference
         android:defaultValue="false"
+        android:key="tweak_chromenotopsites"
+        android:title="No Chrome top sites"
+        android:summary="Disable the grid of most visited sites on the 'New tab page'. For Chrome (v61-63+)" />
+
+    <SwitchPreference
+        android:defaultValue="false"
         android:key="tweak_gmminimizedbar"
         android:title="Start with bottom bar minimized"
         android:summary="For Google Maps (v9.58.2-9.59.1)" />
