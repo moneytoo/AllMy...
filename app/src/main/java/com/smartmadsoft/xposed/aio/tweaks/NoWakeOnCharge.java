@@ -24,7 +24,7 @@ public class NoWakeOnCharge {
 
     public static void hookUI(final XC_LoadPackage.LoadPackageParam lpparam) {
         try {
-            if (!Build.MANUFACTURER.toLowerCase().contains("samsung"))
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N || !Build.MANUFACTURER.toLowerCase().contains("samsung"))
                 return;
 
             XposedHelpers.findAndHookMethod("com.android.systemui.power.PowerNotificationWarnings", lpparam.classLoader, "playSound", int.class, new XC_MethodHook() {

@@ -34,7 +34,8 @@ public class CompactVolumePanel {
 
                         final int volumeSettingsButton = liparam.res.getIdentifier("volume_settings_button", "id", PKG);
                         final ImageView imageVolumeSettingsButton = (ImageView) liparam.view.findViewById(volumeSettingsButton);
-                        imageVolumeSettingsButton.getLayoutParams().height = imageVolumeSettingsButton.getLayoutParams().height / 3 * 2;
+                        if (imageVolumeSettingsButton != null)
+                            imageVolumeSettingsButton.getLayoutParams().height = imageVolumeSettingsButton.getLayoutParams().height / 3 * 2;
 
                         // MM TW
                         if (Build.MANUFACTURER.toLowerCase().contains("samsung")) {
@@ -65,6 +66,9 @@ public class CompactVolumePanel {
                         layoutParams.setMargins(0, 0, 0, 0);
                         layoutVolumeDialog.setLayoutParams(layoutParams);
 
+                        // S7 Nougat
+                        layoutVolumeDialog.setPadding(0, 0, 0, 0);
+
                         final int volumeExpandButton = liparam.res.getIdentifier("volume_expand_button", "id", PKG);
                         View viewVolumeExpandButton = (View) liparam.view.findViewById(volumeExpandButton);
                         viewVolumeExpandButton.getLayoutParams().height = viewVolumeExpandButton.getLayoutParams().height / 3 * 2;
@@ -72,6 +76,12 @@ public class CompactVolumePanel {
                         final int volumeDialogContent = liparam.res.getIdentifier("volume_dialog_content", "id", PKG);
                         final LinearLayout layoutVolumeDialogContent = (LinearLayout) liparam.view.findViewById(volumeDialogContent);
                         layoutVolumeDialogContent.setPadding(0, 0, 0, 0);
+
+                        // S7 Nougat
+                        final int volumeDialogDnd = liparam.res.getIdentifier("volume_dialog_dnd", "id", PKG);
+                        final LinearLayout layoutVolumeDialogDnd = (LinearLayout) liparam.view.findViewById(volumeDialogDnd);
+                        if (layoutVolumeDialogDnd != null)
+                            layoutVolumeDialogDnd.getLayoutParams().height = 0;
                     }
                 });
             } else {
