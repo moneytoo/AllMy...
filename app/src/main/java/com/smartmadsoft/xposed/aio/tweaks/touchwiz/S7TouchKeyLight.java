@@ -1,5 +1,6 @@
 package com.smartmadsoft.xposed.aio.tweaks.touchwiz;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import de.robv.android.xposed.XC_MethodHook;
@@ -12,7 +13,11 @@ public class S7TouchKeyLight {
     
     public static void hook(final XC_LoadPackage.LoadPackageParam lpparam) {
         try {
-            XposedHelpers.findAndHookMethod(XposedHelpers.findClass("com.android.settings.DisplaySettings", lpparam.classLoader), "onCreate", Bundle.class, new XC_MethodHook() {
+            String clazz = "com.samsung.android.settings.display.SecDisplaySettings";
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
+                clazz = "com.android.settings.DisplaySettings";
+
+            XposedHelpers.findAndHookMethod(XposedHelpers.findClass(clazz, lpparam.classLoader), "onCreate", Bundle.class, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(final MethodHookParam param) throws Throwable {
                     spoofATT = true;

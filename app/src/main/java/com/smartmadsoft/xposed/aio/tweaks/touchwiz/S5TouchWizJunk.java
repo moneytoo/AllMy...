@@ -101,7 +101,7 @@ public class S5TouchWizJunk {
     public static void hookThemes(final XC_LoadPackage.LoadPackageParam lpparam) {
         try {
             if (!Build.DEVICE.startsWith("klte")) {
-                XposedHelpers.findAndHookMethod("com.samsung.android.thememanager.ThemeManager", lpparam.classLoader, "startTimerForTrial", String.class, new XC_MethodHook() {
+                XposedBridge.hookAllMethods(XposedHelpers.findClass("com.samsung.android.thememanager.ThemeManager", lpparam.classLoader), "startTimerForTrial", new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         param.setResult(null);
