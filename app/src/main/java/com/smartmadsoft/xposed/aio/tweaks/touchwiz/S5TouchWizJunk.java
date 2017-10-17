@@ -54,6 +54,16 @@ public class S5TouchWizJunk {
                 }
             });
         } catch (Throwable t) {}
+
+        try {
+            // Disable "Search phone and scan for nearby devices"
+            XposedHelpers.findAndHookMethod("com.android.systemui.qs.QSSFinderView", lpparam.classLoader, "getBarVisibility", new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+                    param.setResult(false);
+                }
+            });
+        } catch (Throwable t) {}
     }
 
     public static void hookUIDND(final XC_LoadPackage.LoadPackageParam lpparam) {
