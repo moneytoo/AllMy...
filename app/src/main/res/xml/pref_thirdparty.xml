@@ -4,7 +4,7 @@
         android:defaultValue="false"
         android:key="tweak_onehandzoom_ar"
         android:title="One Hand Zoom Enabler"
-        android:summary="Double-touch drag support for Adobe Reader (v15.2.2-17.1+)" />
+        android:summary="Double-touch drag support for Adobe Reader (v15.2.2-17.4.1+)" />
 
     <SwitchPreference
         android:defaultValue="false"

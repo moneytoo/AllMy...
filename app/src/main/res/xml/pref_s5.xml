@@ -4,7 +4,7 @@
         android:defaultValue="false"
         android:key="tweak_s5twjunk"
         android:title="Hide unwanted popups and dialogs"
-        android:summary="Disable 'Check cover' popup (S5) and BT/WiFi dialogs (S5/S7)" />
+        android:summary="Disable 'Check cover' popup (S5), BT/WiFi dialogs (S5/S7) and Sfinder in notifications (S7)" />
 
     <SwitchPreference
         android:defaultValue="false"
@@ -40,7 +40,7 @@
         android:defaultValue="false"
         android:key="tweak_s7srgbvideo"
         android:title="Basic (Screen mode) for video only"
-        android:summary="Switch to sRGB (Basic screen mode) for video (MX Player/YouTube) while keeping Adaptive for everything else (S7)" />
+        android:summary="Switch to sRGB (Basic screen mode) for video (MX Player/YouTube) while keeping Adaptive for everything else (S7 on Android 6)" />
 
     <SwitchPreference
         android:defaultValue="false"

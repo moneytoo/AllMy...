@@ -8,7 +8,7 @@
     <header
         android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$CyanogenModPreferenceFragment"
         android:icon="@drawable/ic_extension_black_24dp"
-        android:title="Tweaks for CyanogenMod/LineageOS" />
+        android:title="Tweaks for LineageOS" />
 
     <header
         android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$ThirdPartyPreferenceFragment"
@@ -18,7 +18,7 @@
     <header
         android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$S5PreferenceFragment"
         android:icon="@drawable/ic_extension_black_24dp"
-        android:title="For TouchWiz (Android 5/6)" />
+        android:title="For TouchWiz (Android 5/6/7)" />
 
     <header
         android:fragment="com.smartmadsoft.xposed.aio.SettingsActivity$CopycatsPreferenceFragment"
