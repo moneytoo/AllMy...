@@ -1,5 +1,6 @@
 package com.smartmadsoft.xposed.aio;
 
+import android.content.res.XModuleResources;
 import android.content.res.XResources;
 
 import com.smartmadsoft.xposed.aio.tweaks.NoExitConfirmation;
@@ -54,9 +55,12 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IXposedHookInitPackageResources {
     private static XSharedPreferences prefs;
+    private static String modulePath;
 
     @Override
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) throws Throwable {
+        modulePath = startupParam.modulePath;
+
         prefs = new XSharedPreferences("com.smartmadsoft.xposed.aio", "tweaks");
         prefs.makeWorldReadable();
 
@@ -218,6 +222,10 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
                 HideNetworkIndicators.hook(iprparam);
             if (prefs.getBoolean("tweak_compactvolumepanel", false))
                 CompactVolumePanel.hook(iprparam);
+            if (prefs.getBoolean("tweak_s5twjunk", false)) {
+                XModuleResources modRes = XModuleResources.createInstance(modulePath, iprparam.res);
+                S5TouchWizJunk.hookRes(iprparam, modRes);
+            }
         }
     }
 }

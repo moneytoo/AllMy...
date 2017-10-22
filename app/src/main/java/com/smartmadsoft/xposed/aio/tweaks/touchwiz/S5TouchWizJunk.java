@@ -2,12 +2,16 @@ package com.smartmadsoft.xposed.aio.tweaks.touchwiz;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.XModuleResources;
 import android.os.Build;
 import android.os.Bundle;
+
+import com.smartmadsoft.xposed.aio.R;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class S5TouchWizJunk {
@@ -118,6 +122,15 @@ public class S5TouchWizJunk {
                     }
                 });
             }
+        } catch (Throwable t) {
+            XposedBridge.log(t);
+        }
+    }
+
+    public static void hookRes(XC_InitPackageResources.InitPackageResourcesParam iprparam, XModuleResources xModuleResources) {
+        try {
+            iprparam.res.setReplacement("com.android.systemui", "dimen", "qs_page_indicator_layout_height", xModuleResources.fwd(R.dimen.sixteen));
+            iprparam.res.setReplacement("com.android.systemui", "dimen", "qs_tile_height", xModuleResources.fwd(R.dimen.eightynine));
         } catch (Throwable t) {
             XposedBridge.log(t);
         }
