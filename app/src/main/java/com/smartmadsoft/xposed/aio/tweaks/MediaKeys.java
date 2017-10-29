@@ -37,7 +37,20 @@ public class MediaKeys {
 
     static CameraManager mCameraManager;
     static String mCameraId;
-    static boolean isTorchOn = false;
+
+    static CameraManager.TorchCallback torchCallback = new CameraManager.TorchCallback() {
+        @TargetApi(23)
+        @Override
+        public void onTorchModeChanged(String cameraId, boolean enabled) {
+            super.onTorchModeChanged(cameraId, enabled);
+            mCameraManager.unregisterTorchCallback(torchCallback);
+
+            try {
+                //final boolean newState = !enabled;
+                mCameraManager.setTorchMode(mCameraId, !enabled);
+            } catch (Throwable t) {}
+        }
+    };
 
     @TargetApi(20)
     public static void hook(XC_LoadPackage.LoadPackageParam lpparam) {
@@ -229,8 +242,7 @@ public class MediaKeys {
                 }
             }
             try {
-                isTorchOn = !isTorchOn;
-                mCameraManager.setTorchMode(mCameraId, isTorchOn);
+                mCameraManager.registerTorchCallback(torchCallback, null);
             } catch (Throwable e) {
                 return;
             }
