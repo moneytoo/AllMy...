@@ -6,6 +6,7 @@ import android.content.res.XResources;
 import com.smartmadsoft.xposed.aio.tweaks.NoExitConfirmation;
 import com.smartmadsoft.xposed.aio.tweaks.DisableNetworkMonitoredNotification;
 import com.smartmadsoft.xposed.aio.tweaks.GMapsMinimizedBar;
+import com.smartmadsoft.xposed.aio.tweaks.PacMan;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.AlwaysSoftwareMenu;
 import com.smartmadsoft.xposed.aio.tweaks.BatteryHistoryXXL;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.BatteryLightDisabler;
@@ -125,6 +126,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             boolean tweakVibrator = prefs.getBoolean("tweak_s7dndvibratoroff", false);
             if (tweakLED || tweakVibrator)
                 LedOffDuringDnD.hook(lpparam, tweakLED, tweakVibrator);
+            if (prefs.getBoolean("tweak_allowapkdowngrade", false))
+                PacMan.hook(lpparam);
         }
         if (lpparam.packageName.equals("com.android.server.telecom")) {
             if (prefs.getBoolean("tweak_k920cardboard", false))
