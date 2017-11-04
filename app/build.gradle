@@ -10,7 +10,7 @@ android {
         targetSdkVersion 23
         versionCode 50
         versionName "0.7.5"
-        project.ext.set("archivesBaseName", "AllMy.v" + defaultConfig.versionName);
+        project.ext.set("archivesBaseName", "AllMy.v" + defaultConfig.versionName + "-" + defaultConfig.versionCode);
     }
     buildTypes {
         release {
