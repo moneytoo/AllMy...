@@ -123,7 +123,9 @@ public class NativeFreezer {
                     protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) {
                         if (!isSystem) {
                             param.args[0] = true;
-                            XposedHelpers.setObjectField(param.thisObject, "mAppControlRestricted", false);
+                            try {
+                                XposedHelpers.setObjectField(param.thisObject, "mAppControlRestricted", false);
+                            } catch (NoSuchFieldError e) {}
                         }
                     }
                 });
