@@ -131,8 +131,6 @@ public class S5TouchWizJunk {
         try {
             iprparam.res.setReplacement("com.android.systemui", "dimen", "qs_page_indicator_layout_height", xModuleResources.fwd(R.dimen.sixteen));
             iprparam.res.setReplacement("com.android.systemui", "dimen", "qs_tile_height", xModuleResources.fwd(R.dimen.eightynine));
-        } catch (Throwable t) {
-            XposedBridge.log(t);
-        }
+        } catch (Throwable t) { }
     }
 }
