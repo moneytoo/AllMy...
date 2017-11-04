@@ -83,4 +83,10 @@
         android:key="tweak_s7no2g"
         android:title="No 2G mode"
         android:summary="Enable the 'LTE/3G(auto connect)' option in Network mode (S7)" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="tweak_s7novolteicon"
+        android:title="Hide VoLTE icon"
+        android:summary="Disable VoLTE/VoWifi icons in system status bar (S7)" />
 </PreferenceScreen>

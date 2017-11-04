@@ -35,6 +35,7 @@ import com.smartmadsoft.xposed.aio.tweaks.copycat.QuickUnlock;
 import com.smartmadsoft.xposed.aio.tweaks.cyanogenmod.RemapVolume;
 import com.smartmadsoft.xposed.aio.tweaks.obsolete.K920Cardboard;
 import com.smartmadsoft.xposed.aio.tweaks.NoWakeOnCharge;
+import com.smartmadsoft.xposed.aio.tweaks.touchwiz.NoVoLteIcon;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.RemapRedialToNextTrack;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S5TouchWizJunk;
 import com.smartmadsoft.xposed.aio.tweaks.touchwiz.S5ReaderMode;
@@ -216,6 +217,8 @@ public class Loader implements IXposedHookZygoteInit, IXposedHookLoadPackage, IX
             if (lpparam.packageName.equals("pl.solidexplorer2"))
                 NoExitConfirmation.hookSolid(lpparam);
         }
+        if (lpparam.packageName.equals("com.sec.imsservice") && prefs.getBoolean("tweak_s7novolteicon", false))
+            NoVoLteIcon.hook(lpparam);
     }
 
     @Override
