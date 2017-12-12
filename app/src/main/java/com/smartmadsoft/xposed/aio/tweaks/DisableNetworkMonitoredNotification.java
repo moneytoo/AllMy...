@@ -1,7 +1,5 @@
 package com.smartmadsoft.xposed.aio.tweaks;
 
-import android.content.Intent;
-
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;

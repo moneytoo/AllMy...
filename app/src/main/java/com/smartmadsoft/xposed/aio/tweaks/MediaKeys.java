@@ -145,7 +145,7 @@ public class MediaKeys {
                                 sendMediaButtonEvent(param.thisObject, KeyEvent.KEYCODE_MEDIA_NEXT);
                             else
                                 toggleFlashlight(param.thisObject);
-                        };
+                        }
                     };
 
                     Runnable mVolumeDownLongPress = new Runnable() {
@@ -153,7 +153,7 @@ public class MediaKeys {
                         public void run() {
                             mIsLongPress = true;
                             sendMediaButtonEvent(param.thisObject, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
-                        };
+                        }
                     };
 
                     XposedHelpers.setAdditionalInstanceField(param.thisObject, "mVolumeUpLongPress", mVolumeUpLongPress);

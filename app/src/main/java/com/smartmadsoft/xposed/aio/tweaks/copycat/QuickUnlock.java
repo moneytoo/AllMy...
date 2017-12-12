@@ -114,7 +114,7 @@ public class QuickUnlock {
                         });
                     }
                 } catch (Throwable t) {
-                    XposedBridge.log(t);;
+                    XposedBridge.log(t);
                 }
             }
         });
@@ -130,7 +130,7 @@ public class QuickUnlock {
                 XposedHelpers.callMethod(callback, "dismiss", true);
             }
         } catch (Throwable t) {
-            XposedBridge.log(t);;
+            XposedBridge.log(t);
         }
     }
 

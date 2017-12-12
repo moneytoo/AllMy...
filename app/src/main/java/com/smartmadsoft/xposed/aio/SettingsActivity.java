@@ -2,6 +2,8 @@ package com.smartmadsoft.xposed.aio;
 
 
 import android.annotation.TargetApi;
+import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,10 +17,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -26,18 +25,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.util.List;
 
-/**
- * A {@link PreferenceActivity} that presents a set of application settings. On
- * handset devices, settings are presented as a single list. On tablets,
- * settings are split by category, with category headers shown to the left of
- * the list of settings.
- * <p/>
- * See <a href="http://developer.android.com/design/patterns/settings.html">
- * Android Design: Settings</a> for design guidelines and the <a
- * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
- * API Guide</a> for more information on developing a Settings UI.
- */
-public class SettingsActivity extends AppCompatPreferenceActivity {
+public class SettingsActivity extends PreferenceActivity {
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
@@ -114,7 +102,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      * Set up the {@link android.app.ActionBar}, if the API is available.
      */
     private void setupActionBar() {
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -429,7 +417,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             return;
 
         AlertDialog.Builder builder;
-        builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
+        builder = new AlertDialog.Builder(this);
         builder.setTitle("Xposed framework not found");
         builder.setMessage("This app is a Xposed module and requires Xposed framework to work");
         builder.setPositiveButton("Ok, quit", new DialogInterface.OnClickListener() {
